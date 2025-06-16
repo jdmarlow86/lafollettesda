@@ -1,0 +1,345 @@
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4faff;
+    color: #333;
+    line-height: 1.6;
+}
+
+a {
+    color: #0077cc;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+/* Header */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 60px 20px;
+    background-color: #008ec9;
+    color: #fff;
+    text-align: center;
+}
+
+    header .logo {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        height: 40px;
+        width: auto;
+    }
+
+@media (min-width: 600px) {
+    header .logo {
+        height: 60px;
+    }
+}
+
+@media (min-width: 1024px) {
+    header .logo {
+        height: 80px;
+    }
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+nav {
+    margin-top: 20px;
+}
+
+    nav a {
+        display: inline-block;
+        margin: 0 10px;
+        padding: 10px 20px;
+        background-color: #005b99;
+        color: #fff;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+        nav a:hover {
+            background-color: #004477;
+        }
+
+/* Header Navigation Dropdown */
+.nav-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Button same as nav a */
+.dropbtn {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px 20px; /* same as nav a */
+    background-color: #005b99;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    font-size: 1em;
+    line-height: 1.6; /* ensure vertical alignment */
+}
+
+
+    .dropbtn:hover {
+        background-color: #004477;
+    }
+
+/* Dropdown menu */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #005b99;
+    min-width: 160px;
+    z-index: 1;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+    .dropdown-content a {
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+
+        .dropdown-content a:hover {
+            background-color: #004477;
+        }
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Responsive handling */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+        nav a,
+        .dropbtn {
+            width: 90%;
+            margin: 5px 0;
+            text-align: center;
+        }
+
+    .dropdown-content {
+        position: static;
+        width: 100%;
+    }
+}
+
+
+
+/* Main content */
+main {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+    section h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        color: #005b99;
+    }
+
+
+.radio-player {
+    background-color: #f2f8fc;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+    .radio-player iframe {
+        width: 100%;
+        height: 100px;
+        border: none;
+        background: transparent;
+    }
+
+.radio-banner {
+    display: block;
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    margin: 0 auto 10px auto;
+    border-radius: 6px;
+    object-fit: cover;
+    max-height: 200vh; /* Add this line to increase height by ~20% */
+}
+
+/* On larger screens, reduce image height by about half */
+@media (min-width: 768px) {
+    .radio-banner {
+        height: 400px; /* adjust as needed for ~half height */
+        object-fit: cover;
+    }
+}
+    
+
+
+
+/* Contact Form */
+.contact-form button {
+    background-color: #005b99;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .contact-form button:hover {
+        background-color: #004477;
+    }
+
+#contact h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #005b99;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    background-color: #008ec9;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+    .footer-links a {
+        display: inline-flex;
+        align-items: center;
+        color: white;
+    }
+
+        .footer-links a img {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            object-fit: contain;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+.footer-text {
+    font-size: 0.9em;
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    nav a {
+        margin: 5px 8px;
+        padding: 8px 16px;
+    }
+
+    section h2 {
+        font-size: 1.5em;
+    }
+
+    header .logo {
+        height: 40px;
+    }
+}
+
+#donate {
+    text-align: center;
+    margin: 40px 0;
+}
+
+    #donate a {
+        display: inline-flex;
+        align-items: center;
+        padding: 12px 20px;
+        background-color: #005b99;
+        color: white;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 15px;
+        transition: background-color 0.3s ease;
+    }
+
+        #donate a:hover {
+            background-color: #004477;
+        }
+
+        #donate a img {
+            margin-right: 10px;
+        }
+
+.church-link {
+    margin-left: 10px;
+    font-size: 0.8em;
+    background-color: #005b99;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+    .church-link:hover {
+        background-color: #004477;
+    }

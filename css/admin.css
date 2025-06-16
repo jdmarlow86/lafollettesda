@@ -1,0 +1,34 @@
+main {
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+h2 {
+    color: #005b99;
+    margin-top: 40px;
+}
+
+.analytics, .submissions, .accounting {
+    background-color: #f4faff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+    .accounting input {
+        margin: 10px 0;
+        padding: 5px;
+    }
+
+    .accounting table {
+        width: 100%;
+        margin-top: 10px;
+        border-collapse: collapse;
+    }
+
+    .accounting th, .accounting td {
+        border: 1px solid #ccc;
+        padding: 8px;
+    }
