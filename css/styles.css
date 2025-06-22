@@ -36,7 +36,7 @@ nav {
 
         nav a:hover,
         nav .dropbtn:hover {
-            background-color: #005c48;
+            background-color: #004c3f;
         }
 
 .dropdown {
@@ -46,7 +46,7 @@ nav {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #005b99;
+    background-color: #004c3f;
     min-width: 160px;
     z-index: 1;
     border-radius: 5px;
