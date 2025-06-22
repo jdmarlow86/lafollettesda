@@ -16,101 +16,33 @@ nav {
     background-color: #004c3f;
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
 }
 
     nav a,
-    nav .dropdown {
+    nav .dropbtn {
         color: white;
         text-decoration: none;
         padding: 14px 20px;
-        display: inline-block;
         font-weight: bold;
-        margin: 0 5px; /* Even spacing */
+        font-family: inherit;
+        font-size: 1em;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        line-height: 1;
     }
 
-        nav a:hover {
+        nav a:hover,
+        nav .dropbtn:hover {
             background-color: #005c48;
         }
 
-/* Hero section */
-.hero {
-    background-image: url('https://adventistchurch.github.io/images/sunrise-cross.pbg');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    padding: 100px 20px;
-    text-align: center;
-}
-
-    .hero h1 {
-        font-size: 3em;
-        margin-bottom: 10px;
-    }
-
-/* Main sections */
-.section {
-    padding: 40px 20px;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-    .section h2 {
-        color: #006a4e;
-    }
-
-/* Footer */
-footer {
-    background: #004c3f;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    font-size: 0.9em;
-}
-
-/* Buttons */
-.button {
-    background-color: #006a4e;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-    .button:hover {
-        background-color: #005c48;
-    }
-
-/* Dropdown styling */
 .dropdown {
     position: relative;
-    display: flex;
-    align-items: center;
 }
 
-nav .dropbtn {
-    background-color: transparent;
-    border: none;
-    color: white;
-    padding: 14px 20px; /* Match nav a */
-    font-weight: bold;
-    font-family: inherit;
-    font-size: 1em;
-    cursor: pointer;
-    display: inline-block;
-    height: 100%;
-    line-height: 1.6;
-    margin: 0;
-}
-
-    nav .dropbtn:hover {
-        background-color: #005c48;
-    }
-
-/* Dropdown menu */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -135,7 +67,57 @@ nav .dropbtn {
             background-color: #004477;
         }
 
-/* Show dropdown on hover */
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
+/* Hero section */
+.hero {
+    background-image: url('https://adventistchurch.github.io/images/sunrise-cross.pbg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+    .hero h1 {
+        font-size: 3em;
+        margin-bottom: 10px;
+    }
+
+/* Section content */
+.section {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+    .section h2 {
+        color: #006a4e;
+    }
+
+/* Footer */
+footer {
+    background: #004c3f;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
+}
+
+/* Generic button style */
+.button {
+    background-color: #006a4e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+    .button:hover {
+        background-color: #005c48;
+    }
