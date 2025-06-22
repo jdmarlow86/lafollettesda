@@ -19,20 +19,23 @@ nav {
     flex-wrap: wrap;
 }
 
-    nav a {
+    nav a,
+    nav .dropdown {
         color: white;
         text-decoration: none;
         padding: 14px 20px;
         display: inline-block;
         font-weight: bold;
+        margin: 0 5px; /* Even spacing */
     }
 
         nav a:hover {
             background-color: #005c48;
         }
 
+/* Hero section */
 .hero {
-    background-image: url('https://adventistchurch.github.io/images/sunrise-cross.pbg'); /* You can replace this with a real photo */
+    background-image: url('https://adventistchurch.github.io/images/sunrise-cross.pbg');
     background-size: cover;
     background-position: center;
     color: white;
@@ -45,6 +48,7 @@ nav {
         margin-bottom: 10px;
     }
 
+/* Main sections */
 .section {
     padding: 40px 20px;
     max-width: 1000px;
@@ -55,6 +59,7 @@ nav {
         color: #006a4e;
     }
 
+/* Footer */
 footer {
     background: #004c3f;
     color: white;
@@ -63,6 +68,7 @@ footer {
     font-size: 0.9em;
 }
 
+/* Buttons */
 .button {
     background-color: #006a4e;
     color: white;
@@ -78,32 +84,30 @@ footer {
         background-color: #005c48;
     }
 
-/* Dropdown container */
+/* Dropdown styling */
 .dropdown {
     position: relative;
-    display: inline-block;
+    display: flex;
+    align-items: center;
 }
 
-/* Button same as nav a */
-.dropbtn {
-    display: inline-block;
-    margin: 0 10px;
-    padding: 10px 20px; /* same as nav a */
-    background-color: #005b99;
-    color: #fff;
+nav .dropbtn {
+    background-color: transparent;
     border: none;
-    border-radius: 5px;
+    color: white;
+    padding: 14px 20px; /* Match nav a */
+    font-weight: bold;
     font-family: inherit;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-align: center;
     font-size: 1em;
-    line-height: 1.6; /* ensure vertical alignment */
+    cursor: pointer;
+    display: inline-block;
+    height: 100%;
+    line-height: 1.6;
+    margin: 0;
 }
 
-
-    .dropbtn:hover {
-        background-color: #004477;
+    nav .dropbtn:hover {
+        background-color: #005c48;
     }
 
 /* Dropdown menu */
@@ -115,6 +119,8 @@ footer {
     z-index: 1;
     border-radius: 5px;
     overflow: hidden;
+    top: 100%;
+    left: 0;
 }
 
     .dropdown-content a {
@@ -132,26 +138,4 @@ footer {
 /* Show dropdown on hover */
 .dropdown:hover .dropdown-content {
     display: block;
-}
-
-/* Match dropbtn style with nav a */
-nav .dropbtn {
-    background-color: transparent;
-    border: none;
-    color: white;
-    padding: 14px 20px;
-    font-weight: bold;
-    font-family: inherit;
-    font-size: 1em;
-    cursor: pointer;
-}
-
-    nav .dropbtn:hover {
-        background-color: #004c3f;
-    }
-
-/* Ensure dropdown aligns inline with nav links */
-.dropdown {
-    display: inline-block;
-    position: relative;
 }
