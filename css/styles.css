@@ -133,3 +133,25 @@ footer {
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
+/* Match dropbtn style with nav a */
+nav .dropbtn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 14px 20px;
+    font-weight: bold;
+    font-family: inherit;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+    nav .dropbtn:hover {
+        background-color: #005c48;
+    }
+
+/* Ensure dropdown aligns inline with nav links */
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
