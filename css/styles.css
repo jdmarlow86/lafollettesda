@@ -156,12 +156,6 @@ footer {
     gap: 20px;
 }
 
-/* Logo styles */
-.logo {
-    height: 80px;
-    width: auto;
-}
-
 /* Text next to logo */
 .header-text h1 {
     margin: 0;
@@ -175,10 +169,57 @@ footer {
     color: white;
 }
 
+/* Header layout: logo left, text centered underneath */
+.header-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
+    position: relative;
+}
+
+/* Logo on top-left */
+.logo {
+    height: 80px;
+    width: auto;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+
+/* Center the text block within header */
+.header-text {
+    width: 100%;
+    text-align: center;
+    margin-top: 80px; /* space under the logo */
+}
+
+    .header-text h1 {
+        margin: 0;
+        font-size: 1.8em;
+        color: white;
+    }
+
+    .header-text p {
+        margin: 4px 0 0;
+        font-size: 1em;
+        color: white;
+    }
+
+/* Responsive: stack and center on mobile */
 @media (max-width: 600px) {
-    .header-content {
-        flex-direction: column;
+    .header-layout {
         align-items: center;
-        text-align: center;
+        padding-top: 100px;
+    }
+
+    .logo {
+        position: static;
+        margin-bottom: 10px;
+    }
+
+    .header-text {
+        margin-top: 0;
     }
 }
+
