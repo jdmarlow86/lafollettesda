@@ -146,3 +146,39 @@ footer {
     object-fit: contain; /* Keeps the image proportions */
     margin-left: 4px; /* Optional spacing next to text */
 }
+
+
+/* Adjust overall header layout */
+.header-content {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Logo styles */
+.logo {
+    height: 80px;
+    width: auto;
+}
+
+/* Text next to logo */
+.header-text h1 {
+    margin: 0;
+    font-size: 1.8em;
+    color: white;
+}
+
+.header-text p {
+    margin: 4px 0 0;
+    font-size: 1em;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
