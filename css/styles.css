@@ -136,3 +136,11 @@ footer {
     .church-link:hover {
         background-color: #004477;
     }
+
+.icon-image {
+    width: 16px; /* Adjust width as needed */
+    height: 16px; /* Keep it square for icons */
+    vertical-align: middle;
+    object-fit: contain; /* Keeps the image proportions */
+    margin-left: 4px; /* Optional spacing next to text */
+}
