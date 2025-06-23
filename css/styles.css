@@ -5,13 +5,52 @@ body {
     color: #333;
 }
 
+/* Header background and spacing */
 header {
     background: #006a4e;
     color: white;
-    padding: 15px;
-    text-align: center;
+    padding: 10px 20px;
+    position: relative;
+    min-height: 100px;
 }
 
+/* Layout container for logo and text */
+.header-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+}
+
+/* Logo positioning and sizing */
+.logo {
+    height: 60px;
+    width: auto;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+
+/* Centered text block */
+.header-text {
+    width: 100%;
+    text-align: center;
+    margin-top: 60px; /* leaves room for logo */
+}
+
+    .header-text h1 {
+        margin: 0;
+        font-size: 1.5em;
+        color: white;
+    }
+
+    .header-text p {
+        margin: 4px 0 0;
+        font-size: 0.95em;
+        color: white;
+    }
+
+/* Navigation styling */
 nav {
     background-color: #004c3f;
     display: flex;
@@ -39,6 +78,7 @@ nav {
             background-color: #004c3f;
         }
 
+/* Dropdowns */
 .dropdown {
     position: relative;
 }
@@ -86,7 +126,7 @@ nav {
         margin-bottom: 10px;
     }
 
-/* Section content */
+/* Content sections */
 .section {
     padding: 40px 20px;
     max-width: 1000px;
@@ -106,7 +146,7 @@ footer {
     font-size: 0.9em;
 }
 
-/* Generic button style */
+/* Buttons */
 .button {
     background-color: #006a4e;
     color: white;
@@ -122,6 +162,7 @@ footer {
         background-color: #005c48;
     }
 
+/* External resource links */
 .church-link {
     color: #ffffff;
     background-color: #004c3f;
@@ -138,88 +179,37 @@ footer {
         background-color: #006a4e;
     }
 
-
+/* Icons */
 .icon-image {
-    width: 150px; /* Adjust width as needed */
-    height: 150px; /* Keep it square for icons */
+    width: 150px;
+    height: 150px;
     vertical-align: middle;
-    object-fit: contain; /* Keeps the image proportions */
-    margin-left: 4px; /* Optional spacing next to text */
+    object-fit: contain;
+    margin-left: 4px;
 }
 
-
-/* Adjust overall header layout */
-.header-content {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    gap: 20px;
-}
-
-/* Text next to logo */
-.header-text h1 {
-    margin: 0;
-    font-size: 1.8em;
-    color: white;
-}
-
-.header-text p {
-    margin: 4px 0 0;
-    font-size: 1em;
-    color: white;
-}
-
-/* Header layout: logo left, text centered underneath */
-.header-layout {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px 20px;
-    position: relative;
-}
-
-/* Logo on top-left */
-.logo {
-    height: 80px;
-    width: auto;
-    position: absolute;
-    top: 10px;
-    left: 20px;
-}
-
-/* Center the text block within header */
-.header-text {
-    width: 100%;
-    text-align: center;
-    margin-top: 80px; /* space under the logo */
-}
-
-    .header-text h1 {
-        margin: 0;
-        font-size: 1.8em;
-        color: white;
-    }
-
-    .header-text p {
-        margin: 4px 0 0;
-        font-size: 1em;
-        color: white;
-    }
-
-/* Responsive: stack and center on mobile */
+/* Responsive header layout */
 @media (max-width: 600px) {
     .header-layout {
         align-items: center;
-        padding-top: 100px;
+        padding-top: 80px;
     }
 
     .logo {
         position: static;
+        height: 50px;
         margin-bottom: 10px;
     }
 
     .header-text {
         margin-top: 0;
     }
-}
 
+        .header-text h1 {
+            font-size: 1.3em;
+        }
+
+        .header-text p {
+            font-size: 0.9em;
+        }
+}
