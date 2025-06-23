@@ -123,19 +123,21 @@ footer {
     }
 
 .church-link {
-    margin-left: 10px;
-    font-size: 0.8em;
+    color: #ffffff;
     background-color: #004c3f;
-    color: #fff;
-    padding: 4px 10px;
-    border-radius: 5px;
+    padding: 12px 24px;
+    border-radius: 6px;
     text-decoration: none;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
     transition: background-color 0.3s ease;
 }
 
     .church-link:hover {
-        background-color: #004477;
+        background-color: #006a4e;
     }
+
 
 .icon-image {
     width: 150px; /* Adjust width as needed */
