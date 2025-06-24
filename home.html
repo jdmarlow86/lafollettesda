@@ -94,6 +94,13 @@
         document.getElementById("hamburger").addEventListener("click", function () {
             document.getElementById("nav-menu").classList.toggle("nav-open");
         });
+
+        // Mobile dropdown toggle
+        document.querySelector(".dropbtn").addEventListener("click", function (e) {
+            e.preventDefault();
+            const dropdown = this.parentElement;
+            dropdown.classList.toggle("nav-open");
+        });
     </script>
 
 </body>

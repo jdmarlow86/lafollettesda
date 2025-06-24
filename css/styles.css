@@ -178,41 +178,37 @@ p {
     margin-left: auto;
 }
 
-/* Hide nav on small screens */
+/* Make dropdown behave like other links in mobile view */
 @media (max-width: 768px) {
-    nav {
-        display: none;
-        flex-direction: column;
+    .dropdown {
         width: 100%;
-        background-color: #004c3f;
-        margin-top: 10px;
-        padding-bottom: 10px;
     }
 
-        nav a,
-        nav .dropbtn {
-            padding: 12px;
-            text-align: left;
-            width: 100%;
+    .dropbtn {
+        width: 100%;
+        text-align: left;
+        padding: 12px;
+    }
+
+    .dropdown-content {
+        position: static; /* Disable absolute positioning */
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        background-color: #004c3f;
+    }
+
+        .dropdown-content a {
+            padding-left: 24px; /* Optional indent */
         }
 
-    .hamburger {
+    .dropdown:hover .dropdown-content {
+        display: none; /* Disable hover dropdown on mobile */
+    }
+
+    .dropdown.nav-open .dropdown-content {
         display: block;
     }
-
-    .nav-open {
-        display: flex !important;
-    }
-
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .header-left {
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-    }
 }
+
 
