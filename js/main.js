@@ -71,3 +71,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
+
+// ========== Toggle menu for mobile ==========
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('navMenu');
+
+hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('open');
+});
+
+// Optional: toggle dropdown on mobile
+const dropdownBtn = document.querySelector('.dropbtn');
+if (dropdownBtn) {
+    dropdownBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const dropdown = dropdownBtn.parentElement;
+        dropdown.classList.toggle('nav-open');
+    });
+}
