@@ -80,12 +80,4 @@ hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('open');
 });
 
-// Optional: toggle dropdown on mobile
-const dropdownBtn = document.querySelector('.dropbtn');
-if (dropdownBtn) {
-    dropdownBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const dropdown = dropdownBtn.parentElement;
-        dropdown.classList.toggle('nav-open');
-    });
-}
+

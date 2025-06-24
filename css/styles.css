@@ -80,6 +80,13 @@ nav {
             background-color: #006a4e;
         }
 
+/* Desktop nav: horizontal layout */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
 /* --- DROPDOWN --- */
 .dropdown {
     position: relative;
@@ -243,6 +250,21 @@ footer {
 
     .dropdown.nav-open .dropdown-content {
         display: block;
+    }
+
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+        .nav-menu.show {
+            display: flex;
+        }
+
+    .dropdown-content {
+        position: static;
+        width: 100%;
     }
 
     .hamburger {
