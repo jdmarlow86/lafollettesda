@@ -108,6 +108,25 @@ nav {
     display: block;
 }
 
+.content-center {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-logo {
+    margin-top: 20px;
+    width: 120px;
+    height: auto;
+}
+
+.map-container {
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+
 /* --- FOOTER --- */
 footer {
     width: 100%;
