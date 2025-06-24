@@ -127,6 +127,21 @@ nav {
     overflow: hidden;
 }
 
+/* --- External link styling --- */
+.church-link {
+    margin-left: 10px;
+    font-size: 0.8em;
+    background-color: #004c3f;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+    .church-link:hover {
+        background-color: #004477;
+    }
 
 /* --- FOOTER --- */
 footer {
