@@ -137,6 +137,36 @@ footer {
     font-size: 0.9em;
 }
 
+.section {
+    padding: 50px 20px;
+    width: 100%;
+    background-color: #fdfdfd;
+}
+
+    .section:not(:last-child) {
+        border-bottom: 1px solid #ddd;
+    }
+
+.content-center {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+}
+
+h2 {
+    color: #006a4e;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
     header {
