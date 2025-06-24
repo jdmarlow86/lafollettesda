@@ -22,20 +22,21 @@
         <button class="hamburger" id="hamburger">&#9776;</button>
 
         <!-- Navigation -->
-        <nav id="nav-menu">
-            <a href="home.html">Home</a>
-            <a href="bulletin.html">Bulletin</a>
-            <a href="about.html">About Us</a>
-            <a href="ministries.html">Ministries</a>
-            <div class="dropdown">
-                <button class="dropbtn">Resources ▾</button>
-                <div class="dropdown-content">
-                    <a href="adultsabbathschool.html">Adult Edu</a>
-                    <a href="kids-edu.html">Kid's Edu</a>
+        <nav>
+            <div class="nav-menu" id="navMenu">
+                <a href="home.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="ministries.html">Ministries</a>
+                <div class="dropdown">
+                    <button class="dropbtn">Resources ▾</button>
+                    <div class="dropdown-content">
+                        <a href="adultsabbathschool.html">Adult Edu</a>
+                        <a href="kids-edu.html">Kid's Edu'</a>
+                    </div>
                 </div>
+                <a href="contact.html">Contact</a>
+                <a href="support.html">Giving</a>
             </div>
-            <a href="contact.html">Contact</a>
-            <a href="support.html">Giving</a>
         </nav>
     </header>
 
@@ -91,17 +92,24 @@
     </footer>
 
     <script>
-        document.getElementById("hamburger").addEventListener("click", function () {
-            document.getElementById("nav-menu").classList.toggle("nav-open");
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('open');
         });
 
-        // Mobile dropdown toggle
-        document.querySelector(".dropbtn").addEventListener("click", function (e) {
-            e.preventDefault();
-            const dropdown = this.parentElement;
-            dropdown.classList.toggle("nav-open");
-        });
+        // Optional: toggle dropdown on mobile
+        const dropdownBtn = document.querySelector('.dropbtn');
+        if (dropdownBtn) {
+            dropdownBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const dropdown = dropdownBtn.parentElement;
+                dropdown.classList.toggle('nav-open');
+            });
+        }
     </script>
+
 
 </body>
 </html>

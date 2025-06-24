@@ -193,37 +193,47 @@ p {
     margin-left: auto;
 }
 
-/* Make dropdown behave like other links in mobile view */
+/* Container for nav links to toggle */
+.nav-menu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Mobile behavior */
 @media (max-width: 768px) {
-    .dropdown {
+    .nav-menu {
+        display: none;
+        flex-direction: column;
         width: 100%;
-    }
-
-    .dropbtn {
-        width: 100%;
-        text-align: left;
-        padding: 12px;
-    }
-
-    .dropdown-content {
-        position: static; /* Disable absolute positioning */
-        width: 100%;
-        border-radius: 0;
-        box-shadow: none;
         background-color: #004c3f;
+        padding: 10px 0;
     }
 
-        .dropdown-content a {
-            padding-left: 24px; /* Optional indent */
+        .nav-menu.open {
+            display: flex;
         }
 
-    .dropdown:hover .dropdown-content {
-        display: none; /* Disable hover dropdown on mobile */
-    }
-
-    .dropdown.nav-open .dropdown-content {
+    .hamburger {
         display: block;
     }
+
+    nav {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+        nav a,
+        nav .dropbtn {
+            width: 100%;
+            text-align: left;
+            padding: 12px 20px;
+        }
 }
+
 
 
