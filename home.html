@@ -11,21 +11,24 @@
 
     <header>
         <div class="header-left">
-            <a href="home.html" target="_blank" class="logo-link">
-                <img src="images/sda-simple-logo.png" alt="SDA Logo" class="logo" />
-            </a>
+            <img src="images/sda-simple-logo.png" alt="SDA Logo" class="logo" />
             <div class="site-title">
                 <h1>Seventh-day Adventist Church</h1>
                 <p>LaFollette, Tennessee</p>
             </div>
         </div>
 
-        <nav>
+        <!-- Hamburger icon -->
+        <button class="hamburger" id="hamburger">&#9776;</button>
+
+        <!-- Navigation -->
+        <nav id="nav-menu">
+            <a href="home.html">Home</a>
             <a href="bulletin.html">Bulletin</a>
             <a href="about.html">About Us</a>
             <a href="ministries.html">Ministries</a>
             <div class="dropdown">
-                <button class="dropbtn">Resources &#9662;</button>
+                <button class="dropbtn">Resources ▾</button>
                 <div class="dropdown-content">
                     <a href="adultsabbathschool.html">Adult Edu</a>
                     <a href="kids-edu.html">Kid's Edu</a>
@@ -86,6 +89,12 @@
         <p>2025 Seventh-day Adventist Church of LaFollette, TN</p>
         <p>Located in the heart of Campbell County, sharing God's love and hope with our community.</p>
     </footer>
+
+    <script>
+        document.getElementById("hamburger").addEventListener("click", function () {
+            document.getElementById("nav-menu").classList.toggle("nav-open");
+        });
+    </script>
 
 </body>
 </html>

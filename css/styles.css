@@ -37,6 +37,7 @@ header {
     width: auto;
 }
 
+
 .site-title h1 {
     font-size: 1.4rem;
     font-weight: bold;
@@ -166,23 +167,52 @@ p {
     margin-bottom: 20px;
 }
 
+/* Hide hamburger by default */
+.hamburger {
+    display: none;
+    font-size: 26px;
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+}
 
-/* --- RESPONSIVE --- */
+/* Hide nav on small screens */
 @media (max-width: 768px) {
+    nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #004c3f;
+        margin-top: 10px;
+        padding-bottom: 10px;
+    }
+
+        nav a,
+        nav .dropbtn {
+            padding: 12px;
+            text-align: left;
+            width: 100%;
+        }
+
+    .hamburger {
+        display: block;
+    }
+
+    .nav-open {
+        display: flex !important;
+    }
+
     header {
         flex-direction: column;
         align-items: flex-start;
-        text-align: center;
     }
 
     .header-left {
-        justify-content: center;
-        margin-bottom: 10px;
         width: 100%;
-    }
-
-    nav {
-        justify-content: center;
-        width: 100%;
+        justify-content: space-between;
+        align-items: center;
     }
 }
+
