@@ -1,73 +1,50 @@
-/* Reset spacing */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-/* Base layout */
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #fdfdfd;
-    color: #333;
-}
-
-/* --- HEADER STYLES --- */
+/* Header layout */
 header {
-    width: 100%;
-    background: #004c3f;
-    color: white;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
+    justify-content: space-between;
     flex-wrap: wrap;
+    background-color: #004c3f;
+    padding: 15px 30px;
+    color: white;
 }
 
-/* Left side: Logo + Text */
+/* Logo + Text */
 .header-left {
     display: flex;
     align-items: center;
     gap: 15px;
-    flex-shrink: 0;
-    margin-right: auto; /* pushes the nav away from header-left */
 }
 
-.logo {
-    height: 60px;
-    width: auto;
+.site-title {
+    margin-left: 15px;
+    text-align: left;
 }
 
+    .site-title h1 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: white;
+    }
 
-.site-title h1 {
-    font-size: 1.4rem;
-    font-weight: bold;
-}
+    .site-title p {
+        font-size: 0.9rem;
+        color: #e0e0e0;
+    }
 
-.site-title p {
-    font-size: 0.9rem;
-    margin-top: 2px;
-    color: #e0e0e0;
-}
-
-/* --- NAVIGATION --- */
-nav {
+/* Nav inside header */
+nav.desktop-nav {
     display: flex;
-    align-items: center;
     gap: 18px;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-top: 10px;
-    padding-left: 30px;
+    align-items: center;
 }
 
-    nav a,
-    nav .dropbtn {
+    nav.desktop-nav a,
+    nav.desktop-nav .dropbtn {
         color: white;
         text-decoration: none;
         padding: 10px 14px;
         font-weight: bold;
-        font-size: 1em;
         background: transparent;
         border: none;
         cursor: pointer;
@@ -75,171 +52,33 @@ nav {
         transition: background-color 0.3s ease;
     }
 
-        nav a:hover,
-        nav .dropbtn:hover {
+        nav.desktop-nav a:hover,
+        nav.desktop-nav .dropbtn:hover {
             background-color: #006a4e;
         }
 
-/* --- DROPDOWN --- */
-.dropdown {
-    position: relative;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #004c3f;
-    border-radius: 5px;
-    top: 100%;
-    left: 0;
-    min-width: 160px;
-    z-index: 1;
-}
-
-    .dropdown-content a {
-        padding: 12px 16px;
-        display: block;
-        color: white;
-        text-decoration: none;
-    }
-
-        .dropdown-content a:hover {
-            background-color: #006a4e;
-        }
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.content-center {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.about-logo {
-    margin-top: 20px;
-    height: 100px;
-    width: auto;
-}
-
-.map-container {
-    margin-top: 20px;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-/* --- External link styling --- */
-.church-link {
-    margin-left: 10px;
-    font-size: 0.8em;
-    background-color: #004c3f;
-    color: #fff;
-    padding: 4px 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-    .church-link:hover {
-        background-color: #004477;
-    }
-
-/* --- FOOTER --- */
-footer {
-    width: 100%;
-    background: #004c3f;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    font-size: 0.9em;
-}
-
-.section {
-    padding: 50px 20px;
-    width: 100%;
-    background-color: #fdfdfd;
-}
-
-    .section:not(:last-child) {
-        border-bottom: 1px solid #ddd;
-    }
-
-.content-center {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 20px;
-}
-
-h2 {
-    color: #006a4e;
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-}
-
-p {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-/* Hide hamburger by default */
+/* Hide hamburger on desktop */
 .hamburger {
     display: none;
-    font-size: 26px;
-    background: none;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-left: auto;
 }
 
-/* Container for nav links to toggle */
-.nav-menu {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 18px;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Mobile behavior */
+/* Mobile adjustments */
 @media (max-width: 768px) {
-    .nav-menu {
+    nav.desktop-nav {
         display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: #004c3f;
-        padding: 10px 0;
     }
-
-        .nav-menu.open {
-            display: flex;
-        }
 
     .hamburger {
         display: block;
+        font-size: 26px;
+        background: none;
+        color: white;
+        border: none;
+        cursor: pointer;
     }
-
-    nav {
-        flex-direction: column;
-        width: 100%;
-        margin-top: 10px;
-    }
-
-        nav a,
-        nav .dropbtn {
-            width: 100%;
-            text-align: left;
-            padding: 12px 20px;
-        }
 
     .site-title {
         text-align: center;
+        margin: 10px 0;
     }
 }
-
-
-
