@@ -30,6 +30,7 @@ header {
     align-items: center;
     gap: 15px;
     flex-shrink: 0;
+    margin-right: auto; /* pushes the nav away from header-left */
 }
 
 .logo {
@@ -55,8 +56,9 @@ nav {
     align-items: center;
     gap: 18px;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     margin-top: 10px;
+    padding-left: 30px;
 }
 
     nav a,
@@ -117,7 +119,7 @@ nav {
 
 .about-logo {
     margin-top: 20px;
-    height: 60px;
+    height: 100px;
     width: auto;
 }
 
@@ -233,6 +235,10 @@ p {
             text-align: left;
             padding: 12px 20px;
         }
+
+    .site-title {
+        text-align: center;
+    }
 }
 
 
