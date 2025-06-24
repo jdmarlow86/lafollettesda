@@ -5,80 +5,50 @@ body {
     color: #333;
 }
 
-/* Header background and spacing */
+/* Header container with flex layout */
 header {
-    background: #006a4e;
+    background: #004c3f; /* same as footer */
     color: white;
-    padding: 10px 20px;
-    position: relative;
-    min-height: 100px;
-}
-
-/* Layout container for logo and text */
-.header-layout {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-}
-
-/* Logo positioning and sizing */
-.logo {
-    height: 60px;
-    width: auto;
-    position: absolute;
-    top: 10px;
-    left: 20px;
-}
-
-/* Centered text block */
-.header-text {
-    width: 100%;
-    text-align: center;
-    margin-top: 60px; /* leaves room for logo */
-}
-
-    .header-text h1 {
-        margin: 0;
-        font-size: 1.5em;
-        color: white;
-    }
-
-    .header-text p {
-        margin: 4px 0 0;
-        font-size: 0.95em;
-        color: white;
-    }
-
-/* Navigation styling */
-nav {
-    background-color: #004c3f;
-    display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    padding: 10px 20px;
     flex-wrap: wrap;
 }
 
-    nav a,
-    nav .dropbtn {
-        color: white;
-        text-decoration: none;
-        padding: 14px 20px;
-        font-weight: bold;
-        font-family: inherit;
-        font-size: 1em;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        line-height: 1;
+/* Logo */
+.logo {
+    height: 60px;
+    width: auto;
+}
+
+/* Navigation aligned right in header */
+.nav-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+nav a,
+nav .dropbtn {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    font-family: inherit;
+    font-size: 1em;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+    nav a:hover,
+    nav .dropbtn:hover {
+        background-color: #006a4e;
+        border-radius: 4px;
     }
 
-        nav a:hover,
-        nav .dropbtn:hover {
-            background-color: #004c3f;
-        }
-
-/* Dropdowns */
+/* Dropdown styles */
 .dropdown {
     position: relative;
 }
@@ -100,42 +70,23 @@ nav {
         padding: 12px 16px;
         text-decoration: none;
         display: block;
-        text-align: left;
     }
 
         .dropdown-content a:hover {
-            background-color: #004c3f;
+            background-color: #006a4e;
         }
 
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
-/* Hero section */
-.hero {
-    background-image: url('https://adventistchurch.github.io/images/sunrise-cross.pbg');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    padding: 100px 20px;
+/* Header text under logo (optional) */
+.header-text {
     text-align: center;
+    margin-top: 10px;
+    flex-basis: 100%;
+    color: white;
 }
-
-    .hero h1 {
-        font-size: 3em;
-        margin-bottom: 10px;
-    }
-
-/* Content sections */
-.section {
-    padding: 40px 20px;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-    .section h2 {
-        color: #006a4e;
-    }
 
 /* Footer */
 footer {
@@ -146,70 +97,16 @@ footer {
     font-size: 0.9em;
 }
 
-/* Buttons */
-.button {
-    background-color: #006a4e;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-    .button:hover {
-        background-color: #005c48;
-    }
-
-/* External resource links */
-.church-link {
-    color: #ffffff;
-    background-color: #004c3f;
-    padding: 12px 24px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    display: inline-flex;
-    align-items: center;
-    transition: background-color 0.3s ease;
-}
-
-    .church-link:hover {
-        background-color: #006a4e;
-    }
-
-/* Icons */
-.icon-image {
-    width: 150px;
-    height: 150px;
-    vertical-align: middle;
-    object-fit: contain;
-    margin-left: 4px;
-}
-
-/* Responsive header layout */
-@media (max-width: 600px) {
-    .header-layout {
+/* Responsive behavior */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
         align-items: center;
-        padding-top: 80px;
     }
 
-    .logo {
-        position: static;
-        height: 50px;
-        margin-bottom: 10px;
+    .nav-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
     }
-
-    .header-text {
-        margin-top: 0;
-    }
-
-        .header-text h1 {
-            font-size: 1.3em;
-        }
-
-        .header-text p {
-            font-size: 0.9em;
-        }
 }
