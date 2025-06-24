@@ -56,7 +56,7 @@ nav {
     display: flex;
     align-items: center;
     gap: 18px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: flex-start;
     flex: 2;
 }
