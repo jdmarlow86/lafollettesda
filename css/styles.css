@@ -2,12 +2,12 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 /* ---------- BASE ---------- */
 body {
-    font-family: 'Roboto',sans-serif;
+    font-family: 'Roboto', sans-serif;
     background: #fdfdfd;
     color: #333;
 }
@@ -18,8 +18,10 @@ header {
     background: #004c3f;
     color: #fff;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -43,25 +45,35 @@ header {
 }
 
 .site-title p {
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: #e0e0e0;
     margin-top: 2px;
 }
 
+/* ---------- HAMBURGER (mobile) ---------- */
+.hamburger {
+    display: none;
+    font-size: 28px;
+    background: none;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+}
+
 /* ---------- NAV (desktop) ---------- */
 nav {
-    flex: 1; /* allows nav to push to right if room */
+    flex: 1;
 }
 
 .nav-menu {
-    display: flex; /* horizontal — no wrap */
-    flex-wrap: nowrap; /* prevent wrapping on desktop */
+    display: flex;
+    flex-wrap: nowrap; /* prevents wrapping */
     gap: 18px;
     align-items: center;
-    margin-left: 1in; /* Move it about an inch to the right */
+    margin-left: 1in; /* approx 96px */
 }
 
-    /* Links / buttons */
     .nav-menu a,
     .nav-menu .dropbtn {
         color: #fff;
@@ -73,17 +85,17 @@ nav {
         border: none;
         cursor: pointer;
         border-radius: 4px;
-        transition: background-color .3s;
+        transition: background-color 0.3s;
     }
 
         .nav-menu a:hover,
         .nav-menu .dropbtn:hover {
-            background: #006a4e
+            background: #006a4e;
         }
 
 /* ---------- DROPDOWN ---------- */
 .dropdown {
-    position: relative
+    position: relative;
 }
 
 .dropdown-content {
@@ -105,79 +117,68 @@ nav {
     }
 
         .dropdown-content a:hover {
-            background: #006a4e
+            background: #006a4e;
         }
 
 .dropdown:hover .dropdown-content {
-    display: block
-}
-
-/* ---------- HAMBURGER (mobile) ---------- */
-.hamburger {
-    display: none;
-    font-size: 28px;
-    background: none;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    margin-left: auto;
+    display: block;
 }
 
 /* ---------- SECTIONS ---------- */
 .section {
     padding: 50px 20px;
-    width: 100%
+    width: 100%;
 }
 
     .section:not(:last-child) {
-        border-bottom: 1px solid #ddd
+        border-bottom: 1px solid #ddd;
     }
 
 .content-center {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
-    padding: 20px
+    padding: 20px;
 }
 
 h2 {
     color: #006a4e;
     font-size: 1.8rem;
-    margin-bottom: 15px
+    margin-bottom: 15px;
 }
 
 p {
     font-size: 1rem;
     line-height: 1.6;
-    margin-bottom: 20px
+    margin-bottom: 20px;
 }
 
 .about-logo {
     margin-top: 20px;
     height: 100px;
-    width: auto
+    width: auto;
 }
 
 .map-container {
     margin-top: 20px;
     border-radius: 8px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 /* External tag */
 .church-link {
     margin-left: 10px;
-    font-size: .8em;
+    font-size: 0.8em;
     background: #004c3f;
     color: #fff;
     padding: 4px 10px;
     border-radius: 5px;
     text-decoration: none;
-    transition: background-color .3s;
+    transition: background-color 0.3s;
 }
 
     .church-link:hover {
-        background: #004477
+        background: #004477;
     }
 
 /* ---------- FOOTER ---------- */
@@ -187,26 +188,29 @@ footer {
     color: #fff;
     text-align: center;
     padding: 20px;
-    font-size: .9em;
+    font-size: 0.9em;
 }
 
 /* ---------- MOBILE (?768 px) ---------- */
 @media (max-width: 768px) {
     header {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .header-left {
+        width: 100%;
+        justify-content: space-between;
         flex-direction: row;
-        align-items: center;
-        gap: 10px;
     }
 
     .site-title {
+        flex-grow: 1;
         text-align: left;
+    }
+
+    .hamburger {
+        display: block;
     }
 
     .nav-menu {
@@ -231,6 +235,7 @@ footer {
 
     .dropdown-content {
         position: static;
+        width: 100%;
         border-radius: 0;
     }
 
@@ -241,9 +246,4 @@ footer {
     .dropdown.open .dropdown-content {
         display: block;
     }
-
-    .hamburger {
-        display: block;
-    }
 }
-
