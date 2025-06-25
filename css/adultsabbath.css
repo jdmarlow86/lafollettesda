@@ -6,25 +6,38 @@
 }
 
 .adult-link-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     background-color: #f0f0f0;
     padding: 15px;
-    text-align: center;
     border-radius: 8px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* shadow added */
+    text-decoration: none;
+    color: #004c3f;
+    font-weight: bold;
+    transition: transform 0.2s ease, background-color 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
     .adult-link-block:hover {
         transform: scale(1.03);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* larger shadow on hover */
+        background-color: #e0f0ea;
+        text-decoration: none;
     }
 
     .adult-link-block img {
         max-width: 100%;
         height: auto;
         margin-bottom: 10px;
-        border-radius: 4px;
     }
+
+    .adult-link-block span {
+        display: block;
+        margin-top: 5px;
+    }
+
 
     .adult-link-block a {
         display: block;
