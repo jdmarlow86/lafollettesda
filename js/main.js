@@ -72,6 +72,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+// Hamburger toggles nav visibility
+document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navMenu').classList.toggle('show');
+});
 
+// Dropdown click (mobile) — optional
+const dropBtn = document.querySelector('.dropbtn');
+dropBtn.addEventListener('click', (e) => {
+    // Prevent page jump
+    e.preventDefault();
+    dropBtn.parentElement.classList.toggle('open');
+});
 
 

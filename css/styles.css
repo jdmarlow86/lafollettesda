@@ -1,69 +1,69 @@
-/* Reset spacing */
+/* ---------- RESET ---------- */
 * {
     box-sizing: border-box;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 
-/* Base layout */
+/* ---------- BASE ---------- */
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #fdfdfd;
+    font-family: 'Roboto',sans-serif;
+    background: #fdfdfd;
     color: #333;
 }
 
-/* --- HEADER STYLES --- */
+/* ---------- HEADER ---------- */
 header {
     width: 100%;
     background: #004c3f;
-    color: white;
+    color: #fff;
     display: flex;
     align-items: center;
     padding: 15px 30px;
-    flex-wrap: wrap;
-    position: relative;
-    justify-content: space-between;
+    gap: 20px;
 }
 
-/* Left: logo and title */
+/* Logo + title wrapper */
 .header-left {
     display: flex;
     align-items: center;
     gap: 15px;
-    flex: 1;
 }
 
+/* Logo */
 .logo {
     height: 60px;
     width: auto;
 }
 
+/* Title text */
 .site-title h1 {
     font-size: 1.4rem;
     font-weight: bold;
-    margin: 0;
-    color: white;
 }
 
 .site-title p {
-    font-size: 0.9rem;
-    margin-top: 2px;
+    font-size: .9rem;
     color: #e0e0e0;
+    margin-top: 2px;
 }
 
-/* --- NAVIGATION --- */
+/* ---------- NAV (desktop) ---------- */
 nav {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    flex: 2;
+    flex: 1; /* allows nav to push to right if room */
 }
 
-    nav a,
-    nav .dropbtn {
-        color: white;
+.nav-menu {
+    display: flex; /* horizontal — no wrap */
+    flex-wrap: nowrap; /* prevent wrapping on desktop */
+    gap: 18px;
+    align-items: center;
+}
+
+    /* Links / buttons */
+    .nav-menu a,
+    .nav-menu .dropbtn {
+        color: #fff;
         text-decoration: none;
         padding: 10px 14px;
         font-weight: bold;
@@ -72,202 +72,179 @@ nav {
         border: none;
         cursor: pointer;
         border-radius: 4px;
-        transition: background-color 0.3s ease;
+        transition: background-color .3s;
     }
 
-        nav a:hover,
-        nav .dropbtn:hover {
-            background-color: #006a4e;
+        .nav-menu a:hover,
+        .nav-menu .dropbtn:hover {
+            background: #006a4e
         }
 
-/* Desktop nav: horizontal layout */
-.nav-menu {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
-
-/* --- DROPDOWN --- */
+/* ---------- DROPDOWN ---------- */
 .dropdown {
-    position: relative;
+    position: relative
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #004c3f;
-    border-radius: 5px;
     top: 100%;
     left: 0;
     min-width: 160px;
-    z-index: 1;
+    background: #004c3f;
+    border-radius: 5px;
+    z-index: 5;
 }
 
     .dropdown-content a {
-        padding: 12px 16px;
         display: block;
-        color: white;
+        padding: 12px 16px;
+        color: #fff;
         text-decoration: none;
     }
 
         .dropdown-content a:hover {
-            background-color: #006a4e;
+            background: #006a4e
         }
 
 .dropdown:hover .dropdown-content {
-    display: block;
+    display: block
 }
 
-/* --- External link styling --- */
-.church-link {
-    margin-left: 10px;
-    font-size: 0.8em;
-    background-color: #004c3f;
+/* ---------- HAMBURGER (mobile) ---------- */
+.hamburger {
+    display: none;
+    font-size: 28px;
+    background: none;
     color: #fff;
-    padding: 4px 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
 }
 
-    .church-link:hover {
-        background-color: #004477;
-    }
-
-/* --- MAIN CONTENT --- */
+/* ---------- SECTIONS ---------- */
 .section {
     padding: 50px 20px;
-    width: 100%;
-    background-color: #fdfdfd;
+    width: 100%
 }
 
     .section:not(:last-child) {
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #ddd
     }
 
 .content-center {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
-    padding: 20px;
+    padding: 20px
 }
 
 h2 {
     color: #006a4e;
     font-size: 1.8rem;
-    margin-bottom: 15px;
+    margin-bottom: 15px
 }
 
 p {
     font-size: 1rem;
     line-height: 1.6;
-    margin-bottom: 20px;
+    margin-bottom: 20px
 }
 
 .about-logo {
     margin-top: 20px;
-    height: 100px;
-    width: auto;
+    height: 60px;
+    width: auto
 }
 
 .map-container {
     margin-top: 20px;
     border-radius: 8px;
-    overflow: hidden;
+    overflow: hidden
 }
 
-/* --- FOOTER --- */
+/* External tag */
+.church-link {
+    margin-left: 10px;
+    font-size: .8em;
+    background: #004c3f;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+    .church-link:hover {
+        background: #004477
+    }
+
+/* ---------- FOOTER ---------- */
 footer {
     width: 100%;
     background: #004c3f;
-    color: white;
+    color: #fff;
     text-align: center;
     padding: 20px;
-    font-size: 0.9em;
+    font-size: .9em;
 }
 
-/* --- HAMBURGER MENU (MOBILE) --- */
-.hamburger {
-    display: none;
-    font-size: 26px;
-    background: none;
-    color: white;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    top: 15px;
-    right: 20px;
-}
+/* ---------- MOBILE (?768 px) ---------- */
+@media(max-width:768px) {
 
-/* --- MOBILE STYLES --- */
-@media (max-width: 768px) {
+    /* stack header */
     header {
         flex-direction: column;
         align-items: flex-start;
+        padding: 15px
     }
 
     .header-left {
-        width: 100%;
-        justify-content: flex-start;
+        width: 100%
     }
 
     .site-title {
-        text-align: left;
+        text-align: center;
+        width: 100%
     }
 
-    nav {
+    /* show hamburger */
+    .hamburger {
+        display: block
+    }
+
+    /* nav menu hidden by default */
+    .nav-menu {
         display: none;
         flex-direction: column;
         width: 100%;
+        background: #004c3f;
         margin-top: 10px;
     }
 
-        nav.nav-open {
-            display: flex;
+        .nav-menu.show {
+            display: flex
         }
 
-        nav a,
-        nav .dropbtn {
+        /* mobile link styles */
+        .nav-menu a,
+        .nav-menu .dropbtn {
             width: 100%;
             text-align: left;
             padding: 12px 20px;
         }
 
-    .dropdown {
-        width: 100%;
-    }
-
+    /* dropdown mobile behaviour */
     .dropdown-content {
         position: static;
-        width: 100%;
-        border-radius: 0;
-        box-shadow: none;
+        border-radius: 0
     }
 
     .dropdown:hover .dropdown-content {
-        display: none;
+        display: none
     }
-
-    .dropdown.nav-open .dropdown-content {
-        display: block;
-    }
-
-    .nav-menu {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-    }
-
-        .nav-menu.show {
-            display: flex;
-        }
-
-    .dropdown-content {
-        position: static;
-        width: 100%;
-    }
-
-    .hamburger {
-        display: block;
+    /* disable hover */
+    .dropdown.open .dropdown-content {
+        display: block
     }
 }
