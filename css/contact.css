@@ -67,7 +67,8 @@
 }
 
     .contact-image img {
-        max-height: 500px; /* Adjust as needed to match the form height */
+        height: 100%; /* Adjust as needed to match the form height */
+        max-height: 560px; /* Final pixel-perfect match after measuring form height */
         width: auto;
         border-radius: 8px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -87,4 +88,8 @@
     .contact-image {
         width: 100%;
     }
+        .contact-image img {
+            max-width: 100%;
+            height: auto;
+        }
 }
