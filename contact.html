@@ -41,40 +41,42 @@
     </header>
 
     <main>
-        <section>
-            <div class="radio-image-banner">
-                <img src="images/sunrise-cross-v2.png" alt="Faithful Sunrise" class="radio-banner" />
+        <section id="contact" class="contact-section">
+            <h2>Contact Us</h2>
+            <div class="contact-container">
+                <!-- Left: Form -->
+                <form id="contact-form" action="https://formsubmit.co/wgndlpfm@gmail.com" method="POST" class="contact-form">
+                    <input type="hidden" name="_next" value="https://jdmarlow86.github.io/wgnd1017/thankyou.html">
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required />
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required />
+
+                    <label for="subject">Subject</label>
+                    <select id="subject" name="subject" required>
+                        <option value="">Select</option>
+                        <option value="More info">More info</option>
+                        <option value="Prayer Request">Prayer Request</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+
+                    <button type="submit">Send Message</button>
+                </form>
+
+                <!-- Right: Image -->
+                <div class="contact-image">
+                    <img src="images/contact-image.jpg" alt="Contact Us Image">
+                </div>
             </div>
         </section>
-
-
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <form id="contact-form" action="https://formsubmit.co/wgndlpfm@gmail.com" method="POST" style="max-width: 600px; margin: 0 auto;" class="contact-form">
-                <input type="hidden" name="_next" value="https://jdmarlow86.github.io/wgnd1017/thankyou.html">
-                <input type="hidden" name="_captcha" value="false">
-
-                <label for="name">Name</label><br />
-                <input type="text" id="name" name="name" required style="width: 100%; padding: 10px; margin-bottom: 10px;" />
-
-                <label for="email">Email</label><br />
-                <input type="email" id="email" name="email" required style="width: 100%; padding: 10px; margin-bottom: 10px;" />
-
-                <label for="subject">Subject</label><br />
-                <select id="subject" name="subject" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
-                    <option value="">Select</option>
-                    <option value="More info">More info</option>
-                    <option value="Prayer Request">Prayer Request</option>
-                    <option value="Other">Other</option>
-                </select><br />
-
-                <label for="message">Message</label><br />
-                <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 10px; margin-bottom: 10px;"></textarea>
-
-                <button type="submit">Send Message</button>
-            </form>
-        </section>
     </main>
+
 
     <footer>
         <p>2025 Seventh-day Adventist Church of LaFollette, TN</p>
