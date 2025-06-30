@@ -32,10 +32,11 @@ header {
     gap: 15px;
 }
 
-/* Logo */
+/* Default (desktop) */
 .logo {
-    height: 100px;
-    width: 180px; /* approx 3x if previous width was 60px */
+    height: auto;
+    width: 180px; /* Adjust to your desired desktop width */
+    max-width: 100%;
     object-fit: contain;
 }
 
