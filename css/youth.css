@@ -41,11 +41,11 @@
 
 /* Mobile: 2-column layout for smaller screens */
 @media (max-width: 600px) {
-    .adult-links-container {
+    .kids-links-container {
         grid-template-columns: repeat(2, 1fr); /* 2 columns on small screens */
     }
 
-    .adult-link-block {
+    .kids-link-block {
         margin-bottom: 10px;
     }
 }
