@@ -32,13 +32,11 @@ header {
     gap: 15px;
 }
 
-/* Default (desktop) */
 .logo {
+    max-width: 270px;
+    width: 100%;
     height: auto;
-    width: 180px; /* Adjust to your desired desktop width */
-    max-width: 100%;
     object-fit: contain;
-    border: 2px solid red;
 }
 
 /* Title text */
@@ -71,11 +69,14 @@ nav {
 
 .nav-menu {
     display: flex;
-    flex-wrap: nowrap; /* prevents wrapping */
+    justify-content: center; /* center horizontally */
+    flex-wrap: nowrap;
     gap: 18px;
     align-items: center;
-    margin-left: 1in; /* approx 96px */
+    flex: 1;
+    margin-left: 0; /* remove forced offset */
 }
+
 
     .nav-menu a,
     .nav-menu .dropbtn {
