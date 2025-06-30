@@ -50,8 +50,13 @@
             text-decoration: underline;
         }
 
-/* Optional: narrower screens below 600px for extra spacing */
+
+/* Mobile: 2-column layout for smaller screens */
 @media (max-width: 600px) {
+    .adult-links-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on small screens */
+    }
+
     .adult-link-block {
         margin-bottom: 10px;
     }
