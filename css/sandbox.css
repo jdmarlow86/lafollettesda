@@ -1,0 +1,18 @@
+#bible-picker {
+    text-align: center;
+}
+
+    #bible-picker button {
+        background-color: #004c3f;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        #bible-picker button:hover {
+            background-color: #006a4e;
+        }
