@@ -1,0 +1,24 @@
+.verse-box,
+.egw-box {
+    background-color: #e0f0ea;
+    border-left: 6px solid #004c3f;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    max-width: 600px;
+    text-align: center;
+}
+
+    .verse-box p,
+    .egw-box p {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        color: #004c3f;
+    }
+
+.verse-reference {
+    font-weight: bold;
+    color: #006a4e;
+    font-size: 1rem;
+}
