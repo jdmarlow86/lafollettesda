@@ -216,6 +216,7 @@ footer {
         width: auto;
         max-width: 50%;
         object-fit: contain;
+        display: block;
     }
 
     .site-title {
@@ -228,17 +229,18 @@ footer {
     }
 
     .nav-menu {
-        display: block;
-        font-size: 28px;
-        background: none;
-        color: #fff;
-        border: none;
-        cursor: pointer;
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #004c3f;
+        margin-top: 10px;
+        margin-left: 0;
     }
 
         .nav-menu.show {
             display: flex;
         }
+
 
         .nav-menu a,
         .nav-menu .dropbtn {
