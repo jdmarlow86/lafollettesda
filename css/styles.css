@@ -203,16 +203,19 @@ footer {
     }
 
     .header-left {
-        width: 100%;
-        justify-content: space-between;
+        display: flex;
         flex-direction: row;
+        justify-content: space-between;
         align-items: center;
+        width: 100%;
+        padding: 0 15px;
     }
 
     .logo {
-        height: 70px;
+        height: 60px;
         width: auto;
-        max-width: 45%;
+        max-width: 50%;
+        object-fit: contain;
     }
 
     .site-title {
@@ -225,12 +228,12 @@ footer {
     }
 
     .nav-menu {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: #004c3f;
-        margin-top: 10px;
-        margin-left: 0;
+        display: block;
+        font-size: 28px;
+        background: none;
+        color: #fff;
+        border: none;
+        cursor: pointer;
     }
 
         .nav-menu.show {
