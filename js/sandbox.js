@@ -96,13 +96,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const mTitle = document.getElementById("th-title");
     const mBody = document.getElementById("th-body");
     const mClose = document.getElementById("th-close");
+    const mOk = document.getElementById("th-ok"); // New OK button
 
     /* ---- helpers ---- */
-    const showModal = (title, body) => {
+    const showModal = (title, body, onClose) => {
         mTitle.textContent = title;
         mBody.innerHTML = body;
         modal.style.display = "block";
+
+        // Bind OK button
+        mOk.onclick = () => {
+            modal.style.display = "none";
+            if (typeof onClose === "function") onClose();
+        };
+
+        // Also bind the close X
+        mClose.onclick = () => {
+            modal.style.display = "none";
+            if (typeof onClose === "function") onClose();
+        };
     };
+
     const hideModal = () => { modal.style.display = "none"; };
 
     /* ---- main ---- */
@@ -113,22 +127,27 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let i = 0; i < 16; i++) {
             const cell = document.createElement("div");
             cell.className = "treasure-cell";
-            cell.textContent = "?";           // safe star emoji
+            cell.textContent = "-";
 
             cell.addEventListener("click", function handler() {
                 if (cell.classList.contains("cleared")) return;
 
                 if (i === treasureIdx) {
-                    showModal("Treasure Found!", "?? Congratulations!<br>You found the hidden treasure.");
-                    mClose.onclick = () => { hideModal(); buildGrid(); };
+                    showModal(
+                        "Treasure Found!",
+                        "?? Congratulations!<br>You found the hidden treasure.",
+                        () => buildGrid()
+                    );
                 } else {
                     const verse = verses[Math.floor(Math.random() * verses.length)];
-                    showModal("Bible Verse", verse);
-                    mClose.onclick = () => {
-                        hideModal();
-                        cell.classList.add("cleared");
-                        cell.textContent = "??";
-                    };
+                    showModal(
+                        "Bible Verse",
+                        verse,
+                        () => {
+                            cell.classList.add("cleared");
+                            cell.textContent = "??";
+                        }
+                    );
                 }
             });
 
@@ -138,9 +157,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* ---- event wiring ---- */
     restart.addEventListener("click", buildGrid);
-    mClose.addEventListener("click", hideModal);
-    window.addEventListener("click", e => { if (e.target === modal) hideModal(); });
+    window.addEventListener("click", e => {
+        if (e.target === modal) hideModal();
+    });
 
     /* ---- init ---- */
     buildGrid();
-});
+

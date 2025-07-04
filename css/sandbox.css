@@ -96,3 +96,19 @@
     cursor: pointer;
     color: #004c3f;
 }
+
+.th-ok-btn {
+    margin-top: 20px;
+    padding: 10px 24px;
+    background-color: #004c3f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .th-ok-btn:hover {
+        background-color: #006a4e;
+    }
