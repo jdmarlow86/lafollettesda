@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "?? Philippians 4:13 – I can do all things through Christ.",
     ];
 
-    const treasureIcon = "?? Treasure!";
+    const treasureIcon = "Treasure!";
     const grid = document.getElementById("treasure-grid");
 
     function createGrid() {
@@ -102,13 +102,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (cell.classList.contains("cleared")) return;
 
                 if (i === treasureIndex) {
-                    alert("?? You found the treasure!\n\n" + treasureIcon);
+                    alert("You found the treasure!\n\n" + treasureIcon);
                     createGrid(); // Reset grid
                 } else {
                     const verse = verses[Math.floor(Math.random() * verses.length)];
                     alert(verse);
                     cell.classList.add("cleared");
-                    cell.textContent = "??";
+                    cell.textContent = "-";
                     cell.removeEventListener("click", handleClick);
                 }
             });
