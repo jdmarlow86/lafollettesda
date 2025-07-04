@@ -51,23 +51,24 @@
     </section>
 
     <!--  BIBLE TREASURE HUNT  -->
-    <section class="section">
-        <h2>Bible Treasure Hunt</h2>
+    <section id="treasure-hunt" class="section">
+        <h2 style="text-align:center">Bible Treasure Hunt</h2>
+
+        <!-- grid -->
         <div id="treasure-grid"></div>
+
+        <!-- restart button -->
+        <button id="restart-btn" class="restart-btn">Restart Game</button>
     </section>
 
-    <button onclick="location.reload()">Restart Game</button>
-
-    <!-- simple modal -->
-    <div id="modal" class="modal">
-        <div class="modal?content">
-            <span id="modal?close" class="close">&times;</span>
-            <h3 id="modal?title"></h3>
-            <p id="modal?body"></p>
+    <!-- modal -->
+    <div id="th-modal" class="th-modal">
+        <div class="th-modal-content">
+            <span id="th-close" class="th-close">&times;</span>
+            <h3 id="th-title"></h3>
+            <p id="th-body"></p>
         </div>
     </div>
-
-
 
     <footer>
         <p>2025 Seventh-day Adventist Church of LaFollette, TN</p>

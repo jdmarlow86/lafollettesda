@@ -75,41 +75,60 @@
   }
 
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* ---- data ---- */
     const verses = [
         "?? Psalm 119:105 – Your word is a lamp to my feet.",
-        "?? John 3:16 – For God so loved the world...",
+        "?? John 3:16 – For God so loved the world…",
         "?? Proverbs 3:5 – Trust in the Lord with all your heart.",
         "?? Isaiah 41:10 – Do not fear, for I am with you.",
         "?? Joshua 1:9 – Be strong and courageous.",
         "?? Romans 8:28 – All things work together for good.",
         "?? Matthew 6:33 – Seek first the kingdom of God.",
-        "?? Philippians 4:13 – I can do all things through Christ.",
+        "?? Philippians 4:13 – I can do all things through Christ."
     ];
 
-    const treasureIcon = "Treasure!";
+    /* ---- elements ---- */
     const grid = document.getElementById("treasure-grid");
+    const restart = document.getElementById("restart-btn");
+    const modal = document.getElementById("th-modal");
+    const mTitle = document.getElementById("th-title");
+    const mBody = document.getElementById("th-body");
+    const mClose = document.getElementById("th-close");
 
-    function createGrid() {
+    /* ---- helpers ---- */
+    const showModal = (title, body) => {
+        mTitle.textContent = title;
+        mBody.innerHTML = body;
+        modal.style.display = "block";
+    };
+    const hideModal = () => { modal.style.display = "none"; };
+
+    /* ---- main ---- */
+    function buildGrid() {
         grid.innerHTML = "";
-        const treasureIndex = Math.floor(Math.random() * 16);
+        const treasureIdx = Math.floor(Math.random() * 16);
 
         for (let i = 0; i < 16; i++) {
             const cell = document.createElement("div");
-            cell.classList.add("treasure-cell");
+            cell.className = "treasure-cell";
+            cell.textContent = "?";           // safe star emoji
 
-            cell.addEventListener("click", function handleClick() {
+            cell.addEventListener("click", function handler() {
                 if (cell.classList.contains("cleared")) return;
 
-                if (i === treasureIndex) {
-                    alert("You found the treasure!\n\n" + treasureIcon);
-                    createGrid(); // Reset grid
+                if (i === treasureIdx) {
+                    showModal("Treasure Found!", "?? Congratulations!<br>You found the hidden treasure.");
+                    mClose.onclick = () => { hideModal(); buildGrid(); };
                 } else {
                     const verse = verses[Math.floor(Math.random() * verses.length)];
-                    alert(verse);
-                    cell.classList.add("cleared");
-                    cell.textContent = "-";
-                    cell.removeEventListener("click", handleClick);
+                    showModal("Bible Verse", verse);
+                    mClose.onclick = () => {
+                        hideModal();
+                        cell.classList.add("cleared");
+                        cell.textContent = "??";
+                    };
                 }
             });
 
@@ -117,5 +136,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    createGrid();
+    /* ---- event wiring ---- */
+    restart.addEventListener("click", buildGrid);
+    mClose.addEventListener("click", hideModal);
+    window.addEventListener("click", e => { if (e.target === modal) hideModal(); });
+
+    /* ---- init ---- */
+    buildGrid();
 });
