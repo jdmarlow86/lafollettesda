@@ -75,71 +75,47 @@
   }
 
 
-/* ==== CONFIG ==== */
-const verses = [
-    { text: "The Lord is my shepherd; I shall not want.", ref: "Psalm 23:1" },
-    { text: "Trust in the Lord with all your heart…", ref: "Proverbs 3:5" },
-    { text: "I can do all things through Christ…", ref: "Philippians 4:13" },
-    { text: "Be still, and know that I am God.", ref: "Psalm 46:10" },
-    { text: "Let all that you do be done in love.", ref: "1 Cor 16:14" },
-    { text: "Cast all your anxiety on Him…", ref: "1 Peter 5:7" },
-    { text: "For I know the plans I have for you…", ref: "Jer 29:11" },
-    { text: "The name of the Lord is a strong tower…", ref: "Prov 18:10" },
-];
+document.addEventListener("DOMContentLoaded", function () {
+    const verses = [
+        "?? Psalm 119:105 – Your word is a lamp to my feet.",
+        "?? John 3:16 – For God so loved the world...",
+        "?? Proverbs 3:5 – Trust in the Lord with all your heart.",
+        "?? Isaiah 41:10 – Do not fear, for I am with you.",
+        "?? Joshua 1:9 – Be strong and courageous.",
+        "?? Romans 8:28 – All things work together for good.",
+        "?? Matthew 6:33 – Seek first the kingdom of God.",
+        "?? Philippians 4:13 – I can do all things through Christ.",
+    ];
 
-/* ==== BUILD GRID ==== */
-const gridEl = document.getElementById("grid");
-const modal = document.getElementById("modal");
-const mTitle = document.getElementById("modal?title");
-const mBody = document.getElementById("modal?body");
-const closeBtn = document.getElementById("modal?close");
+    const treasureIcon = "?? Treasure!";
+    const grid = document.getElementById("treasure-grid");
 
-let treasureIndex = Math.floor(Math.random() * 16);
+    function createGrid() {
+        grid.innerHTML = "";
+        const treasureIndex = Math.floor(Math.random() * 16);
 
-for (let i = 0; i < 16; i++) {
-    const cell = document.createElement("div");
-    cell.className = "cell";
-    cell.dataset.index = i;
-    cell.textContent = "?";  // black star (widely supported)
-    cell.addEventListener("click", onCellClick);
-    gridEl.appendChild(cell);
-}
+        for (let i = 0; i < 16; i++) {
+            const cell = document.createElement("div");
+            cell.classList.add("treasure-cell");
 
-/* ==== HANDLERS ==== */
-function onCellClick(e) {
-    const cell = e.currentTarget;
-    if (cell.classList.contains("verse?picked")) return; // already used
+            cell.addEventListener("click", function handleClick() {
+                if (cell.classList.contains("cleared")) return;
 
-    const idx = parseInt(cell.dataset.index, 10);
+                if (i === treasureIndex) {
+                    alert("?? You found the treasure!\n\n" + treasureIcon);
+                    createGrid(); // Reset grid
+                } else {
+                    const verse = verses[Math.floor(Math.random() * verses.length)];
+                    alert(verse);
+                    cell.classList.add("cleared");
+                    cell.textContent = "??";
+                    cell.removeEventListener("click", handleClick);
+                }
+            });
 
-    if (idx === treasureIndex) {
-        // TREASURE!
-        showModal("Treasure Found!", "?? Congratulations! You found the hidden treasure.");
-        // clear grid after modal closes
-        closeBtn.onclick = () => {
-            hideModal();
-            gridEl.innerHTML = "";
-        };
-    } else {
-        // Show verse
-        const verse = verses[Math.floor(Math.random() * verses.length)];
-        showModal("Bible Verse", `"${verse.text}" – <br><strong>${verse.ref}</strong>`);
-        // after close, mark cell blue
-        closeBtn.onclick = () => {
-            hideModal();
-            cell.classList.add("verse?picked");
-            cell.textContent = "";          // clear symbol
-        };
+            grid.appendChild(cell);
+        }
     }
-}
 
-function showModal(title, bodyHtml) {
-    mTitle.textContent = title;
-    mBody.innerHTML = bodyHtml;
-    modal.style.display = "block";
-}
-
-function hideModal() {
-    modal.style.display = "none";
-}
-
+    createGrid();
+});
