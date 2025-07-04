@@ -163,4 +163,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* ---- init ---- */
     buildGrid();
-
+});
