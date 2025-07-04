@@ -100,7 +100,7 @@ for (let i = 0; i < 16; i++) {
     const cell = document.createElement("div");
     cell.className = "cell";
     cell.dataset.index = i;
-    cell.textContent = "?";
+    cell.textContent = "?";  // star emoji (safe and clean)
     cell.addEventListener("click", onCellClick);
     gridEl.appendChild(cell);
 }
