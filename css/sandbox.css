@@ -16,3 +16,66 @@
         #bible-picker button:hover {
             background-color: #006a4e;
         }
+
+
+/* ===== treasure hunt grid ===== */
+.grid?16 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+    .grid?16 .cell {
+        background: #f0f0f0;
+        border: 2px solid #004c3f;
+        height: 90px;
+        cursor: pointer;
+        transition: background 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #004c3f;
+    }
+
+        /* turned?over verse cell */
+        .grid?16 .cell.verse?picked {
+            background: #a8d1c0; /* light blue?green */
+            color: white;
+            cursor: default;
+        }
+
+/* ====== modal ====== */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+}
+
+.modal?content {
+    background: #ffffff;
+    max-width: 480px;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+    .modal?content h3 {
+        color: #004c3f;
+        margin-bottom: 15px;
+    }
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #004c3f;
+}

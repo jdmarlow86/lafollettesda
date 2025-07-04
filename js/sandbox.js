@@ -74,3 +74,72 @@
     document.getElementById("result").textContent = `${book.name} ${chapter}`;
   }
 
+
+/* ==== CONFIG ==== */
+const verses = [
+    { text: "The Lord is my shepherd; I shall not want.", ref: "Psalm 23:1" },
+    { text: "Trust in the Lord with all your heart…", ref: "Proverbs 3:5" },
+    { text: "I can do all things through Christ…", ref: "Philippians 4:13" },
+    { text: "Be still, and know that I am God.", ref: "Psalm 46:10" },
+    { text: "Let all that you do be done in love.", ref: "1 Cor 16:14" },
+    { text: "Cast all your anxiety on Him…", ref: "1 Peter 5:7" },
+    { text: "For I know the plans I have for you…", ref: "Jer 29:11" },
+    { text: "The name of the Lord is a strong tower…", ref: "Prov 18:10" },
+];
+
+/* ==== BUILD GRID ==== */
+const gridEl = document.getElementById("grid");
+const modal = document.getElementById("modal");
+const mTitle = document.getElementById("modal?title");
+const mBody = document.getElementById("modal?body");
+const closeBtn = document.getElementById("modal?close");
+
+let treasureIndex = Math.floor(Math.random() * 16);
+
+for (let i = 0; i < 16; i++) {
+    const cell = document.createElement("div");
+    cell.className = "cell";
+    cell.dataset.index = i;
+    cell.textContent = "?";
+    cell.addEventListener("click", onCellClick);
+    gridEl.appendChild(cell);
+}
+
+/* ==== HANDLERS ==== */
+function onCellClick(e) {
+    const cell = e.currentTarget;
+    if (cell.classList.contains("verse?picked")) return; // already used
+
+    const idx = parseInt(cell.dataset.index, 10);
+
+    if (idx === treasureIndex) {
+        // TREASURE!
+        showModal("Treasure Found!", "?? Congratulations! You found the hidden treasure.");
+        // clear grid after modal closes
+        closeBtn.onclick = () => {
+            hideModal();
+            gridEl.innerHTML = "";
+        };
+    } else {
+        // Show verse
+        const verse = verses[Math.floor(Math.random() * verses.length)];
+        showModal("Bible Verse", `"${verse.text}" – <br><strong>${verse.ref}</strong>`);
+        // after close, mark cell blue
+        closeBtn.onclick = () => {
+            hideModal();
+            cell.classList.add("verse?picked");
+            cell.textContent = "";          // clear symbol
+        };
+    }
+}
+
+function showModal(title, bodyHtml) {
+    mTitle.textContent = title;
+    mBody.innerHTML = bodyHtml;
+    modal.style.display = "block";
+}
+
+function hideModal() {
+    modal.style.display = "none";
+}
+
