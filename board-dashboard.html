@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Board Dashboard – SDA Church</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/board.css" />
+</head>
+<body>
+
+    <!-- ? SIMPLE LOGIN OVERLAY ? -->
+    <div id="login-overlay" class="login-overlay">
+        <div class="login-box">
+            <h2>Board Login</h2>
+            <input id="board-pass" type="password" placeholder="Enter board password…" />
+            <button id="login-btn">Login</button>
+            <p id="login-msg"></p>
+        </div>
+    </div>
+
+    <!-- ? MAIN LAYOUT ? -->
+    <aside class="sidebar">
+        <h3>Board Panel</h3>
+        <nav>
+            <a href="#" data-section="dashboard" class="active">Dashboard</a>
+            <a href="#" data-section="notes">Meeting Notes</a>
+            <a href="#" data-section="finance">Accounting</a>
+            <a href="#" id="logout">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <!-- Dashboard (placeholder) -->
+        <section id="dashboard" class="content-section">
+            <h2>Welcome, Board Member!</h2>
+            <p>Select a feature from the left menu.</p>
+        </section>
+
+        <!-- Meeting Notes -->
+        <section id="notes" class="content-section hidden">
+            <h2>Meeting Notes</h2>
+
+            <form id="note-form">
+                <input id="note-title" type="text" placeholder="Title" required />
+                <textarea id="note-body" rows="4" placeholder="Notes…" required></textarea>
+                <button>Add Note</button>
+            </form>
+
+            <ul id="notes-list"></ul>
+        </section>
+
+        <!-- Accounting -->
+        <section id="finance" class="content-section hidden">
+            <h2>Accounting / Budget</h2>
+
+            <form id="acct-form">
+                <input id="acct-desc" type="text" placeholder="Description" required />
+                <input id="acct-amt" type="number" step="0.01" placeholder="Amount ($)" required />
+                <button>Add Entry</button>
+            </form>
+
+            <table id="acct-table">
+                <thead><tr><th>Description</th><th>Amount</th></tr></thead>
+                <tbody></tbody>
+            </table>
+            <p class="total-line"><strong>Total:</strong> $<span id="acct-total">0.00</span></p>
+        </section>
+
+    </main>
+
+    <script src="js/board.js"></script>
+</body>
+</html>

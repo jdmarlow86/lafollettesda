@@ -79,14 +79,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* ---- data ---- */
     const verses = [
-        "?? Psalm 119:105 – Your word is a lamp to my feet.",
-        "?? John 3:16 – For God so loved the world…",
-        "?? Proverbs 3:5 – Trust in the Lord with all your heart.",
-        "?? Isaiah 41:10 – Do not fear, for I am with you.",
-        "?? Joshua 1:9 – Be strong and courageous.",
-        "?? Romans 8:28 – All things work together for good.",
-        "?? Matthew 6:33 – Seek first the kingdom of God.",
-        "?? Philippians 4:13 – I can do all things through Christ."
+        "Psalm 119:105 – Your word is a lamp to my feet.",
+        "John 3:16 – For God so loved the world…",
+        "Proverbs 3:5 – Trust in the Lord with all your heart.",
+        "Isaiah 41:10 – Do not fear, for I am with you.",
+        "Joshua 1:9 – Be strong and courageous.",
+        "Romans 8:28 – All things work together for good.",
+        "Matthew 6:33 – Seek first the kingdom of God.",
+        "Philippians 4:13 – I can do all things through Christ."
     ];
 
     /* ---- elements ---- */
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (i === treasureIdx) {
                     showModal(
                         "Treasure Found!",
-                        "?? Congratulations!<br>You found the hidden treasure.",
+                        "Congratulations!<br>You found the hidden treasure.",
                         () => buildGrid()
                     );
                 } else {
@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         verse,
                         () => {
                             cell.classList.add("cleared");
-                            cell.textContent = "??";
+                            cell.textContent = "X";
                         }
                     );
                 }
