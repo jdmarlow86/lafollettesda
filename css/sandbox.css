@@ -112,3 +112,60 @@
     .th-ok-btn:hover {
         background-color: #006a4e;
     }
+
+.trivia-container {
+    max-width: 600px;
+    margin: 30px auto;
+    background: #f9f9f9;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.trivia-question {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.trivia-options button {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 12px;
+    background-color: #004c3f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+    .trivia-options button:hover {
+        background-color: #006a4e;
+    }
+
+.trivia-result {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.trivia-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#trivia-timer {
+    color: #c0392b; /* red countdown */
+}
+
+.trivia-next { 
+    margin: 25px auto 0;
+    background: #333;
+    color: #fff;
+}

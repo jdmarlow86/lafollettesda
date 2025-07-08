@@ -164,3 +164,131 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ---- init ---- */
     buildGrid();
 });
+
+
+/* ---------- QUESTION BANK ---------- */
+const questions = [
+  { q:"Who built the ark?", a:["Moses","Noah","Abraham","David"], ans:"Noah" },
+  { q:"How many disciples did Jesus have?", a:["10","11","12","13"], ans:"12" },
+  { q:"Where was Jesus born?", a:["Nazareth","Bethlehem","Jerusalem","Galilee"], ans:"Bethlehem" },
+  // …add as many as you like
+];
+
+/* ---------- CONFIG ---------- */
+const ROUND_LEN = Math.min(10, questions.length); // 10?question round
+const TIME_PER_Q = 15;                            // seconds
+
+/* ---------- STATE ---------- */
+let roundOrder = [];      // shuffled index list
+let qPtr = 0;             // pointer inside roundOrder
+let score = 0;
+let timerId = null;
+let timeLeft = TIME_PER_Q;
+
+/* ---------- DOM ---------- */
+const qBox = document.getElementById("trivia-question");
+const optBox = document.getElementById("trivia-options");
+const nextBtn = document.getElementById("next-question");
+const resultBox = document.getElementById("trivia-result");
+const scoreBox  = document.getElementById("trivia-score");
+const timerBox  = document.getElementById("trivia-timer");
+
+/* ---------- HELPERS ---------- */
+const shuffle = arr => arr.sort(() => Math.random() - 0.5);
+
+function startRound() {
+  roundOrder = shuffle([...Array(questions.length).keys()]).slice(0, ROUND_LEN);
+  qPtr = 0;  score = 0;
+  updateScore();
+  loadQuestion();
+}
+
+function updateScore() {
+  scoreBox.textContent = `Score ${score} / ${qPtr}`;
+}
+
+function startTimer() {
+  timeLeft = TIME_PER_Q;
+  timerBox.textContent = `${timeLeft} s`;
+  clearInterval(timerId);
+  timerId = setInterval(() => {
+    timeLeft--;
+    timerBox.textContent = `${timeLeft} s`;
+    if (timeLeft <= 0) {
+      clearInterval(timerId);
+      checkAnswer(null);               // treat as wrong / timeout
+    }
+  }, 1000);
+}
+
+/* ---------- UI ---------- */
+function loadQuestion() {
+  if (qPtr >= roundOrder.length) {   // round finished
+    endRound();
+    return;
+  }
+
+  const qObj = questions[roundOrder[qPtr]];
+  qBox.textContent = qObj.q;
+  optBox.innerHTML = "";
+  resultBox.textContent = "";
+  nextBtn.disabled = true;
+
+  qObj.a.forEach(opt => {
+    const b = document.createElement("button");
+    b.textContent = opt;
+    b.onclick = () => checkAnswer(opt);
+    optBox.appendChild(b);
+  });
+
+  startTimer();
+}
+
+function checkAnswer(selected) {
+  clearInterval(timerId);
+  const correct = questions[roundOrder[qPtr]].ans;
+  const isCorrect = selected === correct;
+
+  if (isCorrect) {
+    resultBox.textContent = "? Correct!";
+    resultBox.style.color = "green";
+    score++;
+  } else {
+    resultBox.textContent = `? Incorrect.  Correct: ${correct}`;
+    resultBox.style.color = "red";
+  }
+
+  qPtr++;
+  updateScore();
+  nextBtn.disabled = false;
+
+  /* disable all option buttons */
+  [...optBox.children].forEach(b => b.disabled = true);
+}
+
+function endRound() {
+  const msg = `Round finished!\nYour score: ${score} / ${ROUND_LEN}`;
+  alert(msg);
+
+  /* store history */
+  const history = JSON.parse(localStorage.getItem("triviaHistory") || "[]");
+  history.push({ date: new Date().toLocaleString(), score, outOf: ROUND_LEN });
+  localStorage.setItem("triviaHistory", JSON.stringify(history));
+
+  nextBtn.disabled = false;
+  nextBtn.textContent = "Play Again";
+}
+
+nextBtn.addEventListener("click", () => {
+  if (qPtr >= roundOrder.length) {
+    nextBtn.textContent = "Next Question";
+    startRound();
+  } else {
+    loadQuestion();
+  }
+});
+
+/* ---------- INITIAL ---------- */
+window.addEventListener("DOMContentLoaded", startRound);
+
+
