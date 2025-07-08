@@ -168,11 +168,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* ---------- QUESTION BANK ---------- */
 const questions = [
-  { q:"Who built the ark?", a:["Moses","Noah","Abraham","David"], ans:"Noah" },
-  { q:"How many disciples did Jesus have?", a:["10","11","12","13"], ans:"12" },
-  { q:"Where was Jesus born?", a:["Nazareth","Bethlehem","Jerusalem","Galilee"], ans:"Bethlehem" },
-  // …add as many as you like
+    { q: "Who built the ark?", a: ["Moses", "Noah", "Abraham", "David"], ans: "Noah" },
+    { q: "How many disciples did Jesus have?", a: ["10", "11", "12", "13"], ans: "12" },
+    { q: "Where was Jesus born?", a: ["Nazareth", "Bethlehem", "Jerusalem", "Galilee"], ans: "Bethlehem" },
+    { q: "What is the first book of the Bible?", a: ["Exodus", "Genesis", "Matthew", "Revelation"], ans: "Genesis" },
+    { q: "Who was swallowed by a great fish?", a: ["Jonah", "Daniel", "Elijah", "Moses"], ans: "Jonah" },
+    { q: "Which disciple walked on water?", a: ["Peter", "James", "John", "Andrew"], ans: "Peter" },
+    { q: "Who led the Israelites out of Egypt?", a: ["Joshua", "Aaron", "Moses", "Joseph"], ans: "Moses" },
+    { q: "What was the name of David's giant enemy?", a: ["Saul", "Goliath", "Pharaoh", "Nebuchadnezzar"], ans: "Goliath" },
+    { q: "Who was the first man?", a: ["Adam", "Abraham", "Isaac", "Noah"], ans: "Adam" },
+    { q: "What is the last book of the Bible?", a: ["Revelation", "Acts", "Romans", "Jude"], ans: "Revelation" },
+    { q: "How many days did God take to create the world?", a: ["6", "7", "8", "40"], ans: "6" },
+    { q: "Who betrayed Jesus?", a: ["Peter", "Thomas", "Judas", "Paul"], ans: "Judas" },
+    { q: "What did Jesus feed the 5,000 with?", a: ["Manna", "Fish and Bread", "Grapes and Wine", "Corn"], ans: "Fish and Bread" },
+    { q: "Where did Jesus pray before His arrest?", a: ["Gethsemane", "Bethlehem", "Jerusalem", "Nazareth"], ans: "Gethsemane" },
+    { q: "Who was thrown into the lion's den?", a: ["Daniel", "Joseph", "David", "Elijah"], ans: "Daniel" },
+    {
+        q: "What is the golden rule?", a: [
+            "Don't sin",
+            "Pray always",
+            "Do to others as you would have them do to you",
+            "Love your enemies"
+        ], ans: "Do to others as you would have them do to you"
+    },
+    { q: "How many books are in the Bible?", a: ["60", "62", "66", "70"], ans: "66" },
+    { q: "Who was the mother of Jesus?", a: ["Elizabeth", "Mary", "Martha", "Ruth"], ans: "Mary" },
+    { q: "What river did John the Baptist baptize in?", a: ["Nile", "Jordan", "Euphrates", "Tigris"], ans: "Jordan" },
+    { q: "Which apostle was known as the doubter?", a: ["James", "Judas", "Thomas", "Matthew"], ans: "Thomas" }
 ];
+
 
 /* ---------- CONFIG ---------- */
 const ROUND_LEN = Math.min(10, questions.length); // 10?question round
