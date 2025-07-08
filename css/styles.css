@@ -15,8 +15,8 @@ body {
 /* ---------- HEADER ---------- */
 header {
     width: 100%;
-    background: #004c3f;
-    color: #fff;
+    background: #fff;
+    color: #004c3f;
     display: flex;
     justify-content: space-between;
     align-items: center;
