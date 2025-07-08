@@ -12,71 +12,41 @@ body {
     color: #333;
 }
 
-/* ---------- HEADER ---------- */
-header {
+/* ---------- HEADER as banner image ---------- */
+header.banner-header {
     width: 100%;
-    background: #004c3f;
+    height: 140px;
+    background: #004c3f url("../images/main-header-logo.png") no-repeat left 20px center / 260px auto;
     color: #fff;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
-    flex-wrap: wrap;
-    gap: 20px;
+    justify-content: center;
+    padding: 0 30px;
 }
 
-/* Logo + title wrapper */
-.header-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.logo {
-    max-width: 270px;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-}
-
-/* Title text */
-.site-title h1 {
-    font-size: 1.4rem;
-    font-weight: bold;
-}
-
-.site-title p {
-    font-size: 0.9rem;
-    color: #e0e0e0;
-    margin-top: 2px;
-}
-
-/* ---------- HAMBURGER (mobile) ---------- */
-.hamburger {
-    display: none;
+.banner-header .hamburger {
     font-size: 28px;
     background: none;
     color: #fff;
     border: none;
     cursor: pointer;
-    margin-left: auto;
+    margin-right: auto;
+    display: none;
 }
 
-/* ---------- NAV (desktop) ---------- */
-nav {
+.banner-header nav {
     flex: 1;
 }
 
 .nav-menu {
     display: flex;
-    justify-content: center; /* center horizontally */
+    justify-content: center;
     flex-wrap: nowrap;
     gap: 18px;
     align-items: center;
     flex: 1;
-    margin-left: 0; /* remove forced offset */
+    margin-left: 0;
 }
-
 
     .nav-menu a,
     .nav-menu .dropbtn {
@@ -169,7 +139,6 @@ p {
     overflow: hidden;
 }
 
-/* External tag */
 .church-link {
     margin-left: 10px;
     font-size: 0.8em;
@@ -197,56 +166,36 @@ footer {
 
 /* ---------- MOBILE (?768 px) ---------- */
 @media (max-width: 768px) {
-    header {
+    header.banner-header {
+        height: auto;
+        background-position: center top;
+        background-size: 200px auto;
         flex-direction: column;
-        align-items: flex-start;
+        padding: 10px 15px;
     }
 
-    .header-left {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        padding: 0 15px;
-    }
-
-    .logo {
-        height: 120px;
-        width: auto;
-        max-width: 50%;
-        object-fit: contain;
+    .banner-header .hamburger {
         display: block;
-    }
-
-    .site-title {
-        flex-grow: 1;
-        text-align: left;
-    }
-
-    .hamburger {
-        display: block;
+        margin: 0 auto 8px auto;
     }
 
     .nav-menu {
         display: none;
         flex-direction: column;
         width: 100%;
-        background: #004c3f;
-        margin-top: 10px;
-        margin-left: 0;
+        background: rgba(0, 76, 63, 0.95);
+        padding: 10px 0;
     }
 
         .nav-menu.show {
             display: flex;
         }
 
-
         .nav-menu a,
         .nav-menu .dropbtn {
             width: 100%;
-            text-align: left;
-            padding: 12px 20px;
+            text-align: center;
+            padding: 12px 0;
         }
 
     .dropdown-content {
