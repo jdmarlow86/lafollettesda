@@ -7,12 +7,12 @@
     <style>
         body {
             margin: 0;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Comic Sans MS', sans-serif;
             background: #f7f3e9;
         }
 
         header {
-            background: #6c4f3d;
+            background: #004c3f;
             color: #fff;
             padding: 1rem;
             text-align: center;
@@ -21,7 +21,7 @@
 
         #map {
             position: relative;
-            background: url('https://bible-history.com/images/bible-history-map-of-ancient-israel.jpg') no-repeat center center;
+            /*background: url('https://bible-history.com/images/bible-history-map-of-ancient-israel.jpg') no-repeat center center;*/
             background-size: cover;
             height: 85vh;
         }
@@ -132,6 +132,7 @@
     </header>
 
     <div id="map">
+        <img src="https://bible-history.com/images/bible-history-map-of-ancient-israel.jpg" alt="Bible Map" style="width: 100%; height: 100%; object-fit: cover; position: absolute; z-index: -1;">
         <div id="egypt" class="location" onclick="showStory('Egypt')">Egypt</div>
         <div id="israel" class="location" onclick="showStory('Israel')">Israel</div>
         <div id="babylon" class="location" onclick="showStory('Babylon')">Babylon</div>
