@@ -21,9 +21,9 @@
 
         #map {
             position: relative;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Map_of_Ancient_Near_East_%28English%29.svg/1280px-Map_of_Ancient_Near_East_%28English%29.svg.png') no-repeat center center;
+            background: url('https://bible-history.com/images/bible-history-map-of-ancient-israel.jpg') no-repeat center center;
             background-size: cover;
-            height: 80vh;
+            height: 85vh;
         }
 
         .location {
@@ -40,20 +40,50 @@
                 background-color: #ffe8a1;
             }
 
-        /* Locations */
+        /* Coordinates (Adjust as needed) */
         #egypt {
-            top: 60%;
+            top: 75%;
             left: 20%;
         }
 
         #israel {
-            top: 40%;
+            top: 55%;
             left: 35%;
         }
 
         #babylon {
-            top: 30%;
-            left: 55%;
+            top: 35%;
+            left: 70%;
+        }
+
+        #jericho {
+            top: 50%;
+            left: 38%;
+        }
+
+        #nineveh {
+            top: 20%;
+            left: 68%;
+        }
+
+        #nazareth {
+            top: 40%;
+            left: 33%;
+        }
+
+        #bethlehem {
+            top: 53%;
+            left: 34%;
+        }
+
+        #jerusalem {
+            top: 52%;
+            left: 36%;
+        }
+
+        #sinai {
+            top: 80%;
+            left: 30%;
         }
 
         /* Modal */
@@ -98,13 +128,19 @@
 </head>
 <body>
     <header>
-        ??? Bible Adventure Map
+        Bible Adventure Map
     </header>
 
     <div id="map">
         <div id="egypt" class="location" onclick="showStory('Egypt')">Egypt</div>
         <div id="israel" class="location" onclick="showStory('Israel')">Israel</div>
         <div id="babylon" class="location" onclick="showStory('Babylon')">Babylon</div>
+        <div id="jericho" class="location" onclick="showStory('Jericho')">Jericho</div>
+        <div id="nineveh" class="location" onclick="showStory('Nineveh')">Nineveh</div>
+        <div id="nazareth" class="location" onclick="showStory('Nazareth')">Nazareth</div>
+        <div id="bethlehem" class="location" onclick="showStory('Bethlehem')">Bethlehem</div>
+        <div id="jerusalem" class="location" onclick="showStory('Jerusalem')">Jerusalem</div>
+        <div id="sinai" class="location" onclick="showStory('Mount Sinai')">Mount Sinai</div>
     </div>
 
     <!-- Modal -->
@@ -117,30 +153,54 @@
     </div>
 
     <script>
-    const stories = {
-      Egypt: {
-        title: "Egypt – The Exodus",
-        text: "Egypt was where the Israelites were enslaved for hundreds of years. God called Moses to lead them out through miraculous signs, including the ten plagues and the parting of the Red Sea. (Read: Exodus 1–14)"
-      },
-      Israel: {
-        title: "Israel – God's Promised Land",
-        text: "Israel was given to the descendants of Abraham. It’s the setting for many Bible stories: the reigns of David and Solomon, the ministry of prophets, and most importantly, the life and ministry of Jesus Christ."
-      },
-      Babylon: {
-        title: "Babylon – Exile and Return",
-        text: "Babylon conquered Judah and took many Jews into exile. Daniel, Shadrach, Meshach, and Abednego remained faithful to God there. Later, under Persian rule, God's people were allowed to return. (Read: Daniel, Ezra, Nehemiah)"
-      }
-    };
+        const stories = {
+            Egypt: {
+                title: "Egypt – Exodus & Deliverance",
+                text: "The Israelites lived in slavery here until God sent Moses to deliver them. The Exodus story includes plagues, Passover, and the parting of the Red Sea."
+            },
+            Israel: {
+                title: "Israel – God's Promised Land",
+                text: "The land God promised to Abraham’s descendants. Home to tribes of Israel, prophets, kings, and later Jesus’ ministry."
+            },
+            Babylon: {
+                title: "Babylon – Captivity & Faith",
+                text: "A place of exile for the Jews. Daniel, Esther, and others remained faithful under foreign rule. Many prophecies were fulfilled here."
+            },
+            Jericho: {
+                title: "Jericho – Walls Came Down",
+                text: "The first city conquered in Canaan. Joshua led the Israelites around the city for seven days, and the walls fell down by God’s power. (Joshua 6)"
+            },
+            Nineveh: {
+                title: "Nineveh – Jonah's Mission",
+                text: "The capital of Assyria. Jonah was sent to preach repentance here. To his surprise, the people actually repented! (Book of Jonah)"
+            },
+            Nazareth: {
+                title: "Nazareth – Jesus' Hometown",
+                text: "Where Jesus grew up. Though small and humble, it became famous as the place where the Savior lived most of His life."
+            },
+            Bethlehem: {
+                title: "Bethlehem – Birthplace of Christ",
+                text: "Jesus was born here in fulfillment of prophecy. It was also the hometown of King David. (Micah 5:2, Luke 2)"
+            },
+            Jerusalem: {
+                title: "Jerusalem – Holy City",
+                text: "Center of worship, where the temple stood. Jesus was crucified and rose again here. It is deeply significant throughout the Bible."
+            },
+            "Mount Sinai": {
+                title: "Mount Sinai – Covenant with God",
+                text: "Moses received the Ten Commandments here. It was a sacred meeting point between God and His people. (Exodus 19–20)"
+            }
+        };
 
-    function showStory(place) {
-      document.getElementById('storyTitle').innerText = stories[place].title;
-      document.getElementById('storyText').innerText = stories[place].text;
-      document.getElementById('storyModal').style.display = 'flex';
-    }
+        function showStory(place) {
+            document.getElementById('storyTitle').innerText = stories[place].title;
+            document.getElementById('storyText').innerText = stories[place].text;
+            document.getElementById('storyModal').style.display = 'flex';
+        }
 
-    function closeModal() {
-      document.getElementById('storyModal').style.display = 'none';
-    }
+        function closeModal() {
+            document.getElementById('storyModal').style.display = 'none';
+        }
     </script>
 </body>
 </html>
