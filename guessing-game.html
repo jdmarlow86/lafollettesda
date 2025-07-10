@@ -61,7 +61,7 @@
     </style>
 </head>
 <body>
-    <h1>Who Am I? – Bible Guessing Game</h1>
+    <h1>Who Am I? Bible Guessing Game</h1>
 
     <div id="gameBox">
         <div id="clueDisplay">Click "Next Clue" to begin!</div>
@@ -74,7 +74,7 @@
         </div>
 
         <div id="feedback"></div>
-        <button onclick="restartGame()" style="margin-top: 1rem;">?? New Character</button>
+        <button onclick="restartGame()" style="margin-top: 1rem;">New Character</button>
     </div>
 
     <script>
@@ -173,9 +173,9 @@
       if (!guess || !currentCharacter) return;
 
       if (guess === answer) {
-        document.getElementById('feedback').textContent = `? Correct! It was ${currentCharacter.name}.`;
+        document.getElementById('feedback').textContent = `Correct! It was ${currentCharacter.name}.`;
       } else {
-        document.getElementById('feedback').textContent = `? Not quite! Try again or reveal more clues.`;
+        document.getElementById('feedback').textContent = `Not quite! Try again or reveal more clues.`;
       }
     }
 
