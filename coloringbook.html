@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bible Coloring & Stories</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #fff9ef;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        h1 {
+            color: #5a4123;
+        }
+
+        #canvas-container {
+            position: relative;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        canvas {
+            border: 2px solid #aaa;
+            background: white;
+        }
+
+        #palette {
+            margin: 1rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .color-swatch {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid #888;
+            cursor: pointer;
+        }
+
+        .story-box {
+            max-width: 600px;
+            margin: 1rem auto;
+            background: #fff5dc;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        select {
+            padding: 0.5rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>?? Bible Coloring & Stories</h1>
+
+    <label for="storySelector">Choose a Story:</label>
+    <select id="storySelector" onchange="loadStory(this.value)">
+        <option value="creation">Creation</option>
+        <option value="ark">Noah's Ark</option>
+        <option value="moses">Moses & the Red Sea</option>
+    </select>
+
+    <div class="story-box" id="storyText">
+        In the beginning, God created the heavens and the earth. – Genesis 1:1
+    </div>
+
+    <div id="palette"></div>
+
+    <div id="canvas-container">
+        <canvas id="coloringCanvas" width="400" height="300"></canvas>
+    </div>
+
+    <script>
+    const canvas = document.getElementById("coloringCanvas");
+    const ctx = canvas.getContext("2d");
+    const palette = document.getElementById("palette");
+    const storyText = document.getElementById("storyText");
+
+    // Simple grayscale coloring image (placeholder shapes)
+    const images = {
+      creation: function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#eee";
+        ctx.beginPath(); ctx.arc(100, 100, 50, 0, Math.PI * 2); ctx.fill(); // Sun
+        ctx.beginPath(); ctx.arc(300, 200, 50, 0, Math.PI * 2); ctx.fill(); // Moon
+        ctx.fillRect(180, 120, 40, 100); // Tree trunk
+        ctx.beginPath(); ctx.arc(200, 100, 50, 0, Math.PI * 2); ctx.fill(); // Tree top
+      },
+      ark: function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#eee";
+        ctx.fillRect(100, 180, 200, 80); // Ark base
+        ctx.beginPath(); ctx.moveTo(100, 180); ctx.lineTo(200, 100); ctx.lineTo(300, 180); ctx.closePath(); ctx.fill(); // Roof
+        ctx.beginPath(); ctx.arc(150, 260, 10, 0, Math.PI * 2); ctx.fill(); // Animal
+        ctx.beginPath(); ctx.arc(250, 260, 10, 0, Math.PI * 2); ctx.fill(); // Animal
+      },
+      moses: function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#eee";
+        ctx.fillRect(0, 150, 100, 150); // Left water
+        ctx.fillRect(300, 150, 100, 150); // Right water
+        ctx.fillRect(180, 100, 40, 100); // Moses
+        ctx.beginPath(); ctx.arc(200, 80, 20, 0, Math.PI * 2); ctx.fill(); // Head
+      }
+    };
+
+    const stories = {
+      creation: "In the beginning, God created the heavens and the earth. – Genesis 1:1",
+      ark: "Noah built an ark to save his family and the animals from the flood. – Genesis 6",
+      moses: "Moses parted the Red Sea so God's people could walk through on dry ground. – Exodus 14"
+    };
+
+    // Palette colors
+    const colors = ['#000000', '#ff0000', '#00aa00', '#0000ff', '#ffff00', '#ff8800', '#aa00ff', '#8b4513'];
+
+    let currentColor = '#000000';
+
+    colors.forEach(color => {
+      const swatch = document.createElement('div');
+      swatch.className = 'color-swatch';
+      swatch.style.backgroundColor = color;
+      swatch.onclick = () => currentColor = color;
+      palette.appendChild(swatch);
+    });
+
+    // Paint on click
+    canvas.addEventListener('click', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      ctx.beginPath();
+      ctx.arc(x, y, 15, 0, Math.PI * 2);
+      ctx.fillStyle = currentColor;
+      ctx.fill();
+    });
+
+    function loadStory(storyKey) {
+      storyText.textContent = stories[storyKey];
+      images[storyKey]();
+    }
+
+    // Load default story
+    images.creation();
+    </script>
+</body>
+</html>
