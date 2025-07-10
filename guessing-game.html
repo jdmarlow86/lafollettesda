@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Who Am I? – Bible Guessing Game</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f5f0e5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        h1 {
+            color: #5a4123;
+            margin-bottom: 1rem;
+        }
+
+        #gameBox {
+            background: #fff8e1;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        #clueDisplay {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            min-height: 60px;
+        }
+
+        input, button {
+            padding: 0.6rem;
+            font-size: 1rem;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            margin: 0.5rem 0;
+        }
+
+        button {
+            background-color: #6c4f3d;
+            color: white;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #8a684e;
+            }
+
+        #feedback {
+            margin-top: 1rem;
+            font-weight: bold;
+            min-height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Who Am I? – Bible Guessing Game</h1>
+
+    <div id="gameBox">
+        <div id="clueDisplay">Click "Next Clue" to begin!</div>
+
+        <button onclick="showNextClue()">Next Clue</button>
+
+        <div>
+            <input type="text" id="guessInput" placeholder="Your guess here" />
+            <button onclick="submitGuess()">Submit Guess</button>
+        </div>
+
+        <div id="feedback"></div>
+        <button onclick="restartGame()" style="margin-top: 1rem;">?? New Character</button>
+    </div>
+
+    <script>
+    const characters = [
+      {
+        name: "Moses",
+        clues: [
+          "I was placed in a basket as a baby.",
+          "I parted the Red Sea.",
+          "I received the Ten Commandments.",
+          "I led the Israelites out of Egypt."
+        ]
+      },
+      {
+        name: "David",
+        clues: [
+          "I was a shepherd boy.",
+          "I played the harp.",
+          "I defeated a giant.",
+          "I became king of Israel."
+        ]
+      },
+      {
+        name: "Esther",
+        clues: [
+          "I was a queen.",
+          "I risked my life to save my people.",
+          "I fasted for 3 days before seeing the king.",
+          "My story is celebrated in the festival of Purim."
+        ]
+      },
+      {
+        name: "Peter",
+        clues: [
+          "I was a fisherman.",
+          "I walked on water — briefly.",
+          "I denied someone three times.",
+          "I became a bold preacher after Pentecost."
+        ]
+      },
+      {
+        name: "Paul",
+        clues: [
+          "I used to persecute Christians.",
+          "I encountered Jesus on the road to Damascus.",
+          "I wrote many New Testament letters.",
+          "I was shipwrecked multiple times."
+        ]
+      },
+      {
+        name: "Noah",
+        clues: [
+          "I built something really big.",
+          "I took care of animals for over a year.",
+          "I saw the first rainbow.",
+          "God used me to preserve life during a flood."
+        ]
+      },
+      {
+        name: "Ruth",
+        clues: [
+          "I was not originally from Israel.",
+          "I said, 'Where you go I will go...'",
+          "I gleaned in Boaz's field.",
+          "I became the great-grandmother of David."
+        ]
+      }
+    ];
+
+    let currentCharacter;
+    let clueIndex = 0;
+
+    function pickRandomCharacter() {
+      const index = Math.floor(Math.random() * characters.length);
+      return characters[index];
+    }
+
+    function showNextClue() {
+      if (!currentCharacter) {
+        currentCharacter = pickRandomCharacter();
+        clueIndex = 0;
+      }
+
+      if (clueIndex < currentCharacter.clues.length) {
+        document.getElementById('clueDisplay').textContent = currentCharacter.clues[clueIndex];
+        clueIndex++;
+      } else {
+        document.getElementById('clueDisplay').textContent = "No more clues! Make your guess!";
+      }
+    }
+
+    function submitGuess() {
+      const guess = document.getElementById('guessInput').value.trim().toLowerCase();
+      const answer = currentCharacter?.name.toLowerCase();
+
+      if (!guess || !currentCharacter) return;
+
+      if (guess === answer) {
+        document.getElementById('feedback').textContent = `? Correct! It was ${currentCharacter.name}.`;
+      } else {
+        document.getElementById('feedback').textContent = `? Not quite! Try again or reveal more clues.`;
+      }
+    }
+
+    function restartGame() {
+      currentCharacter = null;
+      clueIndex = 0;
+      document.getElementById('clueDisplay').textContent = "Click \"Next Clue\" to begin!";
+      document.getElementById('guessInput').value = "";
+      document.getElementById('feedback').textContent = "";
+    }
+    </script>
+</body>
+</html>
