@@ -200,10 +200,13 @@ footer {
         max-width: 45%;
     }
 
-    .banner-header .hamburger {
+    .banner-header .header-left .hamburger {
         display: block !important;
-        background: red !important;
+        background: red;
+        height: 40px;
+        width: 40px;
     }
+
 
 
     nav {
