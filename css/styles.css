@@ -193,21 +193,27 @@ footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 0;
     }
+
 
     .logo {
         max-height: 60px;
-        max-width: 45%;
+        width: auto;
+        flex: 1;
+        object-fit: contain;
     }
+
 
     .banner-header .header-left .hamburger {
         display: block !important;
-        background: red;
-        height: 40px;
-        width: 40px;
+        font-size: 28px;
+        background: none;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
     }
-
-
 
     nav {
         width: 100%;
