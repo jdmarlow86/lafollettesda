@@ -167,6 +167,7 @@ footer {
 /* ---------- MOBILE (768px) ---------- */
 @media (max-width: 768px) {
     header.banner-header {
+        display: flex;
         height: auto;
         background: #004c3f; /* Solid background for mobile */
         padding: 10px 15px;
