@@ -85,12 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        // Optional: close on dropdown button too
-        navMenu.querySelectorAll('.dropbtn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                navMenu.classList.remove('open');
-            });
-        });
     }
 
     // ========== DROPDOWN TOGGLE (mobile) ==========
