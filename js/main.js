@@ -72,9 +72,24 @@ document.addEventListener("DOMContentLoaded", () => {
     // ========== HAMBURGER MENU ==========
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
+
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', () => {
             navMenu.classList.toggle('open');
+        });
+
+        // Close menu on any nav link click
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('open');
+            });
+        });
+
+        // Optional: close on dropdown button too
+        navMenu.querySelectorAll('.dropbtn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                navMenu.classList.remove('open');
+            });
         });
     }
 
@@ -86,31 +101,4 @@ document.addEventListener("DOMContentLoaded", () => {
             dropBtn.parentElement.classList.toggle('open');
         });
     }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
-
-        // Toggle mobile menu
-        if (hamburger && navMenu) {
-            hamburger.addEventListener('click', () => {
-                navMenu.classList.toggle('open');
-            });
-
-            // Close menu on any nav link click
-            navMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navMenu.classList.remove('open');
-                });
-            });
-
-            // Optional: close on dropdown button too
-            navMenu.querySelectorAll('.dropbtn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    navMenu.classList.remove('open');
-                });
-            });
-        }
-    });
-
 });
