@@ -15,13 +15,29 @@ body {
 /* ---------- HEADER as banner image ---------- */
 header.banner-header {
     width: 100%;
-    height: 200px;
-    background: #004c3f url("../images/main-header-logo.png") no-repeat left 20px center / 260px auto;
+    height: auto;
+    background: #004c3f;
     color: #fff;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 0 30px;
+    justify-content: space-between;
+    padding: 10px 30px;
+    flex-wrap: wrap;
+}
+
+/* Container for logo + hamburger */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Logo styling */
+.logo {
+    display: block;
+    max-height: 80px;
+    width: auto;
+    object-fit: contain;
 }
 
 .banner-header .hamburger {
@@ -167,38 +183,25 @@ footer {
 /* ---------- MOBILE (768px) ---------- */
 @media (max-width: 768px) {
     header.banner-header {
-        display: flex;
-        height: auto;
-        background: #004c3f; /* Solid background for mobile */
-        padding: 10px 15px;
         flex-direction: column;
         align-items: stretch;
+        padding: 10px 15px;
     }
 
     .header-left {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
         width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .logo {
-        display: block;
-        height: 60px;
-        width: auto;
+        max-height: 60px;
         max-width: 45%;
-        object-fit: contain;
-        margin-right: 10px;
     }
 
     .hamburger {
         display: block;
-        font-size: 28px;
-        background: none;
-        color: #fff;
-        border: none;
-        cursor: pointer;
     }
 
     nav {
@@ -222,20 +225,5 @@ footer {
             width: 100%;
             text-align: left;
             padding: 12px 20px;
-            color: #fff;
         }
-
-    .dropdown-content {
-        position: static;
-        width: 100%;
-        border-radius: 0;
-    }
-
-    .dropdown:hover .dropdown-content {
-        display: none;
-    }
-
-    .dropdown.open .dropdown-content {
-        display: block;
-    }
 }
