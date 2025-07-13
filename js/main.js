@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ========== CONTACT FORM (index.html) ==========
+    // ========== CONTACT FORM ==========
     const contactForm = document.getElementById("contact-form");
     if (contactForm) {
         contactForm.addEventListener("submit", (e) => {
@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const date = new Date().toISOString().split("T")[0];
 
             const entry = { name, reason, message, date };
-
             const saved = JSON.parse(localStorage.getItem("contactMessages") || "[]");
             saved.push(entry);
             localStorage.setItem("contactMessages", JSON.stringify(saved));
@@ -43,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ========== ADMIN PAGE DISPLAY (admin.html) ==========
+    // ========== ADMIN PAGE DISPLAY ==========
     const list = document.getElementById("submission-list");
     if (list) {
         const messages = JSON.parse(localStorage.getItem("contactMessages") || "[]");
@@ -59,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Optional: Clear button
         const clearBtn = document.getElementById("clear-submissions");
         if (clearBtn) {
             clearBtn.addEventListener("click", () => {
@@ -70,19 +68,49 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     }
+
+    // ========== HAMBURGER MENU ==========
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('open');
+        });
+    }
+
+    // ========== DROPDOWN TOGGLE (mobile) ==========
+    const dropBtn = document.querySelector('.dropbtn');
+    if (dropBtn) {
+        dropBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            dropBtn.parentElement.classList.toggle('open');
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        // Toggle mobile menu
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('open');
+            });
+
+            // Close menu on any nav link click
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('open');
+                });
+            });
+
+            // Optional: close on dropdown button too
+            navMenu.querySelectorAll('.dropbtn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    navMenu.classList.remove('open');
+                });
+            });
+        }
+    });
+
 });
-
-// Hamburger toggles nav visibility
-document.getElementById('hamburger').addEventListener('click', () => {
-    document.getElementById('navMenu').classList.toggle('show');
-});
-
-// Dropdown click (mobile) — optional
-const dropBtn = document.querySelector('.dropbtn');
-dropBtn.addEventListener('click', (e) => {
-    // Prevent page jump
-    e.preventDefault();
-    dropBtn.parentElement.classList.toggle('open');
-});
-
-

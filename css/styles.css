@@ -210,14 +210,15 @@ footer {
     }
 
     .nav-menu {
-        display: none;
         flex-direction: column;
         width: 100%;
-        margin-top: 10px;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.4s ease;
     }
 
-        .nav-menu.show {
-            display: flex;
+        .nav-menu.open {
+            max-height: 500px; /* Adjust based on total height of menu items */
         }
 
         .nav-menu a,
@@ -226,4 +227,18 @@ footer {
             text-align: left;
             padding: 12px 20px;
         }
+
+    .dropdown-content {
+        position: static;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: none;
+    }
+
+    .dropdown.open .dropdown-content {
+        display: block;
+    }
 }
