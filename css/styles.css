@@ -30,17 +30,19 @@ header.banner-header {
     display: flex;
     align-items: center;
     gap: 15px;
+    flex: 1; /* ? Allow it to grow */
 }
+
 
 /* Logo styling */
 .logo {
     display: block;
     height: auto;
     max-height: 80px;
-    width: 100%;
-    max-width: 260px; /* or increase this if you want a wider max */
+    width: 100%; /* Expand fully inside .header-left */
     object-fit: contain;
 }
+
 
 
 .banner-header .hamburger {
@@ -54,8 +56,9 @@ header.banner-header {
 }
 
 .banner-header nav {
-    flex: 1;
+    flex: 0 1 auto; /* ? Only take as much space as needed */
 }
+
 
 .nav-menu {
     display: flex;
