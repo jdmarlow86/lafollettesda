@@ -35,10 +35,13 @@ header.banner-header {
 /* Logo styling */
 .logo {
     display: block;
+    height: auto;
     max-height: 80px;
-    width: auto;
+    width: 100%;
+    max-width: 260px; /* or increase this if you want a wider max */
     object-fit: contain;
 }
+
 
 .banner-header .hamburger {
     font-size: 28px;
