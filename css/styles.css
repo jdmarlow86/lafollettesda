@@ -39,7 +39,7 @@ header.banner-header {
     height: auto;
     max-height: 80px;
     width: auto; /* ? Let width grow based on image natural size */
-    max-width: none; /* ? Remove max constraint */
+    max-width: 520px; /* double your current limit */
     object-fit: contain;
 }
 
