@@ -12,12 +12,8 @@ body {
     color: #333;
 }
 
-/* ---------- HEADER as banner image ---------- */
+/* HEADER container */
 header.banner-header {
-    width: 100%;
-    height: auto;
-    background: #004c3f;
-    color: #fff;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -25,24 +21,29 @@ header.banner-header {
     flex-wrap: wrap;
 }
 
-/* Container for logo + hamburger */
+/* Left side grows */
 .header-left {
     display: flex;
     align-items: center;
-    gap: 15px;
-    flex-grow: 1; /* ? Allows it to grow */
+    flex-grow: 1; /* ? Grow to fill space */
+    flex-shrink: 1;
+    min-width: 0;
 }
 
-/* Logo styling */
+/* Logo grows within header-left */
 .logo {
     display: block;
     height: auto;
     max-height: 80px;
-    width: auto; /* ? Let width grow based on image natural size */
-    max-width: 520px; /* double your current limit */
+    width: 100%; /* ? Stretch to fill parent */
+    max-width: none; /* ? Remove cap */
     object-fit: contain;
 }
 
+/* Nav shrinks to minimum */
+.banner-header nav {
+    flex: 0 1 auto; /* ? Only take up what it needs */
+}
 
 .banner-header .hamburger {
     font-size: 28px;
@@ -54,10 +55,6 @@ header.banner-header {
     display: none;
 }
 
-.banner-header nav {
-    flex-shrink: 1;
-    flex-grow: 0;
-}
 
 .nav-menu {
     display: flex;
