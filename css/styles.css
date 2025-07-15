@@ -1,3 +1,4 @@
+
 /* ---------- RESET ---------- */
 * {
     box-sizing: border-box;
@@ -12,8 +13,12 @@ body {
     color: #333;
 }
 
-/* HEADER container */
+/* ---------- HEADER as banner image ---------- */
 header.banner-header {
+    width: 100%;
+    height: auto;
+    background: #004c3f;
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -21,27 +26,24 @@ header.banner-header {
     flex-wrap: wrap;
 }
 
-/* Left side grows */
+/* Container for logo + hamburger */
 .header-left {
     display: flex;
     align-items: center;
-    flex: 1 1 30%;
-    min-width: 0;
+    gap: 15px;
+    flex-grow: 1; /* ? Allows it to grow */
 }
 
-/* Logo grows within header-left */
+/* Logo styling */
 .logo {
     display: block;
     height: auto;
     max-height: 80px;
-    width: 100%; /* ? Stretch to fill parent */
+    width: auto; /* ? Let width grow based on image natural size */
+    max-width: 520px; /* double your current limit */
     object-fit: contain;
 }
 
-/* Nav shrinks to minimum */
-.banner-header nav {
-    flex: 1 1 70%;
-}
 
 .banner-header .hamburger {
     font-size: 28px;
@@ -53,6 +55,10 @@ header.banner-header {
     display: none;
 }
 
+.banner-header nav {
+    flex-shrink: 1;
+    flex-grow: 0;
+}
 
 .nav-menu {
     display: flex;
