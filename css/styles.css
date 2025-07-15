@@ -30,19 +30,18 @@ header.banner-header {
     display: flex;
     align-items: center;
     gap: 15px;
-    flex: 1; /* ? Allow it to grow */
+    flex-grow: 1; /* ? Allows it to grow */
 }
-
 
 /* Logo styling */
 .logo {
     display: block;
     height: auto;
     max-height: 80px;
-    width: 100%; /* Expand fully inside .header-left */
+    width: auto; /* ? Let width grow based on image natural size */
+    max-width: none; /* ? Remove max constraint */
     object-fit: contain;
 }
-
 
 
 .banner-header .hamburger {
@@ -56,9 +55,9 @@ header.banner-header {
 }
 
 .banner-header nav {
-    flex: 0 1 auto; /* ? Only take as much space as needed */
+    flex-shrink: 1;
+    flex-grow: 0;
 }
-
 
 .nav-menu {
     display: flex;
