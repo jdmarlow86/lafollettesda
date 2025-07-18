@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bible Escape Room</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Georgia', serif;
+            background: #1e1e1e;
+            color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-image: radial-gradient(circle, #333, #111);
+        }
+
+        .container {
+            background: rgba(0,0,0,0.75);
+            padding: 2rem;
+            border-radius: 14px;
+            max-width: 550px;
+            text-align: center;
+            box-shadow: 0 0 20px #000;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+        }
+
+        .puzzle {
+            margin: 1rem 0;
+            font-style: italic;
+        }
+
+        input {
+            padding: 0.6rem;
+            width: 100%;
+            border: none;
+            margin-top: 1rem;
+            border-radius: 6px;
+        }
+
+        button {
+            margin-top: 1rem;
+            padding: 0.6rem 1.2rem;
+            background: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+            button:hover {
+                background: #388e3c;
+            }
+
+        .message {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="room-title">Room 1: Paul's Prison</h1>
+        <p class="puzzle" id="puzzle-text">
+            “At midnight Paul and Silas were praying and singing hymns to God...”<br>
+            What book and chapter is this from?
+        </p>
+        <input type="text" id="answer" placeholder="Your answer (e.g., Acts 16)" />
+        <button onclick="checkAnswer()">Unlock</button>
+        <div class="message" id="message"></div>
+    </div>
+
+    <!-- Sound effects -->
+    <audio id="success-sound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_b70e962ff2.mp3" preload="auto"></audio>
+    <audio id="fail-sound" src="https://cdn.pixabay.com/audio/2022/03/28/audio_fea2b3e203.mp3" preload="auto"></audio>
+    <audio id="door-open" src="https://cdn.pixabay.com/audio/2022/03/15/audio_3273f4a57c.mp3" preload="auto"></audio>
+
+    <script>
+    const puzzles = [
+      {
+        title: "Room 1: Paul's Prison",
+        question: "“At midnight Paul and Silas were praying and singing hymns to God...” What book and chapter is this from?",
+        answers: ["acts 16", "acts chapter 16", "acts 16:25"]
+      },
+      {
+        title: "Room 2: Daniel’s Challenge",
+        question: "Which king did Daniel serve in the lion’s den story?",
+        answers: ["darius", "king darius"]
+      },
+      {
+        title: "Room 3: Final Door",
+        question: "Complete this: 'For God so loved the world...' (Type John 3:16)",
+        answers: ["john 3:16"]
+      }
+    ];
+
+    let current = 0;
+
+    function playSound(id) {
+      const sound = document.getElementById(id);
+      if (sound) sound.play();
+    }
+
+    function checkAnswer() {
+      const input = document.getElementById('answer').value.trim().toLowerCase();
+      const message = document.getElementById('message');
+
+      if (puzzles[current].answers.includes(input)) {
+        playSound("success-sound");
+        message.innerText = "? Correct! Proceeding...";
+        document.body.style.background = "#2e7d32";
+
+        setTimeout(() => {
+          playSound("door-open");
+          nextRoom();
+        }, 1200);
+      } else {
+        message.innerText = "? Wrong answer. Try again.";
+        playSound("fail-sound");
+      }
+    }
+
+    function nextRoom() {
+      current++;
+      const title = document.getElementById('room-title');
+      const question = document.getElementById('puzzle-text');
+      const input = document.getElementById('answer');
+      const message = document.getElementById('message');
+
+      if (current >= puzzles.length) {
+        title.innerText = "You've Escaped!";
+        question.innerHTML = "Congratulations! You’ve escaped the Bible Escape Room!";
+        input.style.display = "none";
+        document.querySelector("button").style.display = "none";
+        message.innerText = "Great job!";
+        return;
+      }
+
+      document.body.style.background = "#1e1e1e";
+      title.innerText = puzzles[current].title;
+      question.innerHTML = puzzles[current].question;
+      input.value = "";
+      message.innerText = "";
+    }
+    </script>
+</body>
+</html>
