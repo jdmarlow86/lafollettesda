@@ -1,4 +1,3 @@
-
 /* ---------- RESET ---------- */
 * {
     box-sizing: border-box;
@@ -31,7 +30,7 @@ header.banner-header {
     display: flex;
     align-items: center;
     gap: 15px;
-    flex-grow: 1; /* ? Allows it to grow */
+    flex-grow: 1;
 }
 
 /* Logo styling */
@@ -39,11 +38,10 @@ header.banner-header {
     display: block;
     height: auto;
     max-height: 80px;
-    width: auto; /* ? Let width grow based on image natural size */
-    max-width: 520px; /* double your current limit */
+    width: auto;
+    max-width: 520px;
     object-fit: contain;
 }
-
 
 .banner-header .hamburger {
     font-size: 28px;
@@ -176,7 +174,6 @@ p {
         background: #004477;
     }
 
-
 /* ---------- Video ---------- */
 .video-card {
     max-width: 400px;
@@ -202,7 +199,7 @@ p {
     position: relative;
     width: 100%;
     height: 0;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    padding-bottom: 56.25%;
     background-color: #000;
 }
 
@@ -242,6 +239,55 @@ p {
         color: #666;
     }
 
+/* ---------- YouTube Link Preview ---------- */
+.youtube-preview {
+    max-width: 420px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    background: #fff;
+}
+
+    .youtube-preview a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+
+    .youtube-preview .preview-thumbnail {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%;
+        background-color: #000;
+    }
+
+        .youtube-preview .preview-thumbnail img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            top: 0;
+            left: 0;
+        }
+
+    .youtube-preview .preview-info {
+        padding: 15px;
+    }
+
+        .youtube-preview .preview-info h4 {
+            margin: 0;
+            font-size: 1em;
+            color: #004c3f;
+        }
+
+        .youtube-preview .preview-info p {
+            font-size: 0.9em;
+            color: #444;
+            margin-top: 8px;
+        }
 
 /* ---------- FOOTER ---------- */
 footer {
@@ -269,14 +315,12 @@ footer {
         gap: 0;
     }
 
-
     .logo {
         max-height: 60px;
         width: auto;
         flex: 1;
         object-fit: contain;
     }
-
 
     .banner-header .header-left .hamburger {
         display: block !important;
@@ -302,7 +346,7 @@ footer {
     }
 
         .nav-menu.open {
-            max-height: 500px; /* Adjust based on total height of menu items */
+            max-height: 500px;
         }
 
         .nav-menu a,
@@ -324,5 +368,9 @@ footer {
 
     .dropdown.open .dropdown-content {
         display: block;
+    }
+
+    .youtube-preview {
+        margin: 20px auto;
     }
 }
