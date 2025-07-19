@@ -175,14 +175,21 @@ p {
     }
 
 /* ---------- Video ---------- */
+/* Video grid container */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+/* Individual card styling */
 .video-card {
-    max-width: 400px;
-    margin: 0 auto;
-    background: #fff;
+    background-color: #fff;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
     .video-card:hover {
@@ -190,26 +197,22 @@ p {
     }
 
 .video-link {
-    display: block;
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
+    display: block;
 }
 
 .video-thumbnail {
     position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 56.25%;
+    aspect-ratio: 16 / 9;
     background-color: #000;
 }
 
     .video-thumbnail img {
-        position: absolute;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        top: 0;
-        left: 0;
+        display: block;
     }
 
 .play-icon {
@@ -217,16 +220,26 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 48px;
+    font-size: 3rem;
     color: white;
-    opacity: 0.85;
+    opacity: 0.8;
     pointer-events: none;
 }
 
 .video-info {
-    padding: 15px;
-    text-align: center;
+    padding: 1rem;
 }
+
+    .video-info h3 {
+        font-size: 1.1rem;
+        margin: 0 0 0.5rem;
+    }
+
+    .video-info p {
+        margin: 0;
+        color: #666;
+    }
+
 
     .video-info h3 {
         margin: 0;
