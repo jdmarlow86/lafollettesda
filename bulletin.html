@@ -59,39 +59,21 @@
         <div class="content-center">
             <h2>Sermons</h2>
 
-            <div class="video-grid">
+            <div class="slider-container">
+                <button class="slider-button left" aria-label="Previous">&#10094;</button>
 
-                <div class="video-card">
-                    <a href="https://www.youtube.com/watch?v=9gf7ffOcLKY" target="_blank" class="video-link">
-                        <div class="video-thumbnail">
-                            <img src="https://img.youtube.com/vi/9gf7ffOcLKY/hqdefault.jpg" alt="Video 1 Thumbnail">
-                            <div class="play-icon">&#9658;</div>
-                        </div>
-                        <div class="video-info">
-                            <h3>July 12, 2025</h3>
-                            <p>Basking in the Son</p>
-                        </div>
-                    </a>
+                <div class="video-slider" id="videoSlider">
+                    <!-- Your video cards -->
+                    <div class="video-card">...</div>
+                    <div class="video-card">...</div>
+                    <!-- Add more cards -->
                 </div>
 
-                <div class="video-card">
-                    <a href="https://www.youtube.com/watch?v=5RasBmUtzcg" target="_blank" class="video-link">
-                        <div class="video-thumbnail">
-                            <img src="https://img.youtube.com/vi/5RasBmUtzcg/hqdefault.jpg" alt="Video 2 Thumbnail">
-                            <div class="play-icon">&#9658;</div>
-                        </div>
-                        <div class="video-info">
-                            <h3>July 5, 2025</h3>
-                            <p>A Metamorphosis</p>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Add more video-card blocks as needed -->
-
+                <button class="slider-button right" aria-label="Next">&#10095;</button>
             </div>
         </div>
     </section>
+
 
 
     <section class="section location-section">
@@ -114,5 +96,21 @@
         </div>
     </footer>
     <script src="js/main.js"></script>
+    <script>
+        const slider = document.getElementById('videoSlider');
+        const btnLeft = document.querySelector('.slider-button.left');
+        const btnRight = document.querySelector('.slider-button.right');
+
+        const scrollAmount = 320; // pixels to scroll on each click
+
+        btnLeft.addEventListener('click', () => {
+            slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+
+        btnRight.addEventListener('click', () => {
+            slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+    </script>
+
 </body>
 </html>

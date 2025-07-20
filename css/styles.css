@@ -1,190 +1,27 @@
-/* ---------- RESET ---------- */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-/* ---------- BASE ---------- */
-body {
-    font-family: 'Roboto', sans-serif;
-    background: #fdfdfd;
-    color: #333;
-}
-
-/* ---------- HEADER as banner image ---------- */
-header.banner-header {
-    width: 100%;
-    height: auto;
-    background: #004c3f;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 30px;
-    flex-wrap: wrap;
-}
-
-/* Container for logo + hamburger */
-.header-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-grow: 1;
-}
-
-/* Logo styling */
-.logo {
-    display: block;
-    height: auto;
-    max-height: 80px;
-    width: auto;
-    max-width: 520px;
-    object-fit: contain;
-}
-
-.banner-header .hamburger {
-    font-size: 28px;
-    background: none;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    margin-right: auto;
-    display: none;
-}
-
-.banner-header nav {
-    flex-shrink: 1;
-    flex-grow: 0;
-}
-
-.nav-menu {
-    display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
-    gap: 18px;
-    align-items: center;
-    flex: 1;
-    margin-left: 0;
-}
-
-    .nav-menu a,
-    .nav-menu .dropbtn {
-        color: #fff;
-        text-decoration: none;
-        padding: 10px 14px;
-        font-weight: bold;
-        font-size: 1em;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        border-radius: 4px;
-        transition: background-color 0.3s;
-    }
-
-        .nav-menu a:hover,
-        .nav-menu .dropbtn:hover {
-            background: #006a4e;
-        }
-
-/* ---------- DROPDOWN ---------- */
-.dropdown {
+/* ---------- SLIDER ---------- */
+.slider-container {
     position: relative;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    min-width: 160px;
-    background: #004c3f;
-    border-radius: 5px;
-    z-index: 5;
-}
-
-    .dropdown-content a {
-        display: block;
-        padding: 12px 16px;
-        color: #fff;
-        text-decoration: none;
-    }
-
-        .dropdown-content a:hover {
-            background: #006a4e;
-        }
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* ---------- SECTIONS ---------- */
-.section {
-    padding: 50px 20px;
-    width: 100%;
-}
-
-    .section:not(:last-child) {
-        border-bottom: 1px solid #ddd;
-    }
-
-.content-center {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 20px;
-}
-
-h2 {
-    color: #006a4e;
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-}
-
-p {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.about-logo {
-    margin-top: 20px;
-    height: 100px;
-    width: auto;
-}
-
-.map-container {
-    margin-top: 20px;
-    border-radius: 8px;
+    display: flex;
+    align-items: center;
     overflow: hidden;
-}
-
-.church-link {
-    margin-left: 10px;
-    font-size: 0.8em;
-    background: #004c3f;
-    color: #fff;
-    padding: 4px 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-    .church-link:hover {
-        background: #004477;
-    }
-
-/* ---------- Video ---------- */
-/* Video grid container */
-.video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
     padding: 1rem 0;
 }
 
-/* Individual card styling */
+.video-slider {
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+}
+
+    .video-slider::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+    }
+
 .video-card {
+    flex: 0 0 auto;
+    width: 280px;
     background-color: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -194,6 +31,28 @@ p {
 
     .video-card:hover {
         transform: scale(1.02);
+    }
+
+.slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    font-size: 2rem;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+    .slider-button.left {
+        left: 0.25rem;
+    }
+
+    .slider-button.right {
+        right: 0.25rem;
     }
 
 .video-link {
@@ -239,151 +98,3 @@ p {
         margin: 0;
         color: #666;
     }
-
-
-    .video-info h3 {
-        margin: 0;
-        font-size: 1.2em;
-    }
-
-    .video-info p {
-        margin: 5px 0 0;
-        font-size: 0.9em;
-        color: #666;
-    }
-
-/* ---------- YouTube Link Preview ---------- */
-.youtube-preview {
-    max-width: 420px;
-    margin: 20px auto;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-    background: #fff;
-}
-
-    .youtube-preview a {
-        text-decoration: none;
-        color: inherit;
-        display: block;
-    }
-
-    .youtube-preview .preview-thumbnail {
-        position: relative;
-        width: 100%;
-        height: 0;
-        padding-bottom: 56.25%;
-        background-color: #000;
-    }
-
-        .youtube-preview .preview-thumbnail img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            top: 0;
-            left: 0;
-        }
-
-    .youtube-preview .preview-info {
-        padding: 15px;
-    }
-
-        .youtube-preview .preview-info h4 {
-            margin: 0;
-            font-size: 1em;
-            color: #004c3f;
-        }
-
-        .youtube-preview .preview-info p {
-            font-size: 0.9em;
-            color: #444;
-            margin-top: 8px;
-        }
-
-/* ---------- FOOTER ---------- */
-footer {
-    width: 100%;
-    background: #004c3f;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    font-size: 0.9em;
-}
-
-/* ---------- MOBILE (768px) ---------- */
-@media (max-width: 768px) {
-    header.banner-header {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 10px 15px;
-    }
-
-    .header-left {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 0;
-    }
-
-    .logo {
-        max-height: 60px;
-        width: auto;
-        flex: 1;
-        object-fit: contain;
-    }
-
-    .banner-header .header-left .hamburger {
-        display: block !important;
-        font-size: 28px;
-        background: none;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-        padding: 10px;
-    }
-
-    nav {
-        width: 100%;
-        background: #004c3f;
-    }
-
-    .nav-menu {
-        flex-direction: column;
-        width: 100%;
-        overflow: hidden;
-        max-height: 0;
-        transition: max-height 0.4s ease;
-    }
-
-        .nav-menu.open {
-            max-height: 500px;
-        }
-
-        .nav-menu a,
-        .nav-menu .dropbtn {
-            width: 100%;
-            text-align: left;
-            padding: 12px 20px;
-        }
-
-    .dropdown-content {
-        position: static;
-        width: 100%;
-        border-radius: 0;
-    }
-
-    .dropdown:hover .dropdown-content {
-        display: none;
-    }
-
-    .dropdown.open .dropdown-content {
-        display: block;
-    }
-
-    .youtube-preview {
-        margin: 20px auto;
-    }
-}
