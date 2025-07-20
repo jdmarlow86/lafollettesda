@@ -288,11 +288,11 @@ p {
 }
 
     .slider-button.left {
-        left: 0.25rem;
+        left: 0.5rem;
     }
 
     .slider-button.right {
-        right: 0.25rem;
+        right: 0.5rem;
     }
 
 /* ---------- YouTube Link Preview ---------- */
@@ -428,5 +428,21 @@ footer {
 
     .youtube-preview {
         margin: 20px auto;
+    }
+
+    .slider-button {
+        padding: 0.5rem 0.75rem;
+    }
+
+        .slider-button.left {
+            left: 0.75rem;
+        }
+
+        .slider-button.right {
+            right: 0.75rem;
+        }
+
+    .video-slider {
+        padding: 0 2.5rem; /* Adds internal space between arrows and content */
     }
 }
