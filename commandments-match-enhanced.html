@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ten Commandments Match Game</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f5f2ea;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        #timer {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .game-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .commandment {
+            background: #fff;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            width: 220px;
+            cursor: grab;
+            box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+            transition: 0.2s;
+        }
+
+            .commandment:hover {
+                background: #f8f8f8;
+            }
+
+        .tablet {
+            background: #d6c7a1;
+            border: 2px solid #999;
+            border-radius: 10px;
+            width: 180px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .droppable {
+            border: 2px dashed #aaa;
+        }
+
+        .match-zone {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #3b3b3b;
+        }
+
+        .matched {
+            background: #c7f5c7 !important;
+            border-color: #4caf50 !important;
+            cursor: default;
+        }
+
+        @media (max-width: 600px) {
+            .commandment, .tablet {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>?? Match the Ten Commandments</h1>
+    <p>Drag each commandment to the correct number tablet.</p>
+    <div id="timer">? Time Left: <span id="time">03:00</span></div>
+
+    <div class="game-container" id="commandments"></div>
+
+    <div class="match-zone" id="tablets">
+        <!-- Tablets 1–10 -->
+        <div class="tablet droppable" data-number="1">1</div>
+        <div class="tablet droppable" data-number="2">2</div>
+        <div class="tablet droppable" data-number="3">3</div>
+        <div class="tablet droppable" data-number="4">4</div>
+        <div class="tablet droppable" data-number="5">5</div>
+        <div class="tablet droppable" data-number="6">6</div>
+        <div class="tablet droppable" data-number="7">7</div>
+        <div class="tablet droppable" data-number="8">8</div>
+        <div class="tablet droppable" data-number="9">9</div>
+        <div class="tablet droppable" data-number="10">10</div>
+    </div>
+
+    <div class="message" id="message"></div>
+
+    <!-- Sound Effects -->
+    <audio id="correctSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_03b8f9f4fc.mp3?filename=correct-2-46134.mp3"></audio>
+    <audio id="wrongSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_f03f4c64d2.mp3?filename=wrong-answer-126515.mp3"></audio>
+
+    <script>
+    const commandmentsList = [
+      { text: "Have no other gods", match: 1, verse: "Exodus 20:3" },
+      { text: "Do not make idols", match: 2, verse: "Exodus 20:4" },
+      { text: "Do not misuse God's name", match: 3, verse: "Exodus 20:7" },
+      { text: "Keep the Sabbath holy", match: 4, verse: "Exodus 20:8" },
+      { text: "Honor your father and mother", match: 5, verse: "Exodus 20:12" },
+      { text: "Do not murder", match: 6, verse: "Exodus 20:13" },
+      { text: "Do not commit adultery", match: 7, verse: "Exodus 20:14" },
+      { text: "Do not steal", match: 8, verse: "Exodus 20:15" },
+      { text: "Do not lie", match: 9, verse: "Exodus 20:16" },
+      { text: "Do not covet", match: 10, verse: "Exodus 20:17" }
+    ];
+
+    const correctSound = document.getElementById("correctSound");
+    const wrongSound = document.getElementById("wrongSound");
+    const container = document.getElementById("commandments");
+    const tablets = document.querySelectorAll(".droppable");
+    const message = document.getElementById("message");
+    let matchedCount = 0;
+
+    // Shuffle and render commandments
+    function shuffle(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+    shuffle(commandmentsList).forEach(item => {
+      const div = document.createElement("div");
+      div.className = "commandment";
+      div.textContent = item.text;
+      div.setAttribute("draggable", "true");
+      div.setAttribute("data-match", item.match);
+      div.setAttribute("data-verse", item.verse);
+      container.appendChild(div);
+    });
+
+    // Drag and drop logic
+    const draggables = document.querySelectorAll('.commandment');
+    draggables.forEach(item => {
+      item.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('text/plain', e.target.dataset.match);
+        e.dataTransfer.setData('text/verse', e.target.dataset.verse);
+        e.dataTransfer.setData('text/label', e.target.textContent);
+      });
+    });
+
+    tablets.forEach(zone => {
+      zone.addEventListener('dragover', e => e.preventDefault());
+      zone.addEventListener('drop', e => {
+        e.preventDefault();
+        const match = e.dataTransfer.getData('text/plain');
+        const label = e.dataTransfer.getData('text/label');
+        const verse = e.dataTransfer.getData('text/verse');
+
+        if (zone.dataset.number === match && !zone.classList.contains('matched')) {
+          zone.innerHTML = `${match}. ${label}<br><small>(${verse})</small>`;
+          zone.classList.add("matched");
+          document.querySelector(`.commandment[data-match='${match}']`).classList.add("matched");
+          correctSound.play();
+          matchedCount++;
+          if (matchedCount === 10) {
+            message.textContent = "?? All matched! Great job!";
+            clearInterval(timerInterval);
+          }
+        } else if (!zone.classList.contains('matched')) {
+          wrongSound.play();
+          message.textContent = "? Not quite right. Try again!";
+        }
+      });
+    });
+
+    // Countdown Timer
+    let timeLeft = 180; // 3 minutes
+    const timeDisplay = document.getElementById("time");
+    const timerInterval = setInterval(() => {
+      timeLeft--;
+      const mins = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+      const secs = String(timeLeft % 60).padStart(2, '0');
+      timeDisplay.textContent = `${mins}:${secs}`;
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        message.textContent = "? Time's up! Try again.";
+        document.querySelectorAll('.commandment').forEach(el => el.setAttribute('draggable', 'false'));
+      }
+    }, 1000);
+    </script>
+</body>
+</html>
