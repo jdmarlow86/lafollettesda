@@ -280,7 +280,9 @@ p {
     border-radius: 6px;
     text-decoration: none;
     font-weight: bold;
-    width: 180px;
+    flex: 0 0 23%; /* four columns with gap spacing */
+    max-width: 100%;
+    min-width: 150px; /* fallback */
     text-align: center;
     transition: background 0.3s;
 }
