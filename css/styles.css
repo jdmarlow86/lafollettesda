@@ -200,6 +200,8 @@ p {
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    flex: 0 0 calc(25% - 20px); /* 4 cards per row, accounting for gaps */
+    max-width: 100%;
 }
 
     .video-card:hover {
@@ -440,19 +442,31 @@ footer {
         margin: 20px auto;
     }
 
+    .video-card {
+        flex: 0 0 calc(50% - 16px); /* 2 cards per row */
+    }
+
+    .video-slider {
+        gap: 16px;
+        padding: 0 1rem;
+    }
+
     .slider-button {
-        padding: 0.5rem 0.75rem;
+        font-size: 1.5rem;
+        padding: 0.4rem 0.6rem;
     }
 
         .slider-button.left {
-            left: 0.75rem;
+            left: 0.5rem;
         }
 
         .slider-button.right {
-            right: 0.75rem;
+            right: 0.5rem;
         }
+}
 
-    .video-slider {
-        padding: 0 2.5rem; /* Adds internal space between arrows and content */
+@media (max-width: 480px) {
+    .video-card {
+        flex: 0 0 100%;
     }
 }
