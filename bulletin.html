@@ -103,16 +103,30 @@
         </div>
     </section>
 
-
-
     <section class="section location-section">
         <div class="content-center">
             <h2>Service Video Shorts</h2>
-            <h3>
-                <a href="https://www.facebook.com/reel/777382981442192/?s=fb_shorts_profile&stack_idx=0" target="_blank" class="church-link">July 12, 2025</a>
-            </h3>
+
+            <div class="shorts-grid" id="shortsGrid">
+                <!-- First 4 shorts (always visible) -->
+                <a href="https://www.facebook.com/reel/777382981442192/?s=fb_shorts_profile&stack_idx=0" target="_blank" class="short-link">July 12, 2025</a>
+                <a href="https://www.facebook.com/reel/123456789012345" target="_blank" class="short-link">July 5, 2025</a>
+                <a href="https://www.facebook.com/reel/234567890123456" target="_blank" class="short-link">June 28, 2025</a>
+                <a href="https://www.facebook.com/reel/345678901234567" target="_blank" class="short-link">June 21, 2025</a>
+
+                <!-- Hidden shorts (revealed on click) -->
+                <div class="extra-shorts hidden" id="extraShorts">
+                    <a href="https://www.facebook.com/reel/456789012345678" target="_blank" class="short-link">June 14, 2025</a>
+                    <a href="https://www.facebook.com/reel/567890123456789" target="_blank" class="short-link">June 7, 2025</a>
+                    <a href="https://www.facebook.com/reel/678901234567890" target="_blank" class="short-link">May 31, 2025</a>
+                    <a href="https://www.facebook.com/reel/789012345678901" target="_blank" class="short-link">May 24, 2025</a>
+                </div>
+            </div>
+
+            <button id="viewMoreBtn" class="view-more-button">View More</button>
         </div>
     </section>
+
 
     <footer>
         <p>2025 Seventh-day Adventist Church of LaFollette, TN</p>
@@ -138,6 +152,20 @@
 
         btnRight.addEventListener('click', () => {
             slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+    </script>
+    <script>
+        document.getElementById('viewMoreBtn').addEventListener('click', function () {
+            const extraShorts = document.getElementById('extraShorts');
+            const btn = document.getElementById('viewMoreBtn');
+
+            if (extraShorts.classList.contains('hidden')) {
+                extraShorts.classList.remove('hidden');
+                btn.textContent = 'View Less';
+            } else {
+                extraShorts.classList.add('hidden');
+                btn.textContent = 'View More';
+            }
         });
     </script>
 
