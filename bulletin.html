@@ -159,12 +159,12 @@
             const extraShorts = document.getElementById('extraShorts');
             const btn = document.getElementById('viewMoreBtn');
 
-            if (extraShorts.classList.contains('hidden')) {
-                extraShorts.classList.remove('hidden');
-                btn.textContent = 'View Less';
-            } else {
-                extraShorts.classList.add('hidden');
+            if (extraShorts.classList.contains('show')) {
+                extraShorts.classList.remove('show');
                 btn.textContent = 'View More';
+            } else {
+                extraShorts.classList.add('show');
+                btn.textContent = 'View Less';
             }
         });
     </script>

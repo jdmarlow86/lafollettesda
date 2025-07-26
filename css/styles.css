@@ -292,12 +292,23 @@ p {
     }
 
 .extra-shorts {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
-    margin-top: 15px;
     justify-content: center;
+    margin-top: 0;
 }
+
+    .extra-shorts.show {
+        max-height: 500px; /* Adjust as needed */
+        opacity: 1;
+        margin-top: 15px;
+    }
+
 
 .hidden {
     display: none;
@@ -305,7 +316,7 @@ p {
 
 .view-more-button {
     margin-top: 20px;
-    background-color: #006a4e;
+    background-color: #004c3f;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -315,7 +326,7 @@ p {
 }
 
     .view-more-button:hover {
-        background-color: #004c3f;
+        background-color: #006a4e;
     }
 
 
