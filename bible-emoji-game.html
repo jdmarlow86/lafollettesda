@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bible Emoji Translator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #fff7e6;
+            color: #333;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        h1 {
+            color: #4a3c2d;
+        }
+
+        .emoji {
+            font-size: 2.5rem;
+            margin: 1rem 0;
+        }
+
+        input, button, textarea {
+            padding: 0.6rem;
+            font-size: 1rem;
+            margin: 0.5rem;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background: #6c4f3d;
+            color: white;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background: #8a684e;
+            }
+
+        .section {
+            background: #fffbe0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        .small {
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>?? Bible Emoji Translator</h1>
+
+    <div class="section">
+        <div class="emoji" id="emojiClue">??????????????????</div>
+        <input type="text" id="guessInput" placeholder="What Bible story is this?" />
+        <button onclick="checkGuess()">Submit Guess</button>
+        <div id="resultMsg"></div>
+    </div>
+
+    <div class="section">
+        <h2>Create Your Own Challenge</h2>
+        <textarea id="customEmoji" rows="2" placeholder="Type your emojis here (e.g. ????????)" style="width: 90%;"></textarea><br />
+        <input type="text" id="customAnswer" placeholder="Correct answer (e.g. Adam and Eve)" style="width: 90%;" />
+        <button onclick="generateLink()">Generate Sharable Link</button>
+        <div id="shareLink" class="small"></div>
+    </div>
+
+    <script>
+    // Default game data
+    const defaultEmoji = "??????????????????";
+    const defaultAnswer = "noah's ark";
+
+    // Load from URL if available
+    const params = new URLSearchParams(window.location.search);
+    const emoji = decodeURIComponent(params.get('emoji') || defaultEmoji);
+    const answer = decodeURIComponent(params.get('answer') || defaultAnswer).toLowerCase();
+
+    document.getElementById("emojiClue").textContent = emoji;
+
+    function checkGuess() {
+      const userGuess = document.getElementById("guessInput").value.toLowerCase().trim();
+      const result = document.getElementById("resultMsg");
+
+      if (!userGuess) return;
+
+      if (userGuess === answer) {
+        result.innerHTML = "? Correct! Great job!";
+      } else {
+        result.innerHTML = "? Try again!";
+      }
+    }
+
+    function generateLink() {
+      const emojiVal = encodeURIComponent(document.getElementById("customEmoji").value.trim());
+      const answerVal = encodeURIComponent(document.getElementById("customAnswer").value.trim());
+
+      if (!emojiVal || !answerVal) {
+        document.getElementById("shareLink").textContent = "? Please enter both emoji and answer.";
+        return;
+      }
+
+      const baseUrl = window.location.origin + window.location.pathname;
+      const url = `${baseUrl}?emoji=${emojiVal}&answer=${answerVal}`;
+
+      document.getElementById("shareLink").innerHTML = `?? Sharable link: <a href="${url}" target="_blank">${url}</a>`;
+    }
+    </script>
+</body>
+</html>
