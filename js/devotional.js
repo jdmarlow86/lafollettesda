@@ -20,14 +20,14 @@ const bibleVerses = [
 
 
 const egwQuotes = [
-    { text: "Prayer is the key in the hand of faith to unlock Heaven’s storehouse.", reference: "Steps to Christ, p. 94" },
+    { text: "The greatest want of the world is the want of menâ€”men who will not be bought or sold.", reference: "Education, p. 57" },
     { text: "Higher than the highest human thought can reach is God's ideal for His children.", reference: "Education, p. 18" },
     { text: "Christ was treated as we deserve, that we might be treated as He deserves.", reference: "Desire of Ages, p. 25" },
     { text: "The last rays of merciful light, the last message of mercy to the world, is a revelation of His character of love.", reference: "Christ's Object Lessons, p. 415" },
     { text: "True education means more than the pursual of a certain course of study.", reference: "Education, p. 13" },
     { text: "In the future life the mysteries that here have annoyed and disappointed us will be made plain.", reference: "Ministry of Healing, p. 474" },
     { text: "He who begins with a little knowledge and in a humble way tells what he knows... may set thousands in motion.", reference: "Testimonies, Vol. 6, p. 443" },
-    { text: "The greatest want of the world is the want of men—men who will not be bought or sold.", reference: "Education, p. 57" },
+    { text: "The greatest want of the world is the want of menâ€”men who will not be bought or sold.", reference: "Education, p. 57" },
     { text: "The badge of Christianity is not an outward sign, but that which reveals the union of man with God.", reference: "Ministry of Healing, p. 470" },
     { text: "We have nothing to fear for the future, except as we shall forget the way the Lord has led us.", reference: "Life Sketches, p. 196" },
     { text: "The Saviour's life on earth was a life of communion with nature and with God.", reference: "Steps to Christ, p. 85" },
