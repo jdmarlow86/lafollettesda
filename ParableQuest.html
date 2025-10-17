@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Parable Quest — Starter</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --ink: #e5e7eb;
+            --muted: #9ca3af;
+            --accent: #f59e0b;
+            --good: #22c55e;
+            --bad: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, sans-serif;
+            background: radial-gradient(1200px 600px at 50% -10%, #1f2937, var(--bg));
+            color: var(--ink);
+            display: grid;
+            place-items: center;
+            min-height: 100svh;
+            padding: 16px;
+        }
+
+        .app {
+            width: min(900px, 100%);
+            background: linear-gradient(180deg, #0b1022, var(--card));
+            border: 1px solid #1f2937;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,.35);
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        h1 {
+            font-size: 1.2rem;
+            margin: 0
+        }
+
+        .score {
+            font-weight: 700
+        }
+
+        .bar {
+            height: 8px;
+            background: #111827;
+            border-radius: 999px;
+            overflow: hidden;
+            margin-top: 10px
+        }
+
+            .bar span {
+                display: block;
+                height: 100%;
+                width: 0%;
+                background: linear-gradient(90deg,#f59e0b,#f97316,#fb923c)
+            }
+
+        .card {
+            margin-top: 18px;
+            background: #0b1224;
+            border: 1px solid #1e293b;
+            border-radius: 14px;
+            padding: 18px
+        }
+
+        .title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 6px
+        }
+
+        .text {
+            color: #cbd5e1;
+            line-height: 1.55
+        }
+
+        .choices {
+            display: grid;
+            gap: 10px;
+            margin-top: 14px
+        }
+
+        .btn {
+            background: #111827;
+            color: var(--ink);
+            border: 1px solid #293041;
+            padding: 12px 14px;
+            border-radius: 12px;
+            text-align: left;
+            cursor: pointer;
+            transition: transform .06s ease, border-color .2s ease, background .2s ease;
+        }
+
+            .btn:hover {
+                border-color: #374151;
+                background: #0f172a
+            }
+
+            .btn:active {
+                transform: translateY(1px)
+            }
+
+        .pill {
+            display: inline-block;
+            padding: .15rem .5rem;
+            border-radius: 999px;
+            background: #172554;
+            color: #c7d2fe;
+            font-size: .75rem;
+            margin-left: 6px
+        }
+
+        .hint {
+            color: var(--muted);
+            font-size: .92rem;
+            margin-top: .35rem
+        }
+
+        .result {
+            margin-top: 12px;
+            border-left: 3px solid #334155;
+            padding-left: 12px;
+            color: #e2e8f0
+        }
+
+        .good {
+            color: var(--good)
+        }
+
+        .bad {
+            color: var(--bad)
+        }
+
+        .footer {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 14px;
+            flex-wrap: wrap
+        }
+
+        .ghost {
+            background: transparent;
+            border: 1px dashed #334155
+        }
+
+        .primary {
+            background: linear-gradient(90deg,#f59e0b,#f97316);
+            border: 0;
+            color: #111827;
+            font-weight: 700
+        }
+
+        .kicker {
+            font-variant: all-small-caps;
+            letter-spacing: .08em;
+            color: #fbbf24;
+            font-weight: 700
+        }
+
+        @media (max-width:560px) {
+            .btn {
+                text-align: center
+            }
+
+            .footer {
+                justify-content: center
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app" id="app" role="main" aria-live="polite">
+        <header>
+            <h1>? Parable Quest <span class="pill">starter</span></h1>
+            <div class="score" id="score">Wisdom: 0</div>
+        </header>
+        <div class="bar" aria-hidden="true"><span id="progress"></span></div>
+
+        <div id="view" class="card">
+            <!-- dynamic scene injected -->
+        </div>
+
+        <div class="footer">
+            <button class="btn ghost" id="btn-restart" title="Restart (R)">? Restart</button>
+            <button class="btn primary" id="btn-next" title="Next (Enter)">Next ?</button>
+        </div>
+    </div>
+
+    <script>
+/* =======================
+   Parable Quest — Mini Engine
+   ======================= */
+
+// Tiny content pack (3 parables). Add more by pushing to PARABLES.
+const PARABLES = [
+  {
+    id: "good-samaritan",
+    title: "The Good Samaritan",
+    ref: "Luke 10:25–37",
+    intro: "A traveler is attacked and left half-dead on the road from Jerusalem to Jericho. Several people pass by...",
+    scenes: [
+      {
+        prompt: "You see the injured traveler. What do you do?",
+        choices: [
+          { text: "Keep walking. You’re busy.", delta: -1, note: "Compassion slowed by convenience." },
+          { text: "Check if it’s safe, then approach to help.", delta: +1, note: "Wisdom pairs mercy with prudence." },
+          { text: "Publicly shame others for not helping.", delta: 0, note: "Noise without love helps little." }
+        ]
+      },
+      {
+        prompt: "He needs real care. What next?",
+        choices: [
+          { text: "Offer a quick prayer and move on.", delta: 0, note: "Prayer is good; loving action is also needed." },
+          { text: "Bandage wounds and take him to an inn.", delta: +2, note: "Love acts, even at cost." },
+          { text: "Wait for a priest to handle it.", delta: -1, note: "Passing responsibility can mask neglect." }
+        ]
+      }
+    ],
+    lesson: "Neighbor-love crosses boundaries. Mercy is the measure of true religion."
+  },
+  {
+    id: "prodigal-son",
+    title: "The Prodigal Son",
+    ref: "Luke 15:11–32",
+    intro: "A younger son wastes his inheritance and returns home in shame.",
+    scenes: [
+      {
+        prompt: "You are the father and see your son far off. What do you do?",
+        choices: [
+          { text: "Wait on the porch with crossed arms.", delta: -1, note: "Pride builds distance." },
+          { text: "Run to him and embrace.", delta: +2, note: "Grace moves first." },
+          { text: "Send a servant to evaluate him.", delta: 0, note: "Caution without compassion." }
+        ]
+      },
+      {
+        prompt: "Your older son is angry. How do you respond?",
+        choices: [
+          { text: "Rebuke him harshly.", delta: -1, note: "Truth without tenderness wounds." },
+          { text: "Invite him to rejoice: ‘Your brother was lost and is found.’", delta: +1, note: "Share the Father’s heart." },
+          { text: "Ignore him.", delta: 0, note: "Silence rarely heals jealousy." }
+        ]
+      }
+    ],
+    lesson: "The Father’s joy over repentance exceeds our score-keeping."
+  },
+  {
+    id: "wise-builder",
+    title: "Wise & Foolish Builders",
+    ref: "Matthew 7:24–27",
+    intro: "Two builders choose different foundations. A storm is coming.",
+    scenes: [
+      {
+        prompt: "You must choose a foundation.",
+        choices: [
+          { text: "Sand — it’s faster.", delta: -1, note: "Speed now, collapse later." },
+          { text: "Rock — it takes more effort.", delta: +2, note: "Obedience is sturdy." },
+          { text: "Skip a foundation; add more decor.", delta: -1, note: "Style cannot substitute structure." }
+        ]
+      },
+      {
+        prompt: "Clouds gather. What do you do?",
+        choices: [
+          { text: "Reinforce, review the plan, and pray.", delta: +1, note: "Prepare + depend on God." },
+          { text: "Host a beach party.", delta: -1, note: "Denial isn’t faith." },
+          { text: "Blame the architect.", delta: 0,  note: "Blame builds nothing." }
+        ]
+      }
+    ],
+    lesson: "Hearing and doing Jesus’ words is the rock that weathers storms."
+  }
+];
+
+let state = {
+  idx: 0,      // which parable index
+  step: -1,    // -1 = intro, then 0..scenes.length
+  score: 0,
+  chosen: null // last choice result to display note
+};
+
+const elView   = document.getElementById('view');
+const elScore  = document.getElementById('score');
+const elNext   = document.getElementById('btn-next');
+const elRestart= document.getElementById('btn-restart');
+const elProg   = document.getElementById('progress');
+
+function formatScore(n){ return `Wisdom: ${n}`; }
+function progressPct(){
+  const totalSteps = PARABLES[state.idx].scenes.length + 1; // intro + scenes
+  const done = Math.min(state.step+1, totalSteps);
+  return Math.round((done/totalSteps)*100);
+}
+
+function render(){
+  const p = PARABLES[state.idx];
+  elScore.textContent = formatScore(state.score);
+  elProg.style.width = progressPct() + "%";
+
+  // Intro view
+  if(state.step === -1){
+    elView.innerHTML = `
+      <div class="kicker">${p.ref}</div>
+      <div class="title">${p.title}</div>
+      <p class="text">${p.intro}</p>
+      <p class="hint">Click <b>Next</b> to begin.</p>
+    `;
+    return;
+  }
+
+  // End of parable?
+  if(state.step >= p.scenes.length){
+    const verdict = state.score >= 3 ?
+      `<span class="good">Great insight!</span>` :
+      `<span class="bad">Room to grow.</span>`;
+    elView.innerHTML = `
+      <div class="kicker">${p.ref}</div>
+      <div class="title">Lesson</div>
+      <p class="text">${p.lesson}</p>
+      <div class="result">${verdict} Your Parable Wisdom for this quest: <b>${state.score}</b></div>
+      <div class="hint">Use Next to continue to another parable.</div>
+    `;
+    return;
+  }
+
+  // Scene view
+  const scene = p.scenes[state.step];
+  elView.innerHTML = `
+    <div class="kicker">${p.ref}</div>
+    <div class="title">${p.title}</div>
+    <p class="text">${scene.prompt}</p>
+    <div class="choices">
+      ${scene.choices.map((c,i)=>`
+        <button class="btn" data-i="${i}">
+          ${c.text}
+        </button>`).join('')}
+    </div>
+    ${state.chosen != null ? `<div class="result">${state.chosen.note}</div>`:``}
+  `;
+
+  // attach handlers
+  elView.querySelectorAll('.btn[data-i]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const i = +btn.dataset.i;
+      const choice = scene.choices[i];
+      state.score += choice.delta;
+      state.chosen = { note: (choice.delta>0? '? ':'?? ') + choice.note };
+      // freeze buttons after choice
+      elView.querySelectorAll('.btn[data-i]').forEach(b=>b.disabled = true);
+      render(); // show note
+    });
+  });
+}
+
+function next(){
+  const p = PARABLES[state.idx];
+  // From intro -> first scene
+  if(state.step === -1){ state.step = 0; state.chosen=null; render(); return; }
+  // If mid-scene and no choice made, just keep scene
+  if(state.step < p.scenes.length && state.chosen == null){ return; }
+  // advance
+  state.step++;
+  state.chosen=null;
+  // finished parable -> move to next parable or loop
+  if(state.step > p.scenes.length){
+    state.idx = (state.idx + 1) % PARABLES.length;
+    state.step = -1;
+    state.score = 0;
+  }
+  render();
+}
+
+function restart(){
+  state = { idx: 0, step: -1, score: 0, chosen: null };
+  render();
+}
+
+// init
+render();
+elNext.addEventListener('click', next);
+elRestart.addEventListener('click', restart);
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Enter') next();
+  if(e.key.toLowerCase() === 'r') restart();
+});
+    </script>
+</body>
+</html>
