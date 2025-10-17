@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Verse or Not?</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --ink: #e5e7eb;
+            --muted: #94a3b8;
+            --yes: #22c55e;
+            --no: #ef4444;
+            --accent: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, sans-serif;
+            background: radial-gradient(1200px 600px at 50% -10%, #1f2937, var(--bg));
+            color: var(--ink);
+            min-height: 100svh;
+            display: grid;
+            place-items: center;
+            padding: 16px;
+        }
+
+        .app {
+            width: min(900px,100%);
+            background: linear-gradient(180deg,#0b1022,var(--card));
+            border: 1px solid #1f2937;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,.35);
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        h1 {
+            font-size: 1.25rem;
+            margin: 0
+        }
+
+        .sub {
+            color: var(--muted);
+            font-size: .92rem
+        }
+
+        .stats {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            flex-wrap: wrap
+        }
+
+        .pill {
+            background: #172554;
+            color: #c7d2fe;
+            border-radius: 999px;
+            padding: .2rem .6rem;
+            font-size: .8rem
+        }
+
+        .bar {
+            height: 8px;
+            background: #0b1224;
+            border-radius: 999px;
+            overflow: hidden;
+            margin-top: 12px
+        }
+
+            .bar span {
+                display: block;
+                height: 100%;
+                width: 0%;
+                background: linear-gradient(90deg,#f59e0b,#f97316,#fb923c)
+            }
+
+        .card {
+            margin-top: 18px;
+            background: #0b1224;
+            border: 1px solid #1e293b;
+            border-radius: 14px;
+            padding: 22px
+        }
+
+        blockquote {
+            font-size: 1.35rem;
+            line-height: 1.5;
+            margin: 0
+        }
+
+        .source {
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: .95rem
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+            justify-content: center
+        }
+
+        .btn {
+            border: 1px solid #2b3548;
+            background: #121a2e;
+            color: var(--ink);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform .06s ease, background .2s ease, border-color .2s ease;
+        }
+
+            .btn:hover {
+                background: #0f172a;
+                border-color: #3a455e
+            }
+
+            .btn:active {
+                transform: translateY(1px)
+            }
+
+        .yes {
+            background: rgba(34,197,94,.08);
+            border-color: #2c7a52
+        }
+
+        .no {
+            background: rgba(239,68,68,.08);
+            border-color: #7a2c2c
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            color: var(--muted)
+        }
+
+        .big {
+            font-weight: 800;
+            font-size: 1.1rem
+        }
+
+        .hint {
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: .9rem
+        }
+
+        .hidden {
+            display: none
+        }
+
+        .good {
+            color: var(--yes)
+        }
+
+        .bad {
+            color: var(--no)
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px
+        }
+
+        th, td {
+            border-bottom: 1px solid #1f2937;
+            padding: 8px;
+            text-align: left;
+            font-size: .95rem
+        }
+
+        .footer {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 14px;
+            flex-wrap: wrap
+        }
+
+        .ghost {
+            background: transparent;
+            border: 1px dashed #334155
+        }
+
+        .primary {
+            background: linear-gradient(90deg,#f59e0b,#f97316);
+            border: 0;
+            color: #111827;
+            font-weight: 800
+        }
+    </style>
+</head>
+<body>
+    <div class="app" id="app">
+        <header>
+            <div>
+                <h1>?? Verse or Not?</h1>
+                <div class="sub">Decide if each quote is from the Bible. <span class="pill">Y = Verse</span> <span class="pill">N = Not</span></div>
+            </div>
+            <div class="stats">
+                <div id="score" class="pill">Score: 0</div>
+                <div id="streak" class="pill">Streak: 0</div>
+                <div id="timer" class="pill">Time: 60</div>
+            </div>
+        </header>
+
+        <div class="bar"><span id="progress"></span></div>
+
+        <div id="play" class="card">
+            <blockquote id="quote">“Loading…”</blockquote>
+            <div class="source" id="ref">&nbsp;</div>
+
+            <div class="controls">
+                <button class="btn yes" id="btn-verse" title="Y">? Verse</button>
+                <button class="btn no" id="btn-not" title="N">? Not</button>
+            </div>
+
+            <div id="feedback" class="hint"></div>
+            <div class="meta">
+                <div>Round <span id="roundNow" class="big">1</span>/<span id="roundTotal" class="big">10</span></div>
+                <div>Difficulty: <span id="diff" class="big">Mixed</span></div>
+            </div>
+        </div>
+
+        <div id="summary" class="card hidden" aria-live="polite">
+            <h2>Results</h2>
+            <div class="sub" id="summaryLine"></div>
+            <table id="tableResults">
+                <thead><tr><th>#</th><th>Quote</th><th>Your pick</th><th>Answer</th><th>Reference</th></tr></thead>
+                <tbody></tbody>
+            </table>
+            <div class="footer">
+                <button class="btn ghost" id="btn-again">? Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+/* ==============================
+   Verse or Not — Starter Engine
+   ==============================
+
+   - 10 prompts per round
+   - 60s total timer
+   - Keyboard: Y = Verse, N = Not
+   - Easy to extend: add to DATA array
+*/
+
+const DATA = [
+  // Verses (KJV/public domain or short references)
+  { q:"In the beginning God created the heaven and the earth.", verse:true, ref:"Genesis 1:1 (KJV)" },
+  { q:"The Lord is my shepherd; I shall not want.", verse:true, ref:"Psalm 23:1 (KJV)" },
+  { q:"For God so loved the world, that he gave his only begotten Son…", verse:true, ref:"John 3:16 (KJV)" },
+  { q:"Trust in the Lord with all thine heart; and lean not unto thine own understanding.", verse:true, ref:"Proverbs 3:5 (KJV)" },
+  { q:"Jesus wept.", verse:true, ref:"John 11:35 (KJV)" },
+  { q:"Be strong and of a good courage; be not afraid… for the Lord thy God is with thee whithersoever thou goest.", verse:true, ref:"Joshua 1:9 (KJV)" },
+  { q:"Let everything that hath breath praise the Lord.", verse:true, ref:"Psalm 150:6 (KJV)" },
+  { q:"A soft answer turneth away wrath: but grievous words stir up anger.", verse:true, ref:"Proverbs 15:1 (KJV)" },
+
+  // Not verses (proverbial-sounding lines or modern sayings)
+  { q:"Cleanliness is next to godliness.", verse:false, ref:"Common proverb (not in the Bible)" },
+  { q:"God helps those who help themselves.", verse:false, ref:"Attributed to Benjamin Franklin, not Scripture" },
+  { q:"This too shall pass.", verse:false, ref:"Popular saying (not a Bible verse)" },
+  { q:"To thine own self be true.", verse:false, ref:"Shakespeare, *Hamlet*" },
+  { q:"Charity begins at home.", verse:false, ref:"Common proverb (not Scripture)" },
+  { q:"Spare the rod and spoil the child.", verse:false, ref:"Proverbial paraphrase; not a direct verse" },
+  { q:"The lion shall lie down with the lamb.", verse:false, ref:"Misquote; Isaiah 11:6 says wolf & lamb" },
+  { q:"Hate the sin, love the sinner.", verse:false, ref:"Often attributed to Augustine/Gandhi" },
+
+  // Trickier/short
+  { q:"Pray without ceasing.", verse:true, ref:"1 Thessalonians 5:17 (KJV)" },
+  { q:"Bear ye one another’s burdens…", verse:true, ref:"Galatians 6:2 (KJV)" },
+  { q:"Faith is taking the first step even when you don't see the whole staircase.", verse:false, ref:"Martin Luther King Jr." },
+  { q:"Where your treasure is, there will your heart be also.", verse:true, ref:"Matthew 6:21 (KJV)" }
+];
+
+// --- game state ---
+const QUESTIONS_PER_ROUND = 10;
+const ROUND_SECONDS = 60;
+
+let pool = [];
+let round = 0;
+let score = 0;
+let streak = 0;
+let timer = ROUND_SECONDS;
+let timerId = null;
+let results = []; // {q, verse, ref, pick, correct}
+let current = null;
+
+const elQuote = document.getElementById('quote');
+const elRef = document.getElementById('ref');
+const elScore = document.getElementById('score');
+const elStreak = document.getElementById('streak');
+const elTimer = document.getElementById('timer');
+const elFeed = document.getElementById('feedback');
+const elRoundNow = document.getElementById('roundNow');
+const elRoundTotal = document.getElementById('roundTotal');
+const elProgress = document.getElementById('progress');
+const elPlay = document.getElementById('play');
+const elSummary = document.getElementById('summary');
+const elSummaryLine = document.getElementById('summaryLine');
+const elTableBody = document.querySelector('#tableResults tbody');
+
+document.getElementById('btn-verse').addEventListener('click', () => answer(true));
+document.getElementById('btn-not').addEventListener('click', () => answer(false));
+document.getElementById('btn-again').addEventListener('click', start);
+
+document.addEventListener('keydown', (e)=>{
+  if (e.key.toLowerCase() === 'y') answer(true);
+  if (e.key.toLowerCase() === 'n') answer(false);
+});
+
+function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]] } return arr; }
+
+function start(){
+  pool = shuffle([...DATA]).slice(0, QUESTIONS_PER_ROUND);
+  round = 0; score = 0; streak = 0; timer = ROUND_SECONDS; results = [];
+  elRoundTotal.textContent = QUESTIONS_PER_ROUND;
+  elPlay.classList.remove('hidden'); elSummary.classList.add('hidden');
+  updateStats();
+  next();
+  clearInterval(timerId);
+  timerId = setInterval(()=>{
+    timer--; if (timer<=0){ timer=0; clearInterval(timerId); end(); }
+    elTimer.textContent = "Time: " + timer;
+  },1000);
+}
+
+function updateStats(){
+  elScore.textContent = "Score: " + score;
+  elStreak.textContent = "Streak: " + streak;
+  elTimer.textContent = "Time: " + timer;
+  elRoundNow.textContent = Math.min(round+1, QUESTIONS_PER_ROUND);
+  elProgress.style.width = Math.round((round/QUESTIONS_PER_ROUND)*100) + "%";
+}
+
+function next(){
+  if (round >= QUESTIONS_PER_ROUND){ end(); return; }
+  current = pool[round];
+  elQuote.textContent = "“" + current.q + "”";
+  elRef.innerHTML = "&nbsp;"; // hidden until answer
+  elFeed.textContent = "";
+  updateStats();
+}
+
+function answer(pickVerse){
+  if (!current) return;
+  const correct = pickVerse === current.verse;
+  if (correct){ score += 100; streak++; elFeed.innerHTML = `<span class="good">? Correct!</span>`; }
+  else { streak = 0; elFeed.innerHTML = `<span class="bad">? Not correct.</span>`; }
+  elRef.textContent = current.ref;
+  results.push({ ...current, pick: pickVerse, correct });
+  round++;
+  updateStats();
+  // brief pause then next
+  setTimeout(next, 600);
+}
+
+function end(){
+  clearInterval(timerId);
+  elPlay.classList.add('hidden');
+  elSummary.classList.remove('hidden');
+  elSummaryLine.textContent = `Final score: ${score} — Correct ${results.filter(r=>r.correct).length}/${QUESTIONS_PER_ROUND} — Best streak ${
+    bestStreak(results)
+  }`;
+  // table
+  elTableBody.innerHTML = results.map((r,i)=>`
+    <tr>
+      <td>${i+1}</td>
+      <td>${escapeHtml(r.q)}</td>
+      <td>${r.pick ? 'Verse' : 'Not'}</td>
+      <td class="${r.correct?'good':'bad'}">${r.verse ? 'Verse' : 'Not'}</td>
+      <td>${r.ref}</td>
+    </tr>
+  `).join('');
+}
+
+function bestStreak(arr){
+  let best=0, cur=0;
+  for(const r of arr){ if(r.correct){ cur++; best=Math.max(best,cur);} else cur=0; }
+  return best;
+}
+function escapeHtml(s){ return s.replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])); }
+
+// Boot
+start();
+    </script>
+</body>
+</html>
