@@ -12,80 +12,59 @@ body {
     color: #333;
 }
 
-/* ---------- HEADER as banner image ---------- */
+/* ---------- HEADER (Banner Image Background) ---------- */
 header.banner-header {
     width: 100%;
-    height: auto;
-    background: #004c3f;
+    min-height: 220px; /* Banner height */
+    background: linear-gradient(0deg, rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("../images/main-header-logo.png") center/cover no-repeat;
     color: #fff;
+    position: relative;
+}
+
+.header-overlay {
+    width: 100%;
+    height: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
-    padding: 10px 30px;
+    padding: 20px 30px;
+    background: rgba(0,0,0,0.3); /* Subtle dark overlay for contrast */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
 }
 
-/* Container for logo + hamburger */
-.header-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-grow: 1;
+.banner-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
 }
 
-/* Logo styling */
-.logo {
-    display: block;
-    width: 100%;
-    max-width: 900px;
-    height: auto;
-    object-fit: contain;
-}
-
-
-
-.banner-header .hamburger {
-    font-size: 28px;
-    background: none;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    margin-right: auto;
-    display: none;
-}
-
-.banner-header nav {
-    flex-shrink: 1;
-    flex-grow: 0;
-}
-
+/* ---------- NAVIGATION ---------- */
 .nav-menu {
     display: flex;
     justify-content: center;
-    flex-wrap: nowrap;
-    gap: 18px;
-    align-items: center;
-    flex: 1;
-    margin-left: 0;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
 }
 
-    .nav-menu a,
-    .nav-menu .dropbtn {
+    .nav-menu a, .nav-menu .dropbtn {
         color: #fff;
         text-decoration: none;
-        padding: 10px 14px;
         font-weight: bold;
-        font-size: 1em;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        border-radius: 4px;
-        transition: background-color 0.3s;
+        padding: 10px 16px;
+        background: rgba(0,0,0,0.25);
+        border-radius: 5px;
+        transition: background 0.3s;
     }
 
-        .nav-menu a:hover,
-        .nav-menu .dropbtn:hover {
-            background: #006a4e;
+        .nav-menu a:hover, .nav-menu .dropbtn:hover {
+            background: rgba(255,255,255,0.25);
         }
 
 /* ---------- DROPDOWN ---------- */
@@ -130,7 +109,7 @@ header.banner-header {
     }
 
 .content-center {
-    max-width: 1000px; /* previously 800px */
+    max-width: 1000px;
     margin: 0 auto;
     text-align: center;
     padding: 20px;
@@ -154,274 +133,12 @@ p {
     width: auto;
 }
 
+/* ---------- MAP ---------- */
 .map-container {
     margin-top: 20px;
     border-radius: 8px;
     overflow: hidden;
 }
-
-.church-link {
-    margin-left: 10px;
-    font-size: 0.8em;
-    background: #004c3f;
-    color: #fff;
-    padding: 4px 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-    .church-link:hover {
-        background: #004477;
-    }
-
-.event-link {
-    color: #004c3f;
-    font-weight: bold;
-    text-decoration: underline; /* Optional: keeps it clearly a link */
-}
-
-    .event-link:hover {
-        text-decoration: none; /* Optional: subtle hover effect */
-    }
-
-/* ---------- Video ---------- */
-/* Video grid container */
-.video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    padding: 1rem 0;
-}
-
-/* Individual card styling */
-.video-card {
-    background-color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    flex: 0 0 calc(25% - 20px); /* 4 cards per row, accounting for gaps */
-    max-width: 100%;
-}
-
-    .video-card:hover {
-        transform: scale(1.02);
-    }
-
-.video-link {
-    color: inherit;
-    text-decoration: none;
-    display: block;
-}
-
-.video-thumbnail {
-    position: relative;
-    aspect-ratio: 16 / 9;
-    background-color: #000;
-}
-
-    .video-thumbnail img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-    }
-
-.play-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 3rem;
-    color: white;
-    opacity: 0.8;
-    pointer-events: none;
-}
-
-.video-info {
-    padding: 1rem;
-}
-
-    .video-info h3 {
-        font-size: 1.1rem;
-        margin: 0 0 0.5rem;
-    }
-
-    .video-info p {
-        margin: 0;
-        color: #666;
-    }
-
-
-    .video-info h3 {
-        margin: 0;
-        font-size: 1.2em;
-    }
-
-    .video-info p {
-        margin: 5px 0 0;
-        font-size: 0.9em;
-        color: #666;
-    }
-/* 4 shorts per row */
-.shorts-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.short-link {
-    display: inline-block;
-    background: #004c3f;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    flex: 0 0 23%; /* four columns with gap spacing */
-    max-width: 100%;
-    min-width: 150px; /* fallback */
-    text-align: center;
-    transition: background 0.3s;
-}
-
-    .short-link:hover {
-        background: #006a4e;
-    }
-
-.extra-shorts {
-    max-height: 0;
-    opacity: 0;
-    transition: max-height 0.5s ease, opacity 0.5s ease;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-    margin-top: 0;
-}
-
-    .extra-shorts.show {
-        max-height: 500px; /* Adjust as needed */
-        opacity: 1;
-        margin-top: 15px;
-    }
-
-
-.hidden {
-    display: none;
-}
-
-.view-more-button {
-    margin-top: 20px;
-    background-color: #004c3f;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-    .view-more-button:hover {
-        background-color: #006a4e;
-    }
-
-
-/* ---------- Slider for videos ---------- */
-.slider-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    padding: 1rem 0;
-}
-
-.video-slider {
-    display: flex;
-    gap: 1.25rem;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: none; /* Firefox */
-}
-
-    .video-slider::-webkit-scrollbar {
-        display: none; /* Chrome/Safari */
-    }
-
-.slider-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    font-size: 2rem;
-    padding: 0.25rem 0.5rem;
-    cursor: pointer;
-    z-index: 10;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-    .slider-button.left {
-        left: 0.5rem;
-    }
-
-    .slider-button.right {
-        right: 0.5rem;
-    }
-
-/* ---------- YouTube Link Preview ---------- */
-.youtube-preview {
-    max-width: 420px;
-    margin: 20px auto;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-    background: #fff;
-}
-
-    .youtube-preview a {
-        text-decoration: none;
-        color: inherit;
-        display: block;
-    }
-
-    .youtube-preview .preview-thumbnail {
-        position: relative;
-        width: 100%;
-        height: 0;
-        padding-bottom: 56.25%;
-        background-color: #000;
-    }
-
-        .youtube-preview .preview-thumbnail img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            top: 0;
-            left: 0;
-        }
-
-    .youtube-preview .preview-info {
-        padding: 15px;
-    }
-
-        .youtube-preview .preview-info h4 {
-            margin: 0;
-            font-size: 1em;
-            color: #004c3f;
-        }
-
-        .youtube-preview .preview-info p {
-            font-size: 0.9em;
-            color: #444;
-            margin-top: 8px;
-        }
 
 /* ---------- FOOTER ---------- */
 footer {
@@ -433,130 +150,25 @@ footer {
     font-size: 0.9em;
 }
 
-/* ---------- MOBILE (768px) ---------- */
+/* ---------- MOBILE STYLES ---------- */
 @media (max-width: 768px) {
-    header.banner-header {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 10px 15px;
-    }
-
-    .header-left {
+    .banner-title {
+        font-size: 1.2rem;
+        text-align: center;
         width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 0;
-    }
-
-    .logo {
-        max-height: 60px;
-        width: auto;
-        flex: 1;
-        object-fit: contain;
-    }
-
-    .banner-header .header-left .hamburger {
-        display: block !important;
-        font-size: 28px;
-        background: none;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-        padding: 10px;
-    }
-
-    nav {
-        width: 100%;
-        background: #004c3f;
     }
 
     .nav-menu {
-        display: flex;
         flex-direction: column;
-        width: 100%;
-        overflow: hidden;
-        max-height: 0;
-        transition: max-height 0.4s ease;
-        background: #004c3f;
+        align-items: center;
     }
 
-        .nav-menu.open {
-            max-height: 500px;
+        .nav-menu a {
+            width: 90%;
+            text-align: center;
         }
 
-        .nav-menu a,
-        .nav-menu .dropbtn {
-            width: 100%;
-            text-align: left;
-            padding: 14px 20px;
-            font-size: 1rem;
-            color: white;
-            background: none;
-            border: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-    .dropdown {
-        width: 100%;
-    }
-
-    .dropdown-content {
-        position: static;
-        width: 100%;
-        border-radius: 0;
-        display: none;
-        flex-direction: column;
-        background: #005c48;
-    }
-
-    .dropdown.open .dropdown-content {
-        display: flex;
-    }
-
-    .dropdown-content a {
-        width: 100%;
-        padding: 12px 20px;
-        text-align: left;
-        color: white;
-        text-decoration: none;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-        .dropdown-content a:hover {
-            background: #006a4e;
-        }
-
-    .youtube-preview {
-        margin: 20px auto;
-    }
-
-    .video-card {
-        flex: 0 0 calc(50% - 16px); /* 2 cards per row */
-    }
-
-    .video-slider {
-        gap: 16px;
-        padding: 0 1rem;
-    }
-
-    .slider-button {
-        font-size: 1.5rem;
-        padding: 0.4rem 0.6rem;
-    }
-
-        .slider-button.left {
-            left: 0.5rem;
-        }
-
-        .slider-button.right {
-            right: 0.5rem;
-        }
-}
-
-
-@media (max-width: 480px) {
-    .video-card {
-        flex: 0 0 100%;
+    header.banner-header {
+        min-height: 180px;
     }
 }
