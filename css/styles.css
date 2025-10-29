@@ -12,39 +12,35 @@ body {
     color: #333;
 }
 
-/* ---------- HEADER (Balanced Banner Background) ---------- */
+/* ---------- HEADER (Centered Banner) ---------- */
 header.banner-header {
     width: 100%;
-    height: 140px; /* Adjusted smaller height */
+    height: 150px; /* Balanced header height */
     background: linear-gradient(0deg, rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("../images/main-header-logo.png") center/contain no-repeat;
     background-color: #004c3f;
     color: #fff;
-    position: relative;
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .overlay {
     width: 100%;
     height: 100%;
-    padding: 10px 30px;
+    padding: 10px 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-}
-
-.header-content {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
 }
 
 .banner-title {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 700;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    margin-bottom: 12px;
 }
 
 /* ---------- NAVIGATION ---------- */
@@ -53,10 +49,10 @@ header.banner-header {
     justify-content: center;
     flex-wrap: wrap;
     gap: 15px;
-    margin-top: 8px;
 }
 
-    .nav-menu a, .nav-menu .dropbtn {
+    .nav-menu a,
+    .nav-menu .dropbtn {
         color: #fff;
         text-decoration: none;
         font-weight: bold;
@@ -66,7 +62,8 @@ header.banner-header {
         transition: background 0.3s;
     }
 
-        .nav-menu a:hover, .nav-menu .dropbtn:hover {
+        .nav-menu a:hover,
+        .nav-menu .dropbtn:hover {
             background: rgba(255,255,255,0.25);
         }
 
@@ -84,11 +81,12 @@ header.banner-header {
     background: #004c3f;
     border-radius: 5px;
     z-index: 5;
+    text-align: left;
 }
 
     .dropdown-content a {
         display: block;
-        padding: 12px 16px;
+        padding: 10px 14px;
         color: #fff;
         text-decoration: none;
     }
@@ -156,24 +154,21 @@ footer {
 /* ---------- MOBILE ---------- */
 @media (max-width: 768px) {
     header.banner-header {
-        height: 110px;
+        height: 120px;
         background-size: contain;
-        background-position: center;
     }
 
     .banner-title {
-        font-size: 1rem;
-        text-align: center;
-        width: 100%;
+        font-size: 1.2rem;
     }
 
     .nav-menu {
         flex-direction: column;
         align-items: center;
+        gap: 8px;
     }
 
         .nav-menu a {
-            width: 90%;
-            text-align: center;
+            width: auto;
         }
 }
