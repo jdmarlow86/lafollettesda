@@ -139,7 +139,7 @@ p {
 
 .sanctuary-image {
     display: block;
-    width: min(100%, 900px);
+    width: min(100%, 600px);
     height: auto;
     margin: 30px auto 0;
 }
