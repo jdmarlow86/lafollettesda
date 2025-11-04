@@ -137,6 +137,10 @@ p {
     width: auto;
 }
 
+.sanctuary-image {
+    height: 300px;
+}
+
 /* ---------- MAP ---------- */
 .map-container {
     margin-top: 20px;
