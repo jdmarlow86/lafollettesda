@@ -130,6 +130,47 @@ p {
     overflow: hidden;
 }
 
+.services-section .content-center {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    flex-wrap: wrap; /* ensures it stacks nicely on small screens */
+}
+
+.services-section .text-block {
+    flex: 1 1 400px;
+}
+
+.services-section .image-block {
+    flex: 0 0 auto;
+    text-align: right;
+}
+
+    .services-section .image-block img {
+        max-width: 250px; /* adjust size here */
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    }
+
+/* Optional: center image on mobile */
+@media (max-width: 600px) {
+    .services-section .content-center {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .services-section .image-block {
+        text-align: center;
+        margin-top: 20px;
+    }
+}
+
+
 /* ---------- FOOTER ---------- */
 footer {
     width: 100%;
