@@ -98,6 +98,20 @@ header.banner-header {
         border-bottom: 1px solid #ddd;
     }
 
+.content-right {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: right;
+    padding: 20px;
+}
+
+.content-left {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: left;
+    padding: 20px;
+}
+
 .content-center {
     max-width: 1000px;
     margin: 0 auto;
