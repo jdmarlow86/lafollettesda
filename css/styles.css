@@ -138,7 +138,10 @@ p {
 }
 
 .sanctuary-image {
-    height: 300px;
+    display: block;
+    width: min(100%, 900px);
+    height: auto;
+    margin: 30px auto 0;
 }
 
 /* ---------- MAP ---------- */
