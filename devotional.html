@@ -16,13 +16,18 @@
             <h1 class="banner-title">Seventh-day Adventist Church of LaFollette, TN</h1>
 
             <nav>
+                <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-controls="navMenu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <div class="nav-menu" id="navMenu">
                     <a href="home.html">Home</a>
                     <a href="bulletin.html">Bulletin</a>
 
                     <div class="dropdown">
-                        <button class="dropbtn">Resources &#9662;</button>
-                        <div class="dropdown-content">
+                        <button class="dropbtn" aria-expanded="false" aria-controls="resources-menu">Resources &#9662;</button>
+                        <div class="dropdown-content" id="resources-menu">
                             <a href="adultsabbathschool.html">Adult Resources</a>
                             <a href="kids-edu.html">Youth Resources</a>
                         </div>

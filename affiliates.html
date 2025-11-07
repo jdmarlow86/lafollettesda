@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Seventh-day Adventist Church of LaFollette, TN</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
     <style>
         body {
             margin: 0;
@@ -20,14 +21,20 @@
             text-align: center;
         }
 
-        nav {
+        .main-nav,
+        .secondary-nav {
             background-color: #004c3f;
+        }
+
+        .main-nav .nav-menu,
+        .secondary-nav {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
         }
 
-            nav a {
+            .main-nav .nav-menu a,
+            .secondary-nav a {
                 color: white;
                 text-decoration: none;
                 padding: 14px 20px;
@@ -35,7 +42,8 @@
                 font-weight: bold;
             }
 
-                nav a:hover {
+                .main-nav .nav-menu a:hover,
+                .secondary-nav a:hover {
                     background-color: #005c48;
                 }
 
@@ -85,6 +93,17 @@
             .button:hover {
                 background-color: #005c48;
             }
+
+        @media (max-width: 768px) {
+            .secondary-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+                .secondary-nav a {
+                    text-align: center;
+                }
+        }
     </style>
 </head>
 <body>
@@ -94,19 +113,21 @@
             <img src="images/main-header-logo.png" alt="SDA Logo" class="logo" />
         </div>
 
-        <!-- Hamburger icon -->
-        <button class="hamburger" id="hamburger">&#9776;</button>
-
         <!-- Navigation -->
-        <nav>
+        <nav class="main-nav">
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-controls="navMenu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div class="nav-menu" id="navMenu">
                 <a href="home.html">Home</a>
                 <a href="bulletin.html">Bulletin</a>
                 <a href="radio.html">Radio</a>
                 <a href="ministries.html">Ministries</a>
                 <div class="dropdown">
-                    <button class="dropbtn">Resources &#9662;</button>
-                    <div class="dropdown-content">
+                    <button class="dropbtn" aria-expanded="false" aria-controls="resources-menu">Resources &#9662;</button>
+                    <div class="dropdown-content" id="resources-menu">
                         <a href="adultsabbathschool.html">Adult Resources</a>
                         <a href="kids-edu.html">Youth Resources</a>
                     </div>
@@ -117,7 +138,7 @@
         </nav>
     </header>
 
-    <nav>
+    <nav class="secondary-nav">
         <a href="home.html">Home</a>
         <a href="about.html">About Us</a>
         <a href="ministries.html">Ministries</a>
