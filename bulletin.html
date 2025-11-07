@@ -58,7 +58,7 @@
             <h2>Sermons</h2>
 
             <div class="slider-container">
-                <button class="slider-button left" aria-label="Previous">&#10094;</button>
+                <button class="slider-button left" type="button" aria-label="Previous" aria-controls="videoSlider">&#10094;</button>
 
                 <div class="video-slider" id="videoSlider">
                     <!-- Your video cards -->
@@ -261,7 +261,7 @@
                     <!-- Add more cards -->
                 </div>
 
-                <button class="slider-button right" aria-label="Next">&#10095;</button>
+                <button class="slider-button right" type="button" aria-label="Next" aria-controls="videoSlider">&#10095;</button>
             </div>
         </div>
     </section>
@@ -304,7 +304,9 @@
         const btnLeft = document.querySelector('.slider-button.left');
         const btnRight = document.querySelector('.slider-button.right');
 
-        const scrollAmount = 320; // pixels to scroll on each click
+        const card = slider.querySelector('.video-card');
+        const gap = parseInt(getComputedStyle(slider).columnGap || getComputedStyle(slider).gap || '20', 10);
+        const scrollAmount = card ? card.offsetWidth + gap : 320;
 
         btnLeft.addEventListener('click', () => {
             slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
