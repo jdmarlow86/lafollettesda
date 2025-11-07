@@ -270,52 +270,79 @@
         <div class="content-center">
             <h2>Service Video Shorts</h2>
 
-            <div class="shorts-grid" id="shortsGrid">
-                <!-- First 4 shorts (always visible) -->
-                <a href="https://www.youtube.com/watch?v=475CnH3ih0o" target="_blank" rel="noopener noreferrer" class="short-card short-card--youtube" aria-label="Watch the July 26, 2025 service short on YouTube (opens in a new tab)">
-                    <span class="short-card__icon" aria-hidden="true">&#9658;</span>
-                    <span class="short-card__content">
-                        <span class="short-card__date">July 26, 2025</span>
-                        <span class="short-card__platform">YouTube</span>
-                    </span>
-                    <span class="short-card__arrow" aria-hidden="true">&#8599;</span>
-                </a>
-                <a href="https://www.youtube.com/watch?v=0LlwJvndc4Y" target="_blank" rel="noopener noreferrer" class="short-card short-card--youtube" aria-label="Watch the July 19, 2025 service short on YouTube (opens in a new tab)">
-                    <span class="short-card__icon" aria-hidden="true">&#9658;</span>
-                    <span class="short-card__content">
-                        <span class="short-card__date">July 19, 2025</span>
-                        <span class="short-card__platform">YouTube</span>
-                    </span>
-                    <span class="short-card__arrow" aria-hidden="true">&#8599;</span>
-                </a>
-                <a href="https://www.facebook.com/reel/777382981442192/?s=fb_shorts_profile&amp;stack_idx=0" target="_blank" rel="noopener noreferrer" class="short-card short-card--facebook" aria-label="Watch the July 12, 2025 service short on Facebook (opens in a new tab)">
-                    <span class="short-card__icon" aria-hidden="true">f</span>
-                    <span class="short-card__content">
-                        <span class="short-card__date">July 12, 2025</span>
-                        <span class="short-card__platform">Facebook</span>
-                    </span>
-                    <span class="short-card__arrow" aria-hidden="true">&#8599;</span>
-                </a>
-                <a href="https://www.facebook.com/reel/234567890123456" target="_blank" rel="noopener noreferrer" class="short-card short-card--facebook" aria-label="Watch the July 5, 2025 service short on Facebook (opens in a new tab)">
-                    <span class="short-card__icon" aria-hidden="true">f</span>
-                    <span class="short-card__content">
-                        <span class="short-card__date">July 5, 2025</span>
-                        <span class="short-card__platform">Facebook</span>
-                    </span>
-                    <span class="short-card__arrow" aria-hidden="true">&#8599;</span>
-                </a>
-
-                <!-- Hidden shorts (revealed on click) -->
-                <div class="extra-shorts" id="extraShorts" aria-hidden="true">
-                    <a href="https://www.youtube.com/watch?v=475CnH3ih0o" target="_blank" rel="noopener noreferrer" class="short-card short-card--youtube" aria-label="Watch the June 28, 2025 service short on YouTube (opens in a new tab)">
-                        <span class="short-card__icon" aria-hidden="true">&#9658;</span>
-                        <span class="short-card__content">
-                            <span class="short-card__date">June 28, 2025</span>
-                            <span class="short-card__platform">YouTube</span>
-                        </span>
-                        <span class="short-card__arrow" aria-hidden="true">&#8599;</span>
-                    </a>
-                </div>
+            <div class="shorts-table-wrapper">
+                <table class="shorts-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Platform</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <span class="shorts-table__date">July 26, 2025</span>
+                            </th>
+                            <td>
+                                <a href="https://www.youtube.com/watch?v=475CnH3ih0o" target="_blank" rel="noopener noreferrer" class="platform-link platform-link--youtube" aria-label="Watch the July 26, 2025 service short on YouTube (opens in a new tab)">
+                                    <span aria-hidden="true" class="platform-link__icon">&#9658;</span>
+                                    <span>YouTube</span>
+                                    <span aria-hidden="true" class="platform-link__arrow">&#8599;</span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <span class="shorts-table__date">July 19, 2025</span>
+                            </th>
+                            <td>
+                                <a href="https://www.youtube.com/watch?v=0LlwJvndc4Y" target="_blank" rel="noopener noreferrer" class="platform-link platform-link--youtube" aria-label="Watch the July 19, 2025 service short on YouTube (opens in a new tab)">
+                                    <span aria-hidden="true" class="platform-link__icon">&#9658;</span>
+                                    <span>YouTube</span>
+                                    <span aria-hidden="true" class="platform-link__arrow">&#8599;</span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <span class="shorts-table__date">July 12, 2025</span>
+                            </th>
+                            <td>
+                                <a href="https://www.facebook.com/reel/777382981442192/?s=fb_shorts_profile&amp;stack_idx=0" target="_blank" rel="noopener noreferrer" class="platform-link platform-link--facebook" aria-label="Watch the July 12, 2025 service short on Facebook (opens in a new tab)">
+                                    <span aria-hidden="true" class="platform-link__icon">f</span>
+                                    <span>Facebook</span>
+                                    <span aria-hidden="true" class="platform-link__arrow">&#8599;</span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <span class="shorts-table__date">July 5, 2025</span>
+                            </th>
+                            <td>
+                                <a href="https://www.facebook.com/reel/234567890123456" target="_blank" rel="noopener noreferrer" class="platform-link platform-link--facebook" aria-label="Watch the July 5, 2025 service short on Facebook (opens in a new tab)">
+                                    <span aria-hidden="true" class="platform-link__icon">f</span>
+                                    <span>Facebook</span>
+                                    <span aria-hidden="true" class="platform-link__arrow">&#8599;</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody class="extra-shorts" id="extraShorts" aria-hidden="true">
+                        <tr>
+                            <th scope="row">
+                                <span class="shorts-table__date">June 28, 2025</span>
+                            </th>
+                            <td>
+                                <a href="https://www.youtube.com/watch?v=475CnH3ih0o" target="_blank" rel="noopener noreferrer" class="platform-link platform-link--youtube" aria-label="Watch the June 28, 2025 service short on YouTube (opens in a new tab)">
+                                    <span aria-hidden="true" class="platform-link__icon">&#9658;</span>
+                                    <span>YouTube</span>
+                                    <span aria-hidden="true" class="platform-link__arrow">&#8599;</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <button id="viewMoreBtn" class="view-more-button" type="button" aria-controls="extraShorts" aria-expanded="false">View More</button>
