@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add('js-enabled');
     // ========== ACCOUNTING FUNCTIONALITY ==========
     const form = document.getElementById('accounting-form');
     const table = document.getElementById('accounting-table')?.querySelector('tbody');
@@ -131,15 +132,46 @@ document.addEventListener("DOMContentLoaded", () => {
     const navMenu = document.getElementById('navMenu');
 
     if (hamburger && navMenu) {
+        const updateMenuState = (isOpen) => {
+            navMenu.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            hamburger.classList.toggle('is-active', isOpen);
+            if (!isOpen) {
+                navMenu.querySelectorAll('.dropdown').forEach(drop => drop.classList.remove('open'));
+                const dropBtn = navMenu.querySelector('.dropbtn');
+                dropBtn?.setAttribute('aria-expanded', 'false');
+            }
+        };
+
         hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('open');
+            const isOpen = !navMenu.classList.contains('open');
+            updateMenuState(isOpen);
         });
 
         // Close menu on any nav link click
         navMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                navMenu.classList.remove('open');
+                updateMenuState(false);
             });
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!navMenu.classList.contains('open')) return;
+            if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
+                updateMenuState(false);
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                updateMenuState(false);
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (!window.matchMedia('(max-width: 768px)').matches) {
+                updateMenuState(false);
+            }
         });
     }
 
@@ -147,8 +179,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const dropBtn = document.querySelector('.dropbtn');
     if (dropBtn) {
         dropBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            dropBtn.parentElement.classList.toggle('open');
+            if (window.matchMedia('(max-width: 768px)').matches) {
+                e.preventDefault();
+                const dropdown = dropBtn.parentElement;
+                const expanded = dropdown.classList.toggle('open');
+                dropBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+            }
         });
     }
 });
