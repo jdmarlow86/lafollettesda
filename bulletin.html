@@ -16,13 +16,18 @@
             <h1 class="banner-title">Seventh-day Adventist Church of LaFollette, TN</h1>
 
             <nav>
+                <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-controls="navMenu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <div class="nav-menu" id="navMenu">
                     <a href="home.html">Home</a>
                     <a href="devotional.html">Devotional</a>
 
                     <div class="dropdown">
-                        <button class="dropbtn">Resources &#9662;</button>
-                        <div class="dropdown-content">
+                        <button class="dropbtn" aria-expanded="false" aria-controls="resources-menu">Resources &#9662;</button>
+                        <div class="dropdown-content" id="resources-menu">
                             <a href="adultsabbathschool.html">Adult Resources</a>
                             <a href="kids-edu.html">Youth Resources</a>
                         </div>
@@ -53,7 +58,7 @@
             <h2>Sermons</h2>
 
             <div class="slider-container">
-                <button class="slider-button left" aria-label="Previous">&#10094;</button>
+                <button class="slider-button left" type="button" aria-label="Previous" aria-controls="videoSlider">&#10094;</button>
 
                 <div class="video-slider" id="videoSlider">
                     <!-- Your video cards -->
@@ -269,7 +274,7 @@
                     <!-- Add more cards -->
                 </div>
 
-                <button class="slider-button right" aria-label="Next">&#10095;</button>
+                <button class="slider-button right" type="button" aria-label="Next" aria-controls="videoSlider">&#10095;</button>
             </div>
         </div>
     </section>
@@ -278,20 +283,82 @@
         <div class="content-center">
             <h2>Service Video Shorts</h2>
 
-            <div class="shorts-grid" id="shortsGrid">
-                <!-- First 4 shorts (always visible) -->
-                <a href="https://www.youtube.com/watch?v=475CnH3ih0o" target="_blank" class="short-link">July 26, 2025</a>
-                <a href="https://www.youtube.com/watch?v=0LlwJvndc4Y" target="_blank" class="short-link">July 19, 2025</a>
-                <a href="https://www.facebook.com/reel/777382981442192/?s=fb_shorts_profile&stack_idx=0" target="_blank" class="short-link">July 12, 2025</a>
-                <a href="https://www.facebook.com/reel/234567890123456" target="_blank" class="short-link">July 5, 2025</a>
-
-                <!-- Hidden shorts (revealed on click) -->
-                <div class="extra-shorts" id="extraShorts">
-                    <a href="https://www.youtube.com/watch?v=475CnH3ih0o" target="_blank" class="short-link">June 28, 2025</a>
-                </div>
+            <div class="shorts-table-wrapper">
+                <table class="shorts-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Platform</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <span class="shorts-table__date">July 26, 2025</span>
+                            </th>
+                            <td>
+                                <a href="https://www.youtube.com/watch?v=475CnH3ih0o" target="_blank" rel="noopener noreferrer" class="platform-link platform-link--youtube" aria-label="Watch the July 26, 2025 service short on YouTube (opens in a new tab)">
+                                    <span aria-hidden="true" class="platform-link__icon">&#9658;</span>
+                                    <span>YouTube</span>
+                                    <span aria-hidden="true" class="platform-link__arrow">&#8599;</span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <span class="shorts-table__date">July 19, 2025</span>
+                            </th>
+                            <td>
+                                <a href="https://www.youtube.com/watch?v=0LlwJvndc4Y" target="_blank" rel="noopener noreferrer" class="platform-link platform-link--youtube" aria-label="Watch the July 19, 2025 service short on YouTube (opens in a new tab)">
+                                    <span aria-hidden="true" class="platform-link__icon">&#9658;</span>
+                                    <span>YouTube</span>
+                                    <span aria-hidden="true" class="platform-link__arrow">&#8599;</span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <span class="shorts-table__date">July 12, 2025</span>
+                            </th>
+                            <td>
+                                <a href="https://www.facebook.com/reel/777382981442192/?s=fb_shorts_profile&amp;stack_idx=0" target="_blank" rel="noopener noreferrer" class="platform-link platform-link--facebook" aria-label="Watch the July 12, 2025 service short on Facebook (opens in a new tab)">
+                                    <span aria-hidden="true" class="platform-link__icon">f</span>
+                                    <span>Facebook</span>
+                                    <span aria-hidden="true" class="platform-link__arrow">&#8599;</span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <span class="shorts-table__date">July 5, 2025</span>
+                            </th>
+                            <td>
+                                <a href="https://www.facebook.com/reel/234567890123456" target="_blank" rel="noopener noreferrer" class="platform-link platform-link--facebook" aria-label="Watch the July 5, 2025 service short on Facebook (opens in a new tab)">
+                                    <span aria-hidden="true" class="platform-link__icon">f</span>
+                                    <span>Facebook</span>
+                                    <span aria-hidden="true" class="platform-link__arrow">&#8599;</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody class="extra-shorts" id="extraShorts" aria-hidden="true">
+                        <tr>
+                            <th scope="row">
+                                <span class="shorts-table__date">June 28, 2025</span>
+                            </th>
+                            <td>
+                                <a href="https://www.youtube.com/watch?v=475CnH3ih0o" target="_blank" rel="noopener noreferrer" class="platform-link platform-link--youtube" aria-label="Watch the June 28, 2025 service short on YouTube (opens in a new tab)">
+                                    <span aria-hidden="true" class="platform-link__icon">&#9658;</span>
+                                    <span>YouTube</span>
+                                    <span aria-hidden="true" class="platform-link__arrow">&#8599;</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
-            <button id="viewMoreBtn" class="view-more-button">View More</button>
+            <button id="viewMoreBtn" class="view-more-button" type="button" aria-controls="extraShorts" aria-expanded="false">View More</button>
         </div>
     </section>
 
@@ -312,7 +379,9 @@
         const btnLeft = document.querySelector('.slider-button.left');
         const btnRight = document.querySelector('.slider-button.right');
 
-        const scrollAmount = 320; // pixels to scroll on each click
+        const card = slider.querySelector('.video-card');
+        const gap = parseInt(getComputedStyle(slider).columnGap || getComputedStyle(slider).gap || '20', 10);
+        const scrollAmount = card ? card.offsetWidth + gap : 320;
 
         btnLeft.addEventListener('click', () => {
             slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
@@ -323,18 +392,20 @@
         });
     </script>
     <script>
-        document.getElementById('viewMoreBtn').addEventListener('click', function () {
-            const extraShorts = document.getElementById('extraShorts');
-            const btn = document.getElementById('viewMoreBtn');
+        const viewMoreBtn = document.getElementById('viewMoreBtn');
+        const extraShorts = document.getElementById('extraShorts');
 
-            if (extraShorts.classList.contains('show')) {
-                extraShorts.classList.remove('show');
-                btn.textContent = 'View More';
-            } else {
-                extraShorts.classList.add('show');
-                btn.textContent = 'View Less';
-            }
-        });
+        if (viewMoreBtn && extraShorts) {
+            extraShorts.setAttribute('aria-hidden', 'true');
+            viewMoreBtn.setAttribute('aria-expanded', 'false');
+
+            viewMoreBtn.addEventListener('click', () => {
+                const isOpen = extraShorts.classList.toggle('show');
+                viewMoreBtn.textContent = isOpen ? 'View Less' : 'View More';
+                viewMoreBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                extraShorts.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+            });
+        }
     </script>
 
 </body>
