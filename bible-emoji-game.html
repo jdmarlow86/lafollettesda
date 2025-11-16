@@ -58,10 +58,10 @@
     </style>
 </head>
 <body>
-    <h1>?? Bible Emoji Translator</h1>
+    <h1>😊 Bible Emoji Translator</h1>
 
     <div class="section">
-        <div class="emoji" id="emojiClue">??????????????????</div>
+        <div class="emoji" id="emojiClue">🌧️🌊🛶🕊️🌈</div>
         <input type="text" id="guessInput" placeholder="What Bible story is this?" />
         <button onclick="checkGuess()">Submit Guess</button>
         <div id="resultMsg"></div>
@@ -69,7 +69,7 @@
 
     <div class="section">
         <h2>Create Your Own Challenge</h2>
-        <textarea id="customEmoji" rows="2" placeholder="Type your emojis here (e.g. ????????)" style="width: 90%;"></textarea><br />
+        <textarea id="customEmoji" rows="2" placeholder="Type your emojis here (e.g. 🌧️🌊🕊️🌈)" style="width: 90%;"></textarea><br />
         <input type="text" id="customAnswer" placeholder="Correct answer (e.g. Adam and Eve)" style="width: 90%;" />
         <button onclick="generateLink()">Generate Sharable Link</button>
         <div id="shareLink" class="small"></div>
@@ -77,13 +77,32 @@
 
     <script>
     // Default game data
-    const defaultEmoji = "??????????????????";
-    const defaultAnswer = "noah's ark";
+    const defaultChallenges = [
+      { emoji: "🌧️🌊🛶🕊️🌈", answer: "noah's ark" },
+      { emoji: "🐍🍎🌿👫", answer: "adam and eve" },
+      { emoji: "👶🧺🌊👸", answer: "baby moses" },
+      { emoji: "🐟🐋🌊🧔", answer: "jonah and the whale" },
+      { emoji: "👑🪨🪓🧔", answer: "david and goliath" },
+      { emoji: "⭐👶🐄🎁", answer: "birth of jesus" },
+      { emoji: "🍞🐟🐟🐟🐟", answer: "feeding the 5000" }
+    ];
 
     // Load from URL if available
     const params = new URLSearchParams(window.location.search);
-    const emoji = decodeURIComponent(params.get('emoji') || defaultEmoji);
-    const answer = decodeURIComponent(params.get('answer') || defaultAnswer).toLowerCase();
+    const emojiParam = params.get('emoji');
+    const answerParam = params.get('answer');
+
+    let emoji = "";
+    let answer = "";
+
+    if (emojiParam && answerParam) {
+      emoji = decodeURIComponent(emojiParam);
+      answer = decodeURIComponent(answerParam).toLowerCase();
+    } else {
+      const randomChallenge = defaultChallenges[Math.floor(Math.random() * defaultChallenges.length)];
+      emoji = randomChallenge.emoji;
+      answer = randomChallenge.answer;
+    }
 
     document.getElementById("emojiClue").textContent = emoji;
 
@@ -94,9 +113,9 @@
       if (!userGuess) return;
 
       if (userGuess === answer) {
-        result.innerHTML = "? Correct! Great job!";
+        result.innerHTML = "✅ Correct! Great job!";
       } else {
-        result.innerHTML = "? Try again!";
+        result.innerHTML = "🔁 Try again!";
       }
     }
 
@@ -105,14 +124,14 @@
       const answerVal = encodeURIComponent(document.getElementById("customAnswer").value.trim());
 
       if (!emojiVal || !answerVal) {
-        document.getElementById("shareLink").textContent = "? Please enter both emoji and answer.";
+        document.getElementById("shareLink").textContent = "⚠️ Please enter both emoji and answer.";
         return;
       }
 
       const baseUrl = window.location.origin + window.location.pathname;
       const url = `${baseUrl}?emoji=${emojiVal}&answer=${answerVal}`;
 
-      document.getElementById("shareLink").innerHTML = `?? Sharable link: <a href="${url}" target="_blank">${url}</a>`;
+      document.getElementById("shareLink").innerHTML = `🔗 Sharable link: <a href="${url}" target="_blank">${url}</a>`;
     }
     </script>
 </body>
