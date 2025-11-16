@@ -48,7 +48,7 @@
             <h2>Contact Us</h2>
             <div class="contact-container">
                 <!-- Left: Form -->
-                <form id="contact-form"   action="https://formspree.io/f/manalqyr" method="POST" class="contact-form">
+                <form id="contact-form" action="https://formspree.io/f/manalqyr" method="POST" class="contact-form">
                     <input type="hidden" name="_next" value="https://jdmarlow86.github.io/wgnd1017/thankyou.html">
                     <input type="hidden" name="_captcha" value="false">
 
@@ -78,6 +78,15 @@
                 </div>
             </div>
         </section>
+
+        <!-- Thank You Modal -->
+        <div class="thank-you-modal" id="thankYouModal" role="dialog" aria-modal="true" aria-labelledby="thankYouTitle" aria-hidden="true">
+            <div class="thank-you-modal__content">
+                <h3 id="thankYouTitle">Thank you!</h3>
+                <p id="thankYouMessage">Your message has been sent. We'll be in touch soon.</p>
+                <button type="button" class="thank-you-modal__close" id="closeThankYouModal" aria-label="Close thank you message">Close</button>
+            </div>
+        </div>
     </main>
 
 
@@ -93,5 +102,54 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('contact-form');
+            const modal = document.getElementById('thankYouModal');
+            const messageEl = document.getElementById('thankYouMessage');
+            const closeBtn = document.getElementById('closeThankYouModal');
+
+            const showModal = (text) => {
+                messageEl.textContent = text;
+                modal.setAttribute('aria-hidden', 'false');
+                modal.classList.add('thank-you-modal--visible');
+                closeBtn.focus();
+            };
+
+            const hideModal = () => {
+                modal.setAttribute('aria-hidden', 'true');
+                modal.classList.remove('thank-you-modal--visible');
+            };
+
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const formData = new FormData(form);
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: form.method,
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    });
+
+                    if (response.ok) {
+                        form.reset();
+                        showModal("Thank you for reaching out! We'll respond as soon as possible.");
+                    } else {
+                        showModal('Oops! Something went wrong. Please try again later.');
+                    }
+                } catch (error) {
+                    showModal('Unable to send your message right now. Please check your connection and try again.');
+                }
+            });
+
+            closeBtn.addEventListener('click', hideModal);
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    hideModal();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
