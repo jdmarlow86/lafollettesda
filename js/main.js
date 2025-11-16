@@ -64,12 +64,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ========== CONTACT FORM ==========
     const contactForm = document.getElementById("contact-form");
-    if (contactForm) {
+    const reasonField = document.getElementById("reason");
+    // Only enable the legacy localStorage contact handling when the
+    // original "reason" field exists. The updated contact page uses a
+    // different workflow (Formspree + modal) and should not be
+    // intercepted here.
+    if (contactForm && reasonField) {
         contactForm.addEventListener("submit", (e) => {
             e.preventDefault();
 
             const name = document.getElementById("name").value.trim();
-            const reason = document.getElementById("reason").value;
+            const reason = reasonField.value;
             const message = document.getElementById("message").value.trim();
             const date = new Date().toISOString().split("T")[0];
 
