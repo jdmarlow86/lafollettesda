@@ -28,62 +28,58 @@
 
         .location {
             position: absolute;
-            padding: 5px 10px;
-            background: #fef8dd;
-            border: 2px solid #b59e7e;
-            border-radius: 8px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 2px solid #6c4f3d;
+            background: radial-gradient(circle, #fff9d4 0%, #ffd27b 60%, #f2b166 100%);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
             cursor: pointer;
-            font-weight: bold;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            padding: 0;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
         }
 
-            .location:hover {
-                background-color: #ffe8a1;
+            .location:hover,
+            .location:focus-visible {
+                transform: translate(-50%, -50%) scale(1.08);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
             }
 
-        /* Coordinates (Adjust as needed) */
-        #egypt {
-            top: 75%;
-            left: 20%;
-        }
+            .location::after {
+                content: attr(data-name);
+                position: absolute;
+                top: calc(100% + 6px);
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(0, 0, 0, 0.75);
+                color: #fff;
+                padding: 2px 8px;
+                border-radius: 4px;
+                font-size: 0.75rem;
+                white-space: nowrap;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.15s ease-in-out;
+            }
 
-        #israel {
-            top: 55%;
-            left: 35%;
-        }
+            .location:hover::after,
+            .location:focus::after {
+                opacity: 1;
+            }
 
-        #babylon {
-            top: 35%;
-            left: 70%;
-        }
-
-        #jericho {
-            top: 50%;
-            left: 38%;
-        }
-
-        #nineveh {
-            top: 20%;
-            left: 68%;
-        }
-
-        #nazareth {
-            top: 40%;
-            left: 33%;
-        }
-
-        #bethlehem {
-            top: 53%;
-            left: 34%;
-        }
-
-        #jerusalem {
-            top: 52%;
-            left: 36%;
-        }
-
-        #sinai {
-            top: 80%;
-            left: 30%;
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
         }
 
         /* Modal */
@@ -132,15 +128,33 @@
     </header>
 
     <div id="map">
-        <div id="egypt" class="location" onclick="showStory('Egypt')">Egypt</div>
-        <div id="israel" class="location" onclick="showStory('Israel')">Israel</div>
-        <div id="babylon" class="location" onclick="showStory('Babylon')">Babylon</div>
-        <div id="jericho" class="location" onclick="showStory('Jericho')">Jericho</div>
-        <div id="nineveh" class="location" onclick="showStory('Nineveh')">Nineveh</div>
-        <div id="nazareth" class="location" onclick="showStory('Nazareth')">Nazareth</div>
-        <div id="bethlehem" class="location" onclick="showStory('Bethlehem')">Bethlehem</div>
-        <div id="jerusalem" class="location" onclick="showStory('Jerusalem')">Jerusalem</div>
-        <div id="sinai" class="location" onclick="showStory('Mount Sinai')">Mount Sinai</div>
+        <button type="button" id="egypt" class="location" data-place="Egypt" data-name="Egypt" aria-label="Egypt">
+            <span class="sr-only">Egypt</span>
+        </button>
+        <button type="button" id="israel" class="location" data-place="Israel" data-name="Israel" aria-label="Israel">
+            <span class="sr-only">Israel</span>
+        </button>
+        <button type="button" id="babylon" class="location" data-place="Babylon" data-name="Babylon" aria-label="Babylon">
+            <span class="sr-only">Babylon</span>
+        </button>
+        <button type="button" id="jericho" class="location" data-place="Jericho" data-name="Jericho" aria-label="Jericho">
+            <span class="sr-only">Jericho</span>
+        </button>
+        <button type="button" id="nineveh" class="location" data-place="Nineveh" data-name="Nineveh" aria-label="Nineveh">
+            <span class="sr-only">Nineveh</span>
+        </button>
+        <button type="button" id="nazareth" class="location" data-place="Nazareth" data-name="Nazareth" aria-label="Nazareth">
+            <span class="sr-only">Nazareth</span>
+        </button>
+        <button type="button" id="bethlehem" class="location" data-place="Bethlehem" data-name="Bethlehem" aria-label="Bethlehem">
+            <span class="sr-only">Bethlehem</span>
+        </button>
+        <button type="button" id="jerusalem" class="location" data-place="Jerusalem" data-name="Jerusalem" aria-label="Jerusalem">
+            <span class="sr-only">Jerusalem</span>
+        </button>
+        <button type="button" id="sinai" class="location" data-place="Mount Sinai" data-name="Mount Sinai" aria-label="Mount Sinai">
+            <span class="sr-only">Mount Sinai</span>
+        </button>
     </div>
 
     <!-- Modal -->
@@ -155,42 +169,84 @@
     <script>
         const stories = {
             Egypt: {
-                title: "Egypt – Exodus & Deliverance",
+                title: "Egypt â€“ Exodus & Deliverance",
                 text: "The Israelites lived in slavery here until God sent Moses to deliver them. The Exodus story includes plagues, Passover, and the parting of the Red Sea."
             },
             Israel: {
-                title: "Israel – God's Promised Land",
-                text: "The land God promised to Abraham’s descendants. Home to tribes of Israel, prophets, kings, and later Jesus’ ministry."
+                title: "Israel â€“ God's Promised Land",
+                text: "The land God promised to Abrahamâ€™s descendants. Home to tribes of Israel, prophets, kings, and later Jesusâ€™ ministry."
             },
             Babylon: {
-                title: "Babylon – Captivity & Faith",
+                title: "Babylon â€“ Captivity & Faith",
                 text: "A place of exile for the Jews. Daniel, Esther, and others remained faithful under foreign rule. Many prophecies were fulfilled here."
             },
             Jericho: {
-                title: "Jericho – Walls Came Down",
-                text: "The first city conquered in Canaan. Joshua led the Israelites around the city for seven days, and the walls fell down by God’s power. (Joshua 6)"
+                title: "Jericho â€“ Walls Came Down",
+                text: "The first city conquered in Canaan. Joshua led the Israelites around the city for seven days, and the walls fell down by Godâ€™s power. (Joshua 6)"
             },
             Nineveh: {
-                title: "Nineveh – Jonah's Mission",
+                title: "Nineveh â€“ Jonah's Mission",
                 text: "The capital of Assyria. Jonah was sent to preach repentance here. To his surprise, the people actually repented! (Book of Jonah)"
             },
             Nazareth: {
-                title: "Nazareth – Jesus' Hometown",
+                title: "Nazareth â€“ Jesus' Hometown",
                 text: "Where Jesus grew up. Though small and humble, it became famous as the place where the Savior lived most of His life."
             },
             Bethlehem: {
-                title: "Bethlehem – Birthplace of Christ",
+                title: "Bethlehem â€“ Birthplace of Christ",
                 text: "Jesus was born here in fulfillment of prophecy. It was also the hometown of King David. (Micah 5:2, Luke 2)"
             },
             Jerusalem: {
-                title: "Jerusalem – Holy City",
+                title: "Jerusalem â€“ Holy City",
                 text: "Center of worship, where the temple stood. Jesus was crucified and rose again here. It is deeply significant throughout the Bible."
             },
             "Mount Sinai": {
-                title: "Mount Sinai – Covenant with God",
-                text: "Moses received the Ten Commandments here. It was a sacred meeting point between God and His people. (Exodus 19–20)"
+                title: "Mount Sinai â€“ Covenant with God",
+                text: "Moses received the Ten Commandments here. It was a sacred meeting point between God and His people. (Exodus 19â€“20)"
             }
         };
+
+        const locationCoordinates = {
+            Egypt: { lat: 30.0444, lon: 31.2357 },
+            Israel: { lat: 31.0461, lon: 34.8516 },
+            Babylon: { lat: 32.54, lon: 44.42 },
+            Jericho: { lat: 31.87, lon: 35.45 },
+            Nineveh: { lat: 36.35, lon: 43.15 },
+            Nazareth: { lat: 32.6996, lon: 35.3035 },
+            Bethlehem: { lat: 31.7054, lon: 35.2024 },
+            Jerusalem: { lat: 31.7683, lon: 35.2137 },
+            "Mount Sinai": { lat: 28.539, lon: 33.973 }
+        };
+
+        function positionLocations() {
+            const bounds = { latMin: 26, latMax: 38.5, lonMin: 28, lonMax: 49 };
+            document.querySelectorAll('.location').forEach(marker => {
+                const place = marker.dataset.place;
+                const coords = locationCoordinates[place];
+                if (!coords) {
+                    return;
+                }
+
+                const topPercent = (1 - (coords.lat - bounds.latMin) / (bounds.latMax - bounds.latMin)) * 100;
+                const leftPercent = ((coords.lon - bounds.lonMin) / (bounds.lonMax - bounds.lonMin)) * 100;
+
+                marker.style.top = `${topPercent}%`;
+                marker.style.left = `${leftPercent}%`;
+            });
+        }
+
+        function wireLocationInteractions() {
+            document.querySelectorAll('.location').forEach(marker => {
+                const place = marker.dataset.place;
+                marker.addEventListener('click', () => showStory(place));
+                marker.addEventListener('keydown', event => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        showStory(place);
+                    }
+                });
+            });
+        }
 
         function showStory(place) {
             document.getElementById('storyTitle').innerText = stories[place].title;
@@ -201,6 +257,9 @@
         function closeModal() {
             document.getElementById('storyModal').style.display = 'none';
         }
+
+        positionLocations();
+        wireLocationInteractions();
     </script>
     <h3>
         <a href="sandbox.html" class="church-link">Back to sandbox</a>
