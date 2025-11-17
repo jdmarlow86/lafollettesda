@@ -5,9 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Fruit of the Spirit Farm</title>
     <style>
+        :root {
+            --grass: #f1ffe3;
+            --basket: #9dbf59;
+            --fruit-card: #fffaf0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', sans-serif;
-            background: #fdf6e3;
+            background: linear-gradient(180deg, #fdf6e3 0%, #f5ffe6 100%);
             margin: 0;
             padding: 20px;
             text-align: center;
@@ -16,10 +26,13 @@
 
         h1 {
             color: #4a752c;
+            font-size: 2.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .instructions {
             margin-bottom: 20px;
+            font-size: 1.1rem;
         }
 
         .farm-container {
@@ -31,39 +44,78 @@
         }
 
         .fruit {
-            width: 100px;
-            height: 100px;
-            background-color: #fff3cd;
-            border: 2px solid #ccc;
-            border-radius: 10px;
+            width: 150px;
+            height: 190px;
+            background-color: var(--fruit-card);
+            border: 2px solid #d8c9a1;
+            border-radius: 16px;
             display: flex;
+            flex-direction: column;
+            gap: 10px;
             justify-content: center;
             align-items: center;
             cursor: grab;
-            font-size: 14px;
-            padding: 10px;
+            font-size: 1rem;
+            padding: 12px;
             box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            background-image: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+        }
+
+        .fruit img,
+        .basket img {
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+        }
+
+        .fruit span,
+        .basket span {
+            font-weight: 600;
+        }
+
+        .fruit:active {
+            cursor: grabbing;
+        }
+
+        .fruit:not(.matched):hover {
+            transform: translateY(-4px);
+            box-shadow: 4px 6px 12px rgba(0,0,0,0.15);
         }
 
         .basket {
-            width: 140px;
-            height: 140px;
-            background-color: #e1f5c4;
-            border: 2px dashed #999;
-            border-radius: 10px;
+            width: 170px;
+            min-height: 210px;
+            background-color: var(--grass);
+            border: 2px dashed var(--basket);
+            border-radius: 16px;
             display: flex;
             justify-content: center;
             align-items: center;
             font-weight: bold;
             color: #2e5726;
             flex-direction: column;
+            gap: 10px;
+            padding: 12px;
             transition: 0.2s;
+        }
+
+        .basket span {
+            text-transform: capitalize;
+        }
+
+        .basket.dragover {
+            border-style: solid;
+            box-shadow: 0 0 0 4px rgba(157,191,89,0.25);
         }
 
         .matched {
             background-color: #c8facc !important;
             border-color: #4caf50 !important;
             cursor: default;
+            opacity: 0.92;
         }
 
         #message {
@@ -73,6 +125,11 @@
         }
 
         @media (max-width: 600px) {
+            .farm-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
             .fruit, .basket {
                 width: 90%;
                 height: auto;
@@ -82,30 +139,60 @@
     </style>
 </head>
 <body>
-    <h1>?? Fruit of the Spirit Farm</h1>
-    <p class="instructions">Drag each fruit to its matching trait from Galatians 5:22�23.</p>
+    <h1>🍇 Fruit of the Spirit Farm</h1>
+    <p class="instructions">Drag each real fruit photo to the matching Fruit of the Spirit from Galatians 5:22-23.</p>
 
-    <div class="farm-container" id="fruits">
-        <!-- Fruits to drag -->
-    </div>
-
-    <div class="farm-container" id="baskets">
-        <!-- Baskets to drop into -->
-    </div>
-
+    <div class="farm-container" id="fruits"></div>
+    <div class="farm-container" id="baskets"></div>
     <div id="message"></div>
 
     <script>
     const fruits = [
-      { name: "Love", icon: "??" },
-      { name: "Joy", icon: "??" },
-      { name: "Peace", icon: "??" },
-      { name: "Patience", icon: "??" },
-      { name: "Kindness", icon: "??" },
-      { name: "Goodness", icon: "??" },
-      { name: "Faithfulness", icon: "??" },
-      { name: "Gentleness", icon: "??" },
-      { name: "Self-Control", icon: "??" }
+      {
+        name: "Love",
+        image: "https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=200&h=200&q=80",
+        description: "Love strawberry"
+      },
+      {
+        name: "Joy",
+        image: "https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&fit=crop&w=200&h=200&q=80",
+        description: "Joy orange"
+      },
+      {
+        name: "Peace",
+        image: "https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?auto=format&fit=crop&w=200&h=200&q=80",
+        description: "Peace grapes"
+      },
+      {
+        name: "Patience",
+        image: "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=200&h=200&q=80",
+        description: "Patience apple"
+      },
+      {
+        name: "Kindness",
+        image: "https://images.unsplash.com/photo-1447175008436-054170c2e979?auto=format&fit=crop&w=200&h=200&q=80",
+        description: "Kindness pear"
+      },
+      {
+        name: "Goodness",
+        image: "https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?auto=format&fit=crop&w=200&h=200&q=80",
+        description: "Goodness mango"
+      },
+      {
+        name: "Faithfulness",
+        image: "https://images.unsplash.com/photo-1437751068958-59aed5b332d6?auto=format&fit=crop&w=200&h=200&q=80",
+        description: "Faithfulness blueberries"
+      },
+      {
+        name: "Gentleness",
+        image: "https://images.unsplash.com/photo-1502741126161-b048400d085b?auto=format&fit=crop&w=200&h=200&q=80",
+        description: "Gentleness peach"
+      },
+      {
+        name: "Self-Control",
+        image: "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=200&h=200&q=80",
+        description: "Self-control watermelon"
+      }
     ];
 
     const fruitsContainer = document.getElementById("fruits");
@@ -113,31 +200,34 @@
     const message = document.getElementById("message");
     let matchedCount = 0;
 
-    // Shuffle function
     function shuffle(arr) {
-      return arr.sort(() => Math.random() - 0.5);
+      return arr
+        .map(value => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
     }
 
-    // Render fruits
     shuffle(fruits).forEach(fruit => {
       const div = document.createElement("div");
       div.className = "fruit";
       div.setAttribute("draggable", "true");
-      div.setAttribute("data-name", fruit.name);
-      div.textContent = `${fruit.icon} ${fruit.name}`;
+      div.dataset.name = fruit.name;
+      div.dataset.img = fruit.image;
+      div.innerHTML = `
+        <img src="${fruit.image}" alt="${fruit.description}" loading="lazy">
+        <span>${fruit.name}</span>
+      `;
       fruitsContainer.appendChild(div);
     });
 
-    // Render baskets
     fruits.forEach(fruit => {
       const div = document.createElement("div");
       div.className = "basket";
-      div.setAttribute("data-name", fruit.name);
+      div.dataset.name = fruit.name;
       div.innerHTML = `<span>${fruit.name}</span>`;
       basketsContainer.appendChild(div);
     });
 
-    // Drag functionality
     const draggables = document.querySelectorAll(".fruit");
     draggables.forEach(fruit => {
       fruit.addEventListener("dragstart", e => {
@@ -147,22 +237,34 @@
 
     const baskets = document.querySelectorAll(".basket");
     baskets.forEach(basket => {
-      basket.addEventListener("dragover", e => e.preventDefault());
+      basket.addEventListener("dragover", e => {
+        e.preventDefault();
+        basket.classList.add("dragover");
+      });
+
+      basket.addEventListener("dragleave", () => basket.classList.remove("dragover"));
+
       basket.addEventListener("drop", e => {
         e.preventDefault();
+        basket.classList.remove("dragover");
         const draggedName = e.dataTransfer.getData("text/plain");
         if (basket.dataset.name === draggedName && !basket.classList.contains("matched")) {
-          basket.classList.add("matched");
-          basket.innerHTML = `? ${draggedName}`;
           const fruitEl = document.querySelector(`.fruit[data-name="${draggedName}"]`);
+          basket.classList.add("matched");
+          basket.innerHTML = `
+            <img src="${fruitEl.dataset.img}" alt="${draggedName} fruit" loading="lazy">
+            <span>${draggedName}</span>
+          `;
           fruitEl.classList.add("matched");
           fruitEl.setAttribute("draggable", "false");
           matchedCount++;
           if (matchedCount === fruits.length) {
-            message.textContent = "?? All matched! Great job remembering the Fruit of the Spirit!";
+            message.textContent = "🎉 All matched! Great job remembering the Fruit of the Spirit!";
+          } else {
+            message.textContent = "Great job! Keep going.";
           }
         } else {
-          message.textContent = "? That's not the right basket. Try again!";
+          message.textContent = "⚠️ That's not the right basket. Try again!";
         }
       });
     });
